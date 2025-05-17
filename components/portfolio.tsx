@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ExternalLink, FileText, ArrowRight, TrendingUp, Zap, Award } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
+import { motion } from "framer-motion"
 
 const projects = [
   {
@@ -159,14 +160,14 @@ export default function Portfolio() {
       <div className="absolute inset-0 dot-pattern opacity-30 z-0"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <h2
+        <motion.h2
           className={cn(
-            "section-title text-primary transition-all duration-700",
+            "section-title text-[#2e4a7d] transition-all duration-700",
             isVisible ? "opacity-100" : "opacity-0 translate-y-10",
           )}
         >
           Portfolio
-        </h2>
+        </motion.h2>
 
         <div
           className={cn(
@@ -175,9 +176,13 @@ export default function Portfolio() {
           )}
         >
           <Tabs defaultValue="project1" value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="flex flex-wrap justify-center mb-8 bg-transparent">
+            <TabsList className="flex items-center justify-start bg-transparent w-full min-w-0 px-0 gap-1 max-sm:overflow-x-auto max-sm:scrollbar-hide max-sm:scroll-snap-x max-sm:mandatory max-sm:w-full max-sm:min-w-0 max-sm:gap-1 sm:flex-nowrap sm:overflow-x-visible sm:w-auto sm:gap-2" style={{ WebkitOverflowScrolling: 'touch' }}>
               {projects.map((project) => (
-                <TabsTrigger key={project.id} value={project.id} className="portfolio-tab m-1">
+                <TabsTrigger
+                  key={project.id}
+                  value={project.id}
+                  className="portfolio-tab mx-1 min-w-[120px] max-w-[200px] flex-shrink-0 scroll-snap-align-start text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap"
+                >
                   {project.title}
                 </TabsTrigger>
               ))}
@@ -185,51 +190,46 @@ export default function Portfolio() {
 
             {projects.map((project) => (
               <TabsContent key={project.id} value={project.id} className="mt-0 animate-fadeIn">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                  <div className="order-2 md:order-1">
-                    <h3 className="text-2xl font-bold mb-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start w-full max-w-full px-1 sm:px-2">
+                  <div className="order-2 md:order-1 w-full min-w-0 break-words">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2 break-words">
                       {project.title}
-                      <span className="text-lg font-normal ml-2 text-muted-foreground">{project.subtitle}</span>
+                      <span className="text-base sm:text-lg font-normal ml-2 text-muted-foreground">{project.subtitle}</span>
                     </h3>
-                    <p className="mb-4 text-muted-foreground">{project.description}</p>
-
+                    <p className="mb-4 text-muted-foreground text-sm sm:text-base break-words">{project.description}</p>
                     <div className="mb-6 impact-card">
-                      <h4 className="font-semibold text-primary mb-1 flex items-center">
+                      <h4 className="font-semibold text-primary mb-1 flex items-center text-sm sm:text-base">
                         <TrendingUp className="mr-2 h-4 w-4 text-secondary" /> 주요 성과
                       </h4>
-                      <p className="text-sm">{project.impact}</p>
+                      <p className="text-xs sm:text-sm">{project.impact}</p>
                     </div>
-
                     <div className="mb-4">
-                      <h4 className="font-semibold text-primary mb-2 flex items-center">
+                      <h4 className="font-semibold text-primary mb-2 flex items-center text-sm sm:text-base">
                         <Zap className="mr-2 h-4 w-4 text-secondary" /> 프로세스
                       </h4>
-                      <p className="text-sm text-muted-foreground">{project.process}</p>
+                      <p className="text-xs sm:text-sm text-muted-foreground">{project.process}</p>
                     </div>
-
                     <div className="mb-4">
-                      <h4 className="font-semibold text-primary mb-2 flex items-center">
+                      <h4 className="font-semibold text-primary mb-2 flex items-center text-sm sm:text-base">
                         <Award className="mr-2 h-4 w-4 text-secondary" /> 활용 도구
                       </h4>
-                      <p className="text-sm text-muted-foreground">{project.tech}</p>
+                      <p className="text-xs sm:text-sm text-muted-foreground">{project.tech}</p>
                     </div>
-
                     <div className="mb-6 flex flex-wrap gap-2">
                       {project.tags.map((tag, index) => (
                         <Badge
                           key={index}
                           variant="outline"
-                          className={`bg-secondary/10 text-secondary border-none ${index === 0 ? "badge-glow" : ""}`}
+                          className={`bg-secondary/10 text-secondary border-none text-xs sm:text-sm ${index === 0 ? "badge-glow" : ""}`}
                         >
                           {tag}
                         </Badge>
                       ))}
                     </div>
-
-                    <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-col sm:flex-row flex-wrap gap-2 md:gap-4 w-full">
                       <Button
                         asChild
-                        className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300"
+                        className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4"
                       >
                         <a
                           href={project.liveUrl}
@@ -241,34 +241,21 @@ export default function Portfolio() {
                           프로젝트 보기
                         </a>
                       </Button>
-                      <Button
-                        variant="outline"
-                        asChild
-                        className="border-primary/20 hover:bg-primary/5 hover:text-primary shadow-sm hover:shadow-md transition-all duration-300"
-                      >
-                        <a
-                          href={project.docsUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center"
-                        >
-                          <FileText className="mr-2 h-4 w-4" />
-                          기획 문서
-                        </a>
-                      </Button>
                     </div>
                   </div>
-                  <div className="order-1 md:order-2">
-                    <div className="relative aspect-video overflow-hidden rounded-lg shadow-lg gradient-border">
+                  <div className="order-1 md:order-2 w-full min-w-0">
+                    <div className="relative aspect-video overflow-hidden rounded-lg shadow-lg gradient-border w-full min-w-0">
                       <Image
                         src={project.image || "/placeholder.svg"}
                         alt={project.title}
                         fill
                         className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
+                        style={{ minWidth: 0 }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                        <div className="p-4 text-white">
-                          <p className="text-sm font-medium flex items-center group">
+                        <div className="p-2 sm:p-4 text-white w-full">
+                          <p className="text-xs sm:text-sm font-medium flex items-center group">
                             자세히 보기{" "}
                             <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform duration-300" />
                           </p>

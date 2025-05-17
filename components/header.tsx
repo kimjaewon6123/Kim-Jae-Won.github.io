@@ -19,6 +19,7 @@ const navItems = [
 export default function Header() {
   const [activeSection, setActiveSection] = useState("home")
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isBottom, setIsBottom] = useState(true)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +37,7 @@ export default function Header() {
       })
 
       setIsScrolled(window.scrollY > 50)
+      setIsBottom(window.scrollY < 50)
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -45,8 +47,10 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-        isScrolled ? "bg-background/90 backdrop-blur-sm shadow-sm py-2" : "bg-transparent py-4",
+        "w-full z-50 transition-all duration-300",
+        isBottom
+          ? "fixed bottom-0 left-0 bg-background/90 backdrop-blur-sm shadow-t py-2"
+          : "fixed top-0 left-0 bg-background/90 backdrop-blur-sm shadow-sm py-2"
       )}
     >
       <div className="container mx-auto flex justify-between items-center">
@@ -65,6 +69,12 @@ export default function Header() {
                     "nav-link font-medium transition-colors",
                     activeSection === item.href.substring(1) ? "text-primary font-bold active" : "text-foreground/80",
                   )}
+                  onClick={e => {
+                    if(item.name === "HOME") {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
                 >
                   {item.name}
                 </a>
@@ -94,6 +104,12 @@ export default function Header() {
                       "text-lg font-medium transition-colors hover:text-primary py-2",
                       activeSection === item.href.substring(1) ? "text-primary font-bold" : "text-foreground/80",
                     )}
+                    onClick={e => {
+                      if(item.name === "HOME") {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }
+                    }}
                   >
                     {item.name}
                   </a>

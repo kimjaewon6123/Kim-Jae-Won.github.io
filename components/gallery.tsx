@@ -7,6 +7,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
 
 const galleryCategories = [
   {
@@ -144,39 +145,50 @@ export default function Gallery() {
       id="gallery"
       className="section-padding bg-gradient-to-b from-primary/5 to-background relative overflow-hidden"
     >
-      {/* Background pattern */}
-      <div className="absolute inset-0 grid-pattern opacity-30 z-0"></div>
+      {/* 자연스러운 블러/그라데이션 원 배경 (통일감+변형) */}
+      <div className="absolute -top-36 -right-28 w-[380px] h-[340px] rounded-full bg-gradient-to-br from-[#e6e6fa] via-[#e6f2fb] to-[#b7cbe6] opacity-60 blur-[80px] z-0" />
+      <div className="absolute -bottom-24 -left-36 w-[300px] h-[260px] rounded-full bg-gradient-to-tr from-[#b7cbe6] via-[#e6fff8] to-[#a3b8e6] opacity-40 blur-[60px] z-0" />
+      {/* subtle noise overlay */}
+      <div className="absolute inset-0 pointer-events-none z-0" style={{background: 'url(/noise.png)', opacity: 0.07}} />
+      {/* linear-gradient overlay */}
+      <div className="absolute inset-0 pointer-events-none z-0" style={{background: 'linear-gradient(100deg,rgba(255,255,255,0.18)_0%,rgba(183,203,230,0.10)_100%)'}} />
 
       <div className="container mx-auto px-4 relative z-10">
-        <h2
+        <motion.h2
           className={cn(
-            "section-title text-primary transition-all duration-700",
-            isVisible ? "opacity-100" : "opacity-0 translate-y-10",
+            "section-title text-[#2e4a7d]",
           )}
+          initial={{ opacity: 0, y: 40 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ type: "spring", stiffness: 60, damping: 18 }}
         >
           Design Gallery
-        </h2>
+        </motion.h2>
 
-        <div
-          className={cn(
-            "transition-all duration-700 delay-300",
-            isVisible ? "opacity-100" : "opacity-0 translate-y-10",
-          )}
+        <motion.div
+          className=""
+          initial={{ opacity: 0, y: 40 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.15 }}
         >
           <Tabs defaultValue="wireframes" value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <div className="flex items-center justify-center mb-8">
+            <div className="flex flex-wrap max-sm:flex-nowrap items-center justify-center gap-2 sm:gap-4 mb-8">
               <Button
                 variant="outline"
                 size="icon"
                 onClick={prevCategory}
-                className="mr-4 border-primary/20 hover:bg-primary/5 hover:text-primary rounded-full"
+                className="border-primary/20 hover:bg-primary/5 hover:text-primary rounded-full"
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
 
-              <TabsList className="bg-transparent">
+              <TabsList className="flex items-center justify-start bg-transparent w-full min-w-0 px-0 gap-1 max-sm:overflow-x-auto max-sm:scrollbar-hide max-sm:scroll-snap-x max-sm:mandatory max-sm:w-full max-sm:min-w-0 max-sm:gap-1 sm:flex-nowrap sm:overflow-x-visible sm:w-auto sm:gap-2" style={{ WebkitOverflowScrolling: 'touch' }}>
                 {galleryCategories.map((category) => (
-                  <TabsTrigger key={category.id} value={category.id} className="portfolio-tab mx-1">
+                  <TabsTrigger
+                    key={category.id}
+                    value={category.id}
+                    className="portfolio-tab mx-1 min-w-[110px] max-w-[180px] flex-shrink-0 scroll-snap-align-start text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap"
+                  >
                     {category.title}
                   </TabsTrigger>
                 ))}
@@ -186,35 +198,44 @@ export default function Gallery() {
                 variant="outline"
                 size="icon"
                 onClick={nextCategory}
-                className="ml-4 border-primary/20 hover:bg-primary/5 hover:text-primary rounded-full"
+                className="border-primary/20 hover:bg-primary/5 hover:text-primary rounded-full"
               >
                 <ChevronRight className="h-4 w-4" />
               </Button>
             </div>
 
             {galleryCategories.map((category) => (
-              <TabsContent key={category.id} value={category.id} className="mt-0 animate-fadeIn">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <TabsContent key={category.id} value={category.id} className="mt-0">
+                <motion.div
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 px-1 sm:px-0 w-full max-w-full"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 30 }}
+                  transition={{ type: "spring", stiffness: 60, damping: 18 }}
+                >
                   {category.items.map((item) => (
-                    <div
+                    <motion.div
                       key={item.id}
-                      className="gallery-item cursor-pointer card-hover gradient-border"
+                      className="gallery-item cursor-pointer card-hover gradient-border w-full min-w-0"
                       onClick={() => openImage(item.image, item.title)}
+                      initial={{ opacity: 0, scale: 0.97 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ type: "spring", stiffness: 70, damping: 20, delay: 0.1 }}
                     >
-                      <div className="relative aspect-square overflow-hidden rounded-lg shadow-md">
-                        <Image src={item.image || "/placeholder.svg"} alt={item.title} fill className="object-cover" />
+                      <div className="relative aspect-square sm:aspect-video overflow-hidden rounded-lg shadow-md p-1 sm:p-0 w-full min-w-0">
+                        <Image src={item.image || "/placeholder.svg"} alt={item.title} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px" style={{ minWidth: 0 }} />
                         <div className="gallery-overlay">
                           <ZoomIn className="h-8 w-8 mb-2 text-white" />
-                          <h3 className="text-xl font-bold text-center">{item.title}</h3>
+                          <h3 className="text-xs sm:text-base font-bold text-center break-words w-full px-1 sm:px-2">{item.title}</h3>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </TabsContent>
             ))}
           </Tabs>
-        </div>
+        </motion.div>
 
         <Dialog open={!!selectedImage} onOpenChange={() => closeImage()}>
           <DialogContent className="max-w-4xl p-0 overflow-hidden">
