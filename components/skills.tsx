@@ -119,6 +119,8 @@ function ScatterToolImage({ src, alt, x, y, scale, rotation, imgSize }: {
       }}
       initial={{ opacity: 1, scale: 1 }}
       whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: 1.13, boxShadow: '0 4px 16px 0 rgba(80,120,200,0.18)' }}
+      transition={{ type: 'spring', stiffness: 220, damping: 18 }}
       draggable={false}
     />
   );
@@ -293,10 +295,13 @@ export default function Skills() {
           )}
         >
           {skills.map((skill, index) => (
-            <Card key={index} className="card-hover border-none shadow-md overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <Card
+              key={skill.name}
+              className="skill-item group transition-all duration-200 hover:shadow-lg"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <CardContent className="p-6 flex flex-col items-center justify-center relative z-10">
-                <div className="transform group-hover:scale-110 transition-transform duration-300">{skill.icon}</div>
+                <div className="mb-4">{skill.icon}</div>
                 <h3 className="text-xl font-bold mb-2">{skill.name}</h3>
                 <p className="text-sm text-muted-foreground text-center">{skill.description}</p>
               </CardContent>
@@ -333,23 +338,6 @@ export default function Skills() {
           onTouchMove={handleAreaTouchMove}
           onTouchEnd={handleAreaMouseLeave}
         >
-          {/* 마우스 위치에 mouse.png 표시 */}
-          {mousePos && (
-            <img
-              src="/mouse.png"
-              alt="마우스"
-              style={{
-                position: "absolute",
-                left: mousePos.x - 24,
-                top: mousePos.y - 24,
-                width: 48,
-                height: 48,
-                pointerEvents: "none",
-                zIndex: 99,
-                transition: "left 0.08s cubic-bezier(.4,1,.7,1), top 0.08s cubic-bezier(.4,1,.7,1)",
-              }}
-            />
-          )}
           {toolImages.map((tool, index) => {
             const icon = iconsRef.current[index];
             if (!icon || !icon.x || !icon.y || !icon.scale || !icon.rotation) return null;

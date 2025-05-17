@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Mail, FileText, Instagram } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
 
 export default function Contact() {
   const [isVisible, setIsVisible] = useState(false)
@@ -62,43 +63,54 @@ export default function Contact() {
             <Card className="bg-background/80 backdrop-blur-sm border-none shadow-lg glass-card w-full max-w-full">
               <CardContent className="p-3 sm:p-6">
                 <div className="text-center mb-4 sm:mb-8">
-                  <p className="text-sm sm:text-lg md:text-xl mb-2 sm:mb-6 text-[#4766a6] break-words">
+                  <motion.p
+                    className="text-sm sm:text-lg md:text-xl mb-2 sm:mb-6 text-[#4766a6] break-words"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.1, ease: 'easeOut' }}
+                  >
                     "변화하는 기술을 빠르게 흡수하고,
                     <br />
                     <span className="highlight-text text-[#5a6e8c]">현실적인 해결책으로 이어내는</span>
                     <br />
                     <strong className="text-[#2e4a7d]">기획자, 김재원</strong>입니다."
-                  </p>
+                  </motion.p>
                   <p className="text-[#5a6e8c] text-xs sm:text-base break-words">연락처: +82 10 7751 6123, twice6123@naver.com</p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center w-full">
                   <Button
                     asChild
-                    className="flex items-center bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4"
+                    className="flex items-center bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 group"
                   >
                     <a href="mailto:twice6123@naver.com" target="_blank" rel="noopener noreferrer">
-                      <Mail className="mr-2 h-4 w-4" />
-                      이메일 보내기
+                      <motion.span whileHover={{ x: 4, scale: 1.13 }} transition={{ type: 'spring', stiffness: 220, damping: 18 }} className="flex items-center">
+                        <Mail className="mr-2 h-4 w-4" />
+                        이메일 보내기
+                      </motion.span>
                     </a>
                   </Button>
                   <Button
                     asChild
                     variant="outline"
-                    className="flex items-center border-primary/20 hover:bg-primary/5 hover:text-primary shadow-sm hover:shadow-md transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4"
+                    className="flex items-center border-primary/20 hover:bg-primary/5 hover:text-primary shadow-sm hover:shadow-md transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 group"
                   >
                     <a href="#" target="_blank" rel="noopener noreferrer">
-                      <FileText className="mr-2 h-4 w-4" />
-                      이력서 다운로드
+                      <motion.span whileHover={{ x: 4, scale: 1.13 }} transition={{ type: 'spring', stiffness: 220, damping: 18 }} className="flex items-center">
+                        <FileText className="mr-2 h-4 w-4" />
+                        이력서 다운로드
+                      </motion.span>
                     </a>
                   </Button>
                   <Button
                     asChild
                     variant="outline"
-                    className="flex items-center border-primary/20 hover:bg-primary/5 hover:text-primary shadow-sm hover:shadow-md transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4"
+                    className="flex items-center border-primary/20 hover:bg-primary/5 hover:text-primary shadow-sm hover:shadow-md transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 group"
                   >
                     <a href="https://instagram.com/w0n.zip" target="_blank" rel="noopener noreferrer">
-                      <Instagram className="mr-2 h-4 w-4" />
-                      @w0n.zip
+                      <motion.span whileHover={{ x: 4, scale: 1.13 }} transition={{ type: 'spring', stiffness: 220, damping: 18 }} className="flex items-center">
+                        <Instagram className="mr-2 h-4 w-4" />
+                        @w0n.zip
+                      </motion.span>
                     </a>
                   </Button>
                 </div>

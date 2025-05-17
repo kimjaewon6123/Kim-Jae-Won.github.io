@@ -36,7 +36,7 @@ const projects = [
     tech: "SPSS, Excel, Figma, Google Analytics",
     tags: ["117명 유저 설문", "AHP 분석 기획", "UX기반 광고 전략", "데이터 시각화"],
     participation: "기획 100%",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/p2.png",
     liveUrl: "#",
     docsUrl: "#",
   },
@@ -51,13 +51,13 @@ const projects = [
     tech: "Jira, Slack, Figma, Miro",
     tags: ["6인 협업 리딩", "커뮤니케이션", "애자일 스프린트", "백로그 관리"],
     participation: "기획 100%, 팀 리드",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/p3.png",
     liveUrl: "#",
     docsUrl: "#",
   },
   {
     id: "project4",
-    title: "개발 협업 프로젝트",
+    title: "풀 사이클 프로젝트",
     subtitle: "(미용실 예약 시스템)",
     description:
       "기획부터 개발 협업까지 전 과정을 경험한 풀 사이클 프로젝트. ERD 설계 및 DB 구조화 작업에 직접 참여하여 개발자와의 원활한 협업 진행. VIBE CODING을 통한 프로토타입 제작.",
@@ -66,7 +66,7 @@ const projects = [
     tech: "Figma, MySQL, GitHub, VS Code",
     tags: ["개발 이해도", "VIBE CODING", "ERD 및 DB설계", "풀스택 협업"],
     participation: "기획 100%, 개발 협업",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/p4.png",
     liveUrl: "#",
     docsUrl: "#",
   },
@@ -190,78 +190,73 @@ export default function Portfolio() {
 
             {projects.map((project) => (
               <TabsContent key={project.id} value={project.id} className="mt-0 animate-fadeIn">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start w-full max-w-full px-1 sm:px-2">
-                  <div className="order-2 md:order-1 w-full min-w-0 break-words">
-                    <h3 className="text-xl sm:text-2xl font-bold mb-2 break-words">
-                      {project.title}
-                      <span className="text-base sm:text-lg font-normal ml-2 text-muted-foreground">{project.subtitle}</span>
-                    </h3>
-                    <p className="mb-4 text-muted-foreground text-sm sm:text-base break-words">{project.description}</p>
-                    <div className="mb-6 impact-card">
-                      <h4 className="font-semibold text-primary mb-1 flex items-center text-sm sm:text-base">
-                        <TrendingUp className="mr-2 h-4 w-4 text-secondary" /> 주요 성과
-                      </h4>
-                      <p className="text-xs sm:text-sm">{project.impact}</p>
-                    </div>
-                    <div className="mb-4">
-                      <h4 className="font-semibold text-primary mb-2 flex items-center text-sm sm:text-base">
-                        <Zap className="mr-2 h-4 w-4 text-secondary" /> 프로세스
-                      </h4>
-                      <p className="text-xs sm:text-sm text-muted-foreground">{project.process}</p>
-                    </div>
-                    <div className="mb-4">
-                      <h4 className="font-semibold text-primary mb-2 flex items-center text-sm sm:text-base">
-                        <Award className="mr-2 h-4 w-4 text-secondary" /> 활용 도구
-                      </h4>
-                      <p className="text-xs sm:text-sm text-muted-foreground">{project.tech}</p>
-                    </div>
-                    <div className="mb-6 flex flex-wrap gap-2">
-                      {project.tags.map((tag, index) => (
-                        <Badge
-                          key={index}
-                          variant="outline"
-                          className={`bg-secondary/10 text-secondary border-none text-xs sm:text-sm ${index === 0 ? "badge-glow" : ""}`}
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    <div className="flex flex-col sm:flex-row flex-wrap gap-2 md:gap-4 w-full">
-                      <Button
-                        asChild
-                        className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4"
-                      >
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center"
-                        >
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          프로젝트 보기
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="order-1 md:order-2 w-full min-w-0">
-                    <div className="relative aspect-video overflow-hidden rounded-lg shadow-lg gradient-border w-full min-w-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-start w-full max-w-full px-0 sm:px-2 mt-10 sm:mt-20">
+                  <motion.div
+                    whileHover={{ scale: 1.025, boxShadow: '0 8px 32px 0 rgba(80,120,200,0.13)' }}
+                    transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                    className="relative aspect-video overflow-hidden rounded-2xl shadow-xl bg-white flex items-center justify-center group transition-all duration-300"
+                    style={{ minHeight: 180 }}
+                  >
+                    <motion.div
+                      className="w-full h-full"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+                      style={{ position: 'absolute', inset: 0, zIndex: 1 }}
+                    >
                       <Image
-                        src={project.image || "/placeholder.svg"}
+                        src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
                         alt={project.title}
                         fill
-                        className="object-cover"
+                        className={project.id === 'project3' ? "object-contain group-hover:scale-105 transition-transform duration-500" : "object-cover group-hover:scale-105 transition-transform duration-500"}
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
-                        style={{ minWidth: 0 }}
+                        style={project.id === 'project3'
+                          ? {
+                              minWidth: 0,
+                              objectPosition: 'center top',
+                              maxWidth: '95%',
+                              maxHeight: '92%',
+                              position: 'absolute',
+                              top: '50%',
+                              left: '49%',
+                              transform: 'translate(-50%, -50%)',
+                            }
+                          : { minWidth: 0, objectPosition: 'center top' }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                        <div className="p-2 sm:p-4 text-white w-full">
-                          <p className="text-xs sm:text-sm font-medium flex items-center group">
-                            자세히 보기{" "}
-                            <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform duration-300" />
-                          </p>
-                        </div>
+                    </motion.div>
+                    <div className="absolute bottom-0 left-0 w-full p-3 sm:p-6 flex flex-col gap-1 sm:gap-2 rounded-b-2xl" style={{background: 'linear-gradient(0deg, rgba(40,40,40,0.60) 70%, rgba(40,40,40,0.0) 100%)', zIndex: 2}}>
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-0.5 sm:mb-1" style={{textShadow:'0 2px 8px rgba(0,0,0,0.7)'}}>{project.title}</h3>
+                      <span className="text-[11px] sm:text-xs md:text-sm text-white/80 mb-1 sm:mb-2" style={{textShadow:'0 1px 4px rgba(0,0,0,0.5)'}}>{project.subtitle}</span>
+                      <div className="flex flex-wrap gap-1 sm:gap-2 mb-1 sm:mb-2">
+                        {project.tags.map((tag, idx) => (
+                          <span key={idx} className="px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-[#2e4a7d] text-white shadow transition-colors duration-200 hover:bg-[#4766a6]" style={{textShadow:'0 1px 2px rgba(0,0,0,0.2)'}}>{tag}</span>
+                        ))}
                       </div>
                     </div>
+                  </motion.div>
+                  <div className="flex flex-col justify-center gap-2 sm:gap-4 p-1 sm:p-6">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#2e4a7d] mb-0.5 sm:mb-1">{project.title}</h3>
+                    <span className="text-sm sm:text-base md:text-lg text-muted-foreground mb-1 sm:mb-2">{project.subtitle}</span>
+                    <p className="text-xs sm:text-sm md:text-base text-[#444] mb-1 sm:mb-2">{project.description}</p>
+                    <div className="mb-1 sm:mb-2">
+                      <span className="font-semibold text-primary mr-1 sm:mr-2">주요 성과</span>
+                      <span className="text-[11px] sm:text-xs md:text-sm text-[#2e4a7d]/80">{project.impact}</span>
+                    </div>
+                    <div className="mb-1 sm:mb-2">
+                      <span className="font-semibold text-primary mr-1 sm:mr-2">프로세스</span>
+                      <span className="text-[11px] sm:text-xs md:text-sm text-[#2e4a7d]/80">{project.process}</span>
+                    </div>
+                    <div className="mb-1 sm:mb-2">
+                      <span className="font-semibold text-primary mr-1 sm:mr-2">활용 도구</span>
+                      <span className="text-[11px] sm:text-xs md:text-sm text-[#2e4a7d]/80">{project.tech}</span>
+                    </div>
+                    <Button
+                      asChild
+                      className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 mt-1 sm:mt-2 self-end"
+                    >
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                        프로젝트 보기
+                      </a>
+                    </Button>
                   </div>
                 </div>
               </TabsContent>

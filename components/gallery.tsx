@@ -222,12 +222,24 @@ export default function Gallery() {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ type: "spring", stiffness: 70, damping: 20, delay: 0.1 }}
                     >
-                      <div className="relative aspect-square sm:aspect-video overflow-hidden rounded-lg shadow-md p-1 sm:p-0 w-full min-w-0">
-                        <Image src={item.image || "/placeholder.svg"} alt={item.title} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px" style={{ minWidth: 0 }} />
-                        <div className="gallery-overlay">
+                      <div className="relative aspect-square sm:aspect-video overflow-hidden rounded-lg shadow-md p-1 sm:p-0 w-full min-w-0 group">
+                        <motion.img
+                          src={item.image || "/placeholder.svg"}
+                          alt={item.title}
+                          className="object-cover transition-transform duration-500"
+                          style={{ minWidth: 0, position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+                          whileHover={{ scale: 1.06 }}
+                          transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+                        />
+                        <motion.div
+                          className="gallery-overlay absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 transition-opacity duration-300 z-10"
+                          initial={{ opacity: 0 }}
+                          whileHover={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                        >
                           <ZoomIn className="h-8 w-8 mb-2 text-white" />
-                          <h3 className="text-xs sm:text-base font-bold text-center break-words w-full px-1 sm:px-2">{item.title}</h3>
-                        </div>
+                          <h3 className="text-xs sm:text-base font-bold text-center break-words w-full px-1 sm:px-2 text-white drop-shadow-lg">{item.title}</h3>
+                        </motion.div>
                       </div>
                     </motion.div>
                   ))}

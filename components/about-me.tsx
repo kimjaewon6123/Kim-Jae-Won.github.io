@@ -84,19 +84,32 @@ export default function AboutMe() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.4 }}
-          className="flex flex-col items-center flex-shrink-0 w-full max-w-xs md:max-w-[380px] bg-gradient-to-b from-[#e6f2fb] to-[#c7d8ee] rounded-2xl p-4 md:p-10 shadow-xl transition-all duration-300 mx-auto"
-          style={{ boxShadow: '0 2px 24px 0 rgba(120,120,200,0.13)', position: 'sticky', top: '120px', zIndex: 20, transform: 'none', transition: 'none' }}
+          className="flex flex-col items-center flex-shrink-0 w-full max-w-[90vw] sm:max-w-xs md:max-w-[380px] bg-gradient-to-b from-[#e6f2fb] to-[#c7d8ee] rounded-2xl p-2 sm:p-4 md:p-10 shadow-xl transition-all duration-300 mx-auto md:sticky"
+          style={{ boxShadow: '0 2px 24px 0 rgba(120,120,200,0.13)', top: '120px', zIndex: 20 }}
         >
           <h2 className="text-2xl md:text-[2.5rem] font-bold text-[#38506b] text-center mb-4 md:mb-6 mt-0 leading-none select-none">About me</h2>
-          <div className="relative w-full max-w-[260px] md:max-w-[320px] aspect-[4/5] mb-3 md:mb-4 overflow-hidden rounded-xl transition-all duration-300 group hover:shadow-xl mx-auto">
-            <img
+          <div className="relative w-full max-w-[220px] md:max-w-[260px] aspect-[4/5] mb-3 md:mb-4 overflow-visible rounded-xl transition-all duration-300 group hover:shadow-xl mx-auto" style={{ background: '#fff' }}>
+            <motion.img
               src="/my2.png"
               alt="Profile"
-              className="object-cover w-full h-full rounded-xl group-hover:scale-105 group-hover:shadow-2xl transition-all duration-300 bg-white"
+              className="object-cover"
+              style={{
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                left: 0,
+                bottom: 0,
+                transform: 'none',
+                display: 'block',
+                objectPosition: 'bottom center',
+                zIndex: 10,
+              }}
+              whileHover={{ scale: 1.09, zIndex: 30 }}
+              transition={{ type: 'spring', stiffness: 180, damping: 18 }}
             />
             {/* 우측 세로 텍스트 */}
             <span className="absolute right-2 top-4 text-[#7a8a99] text-base md:text-lg tracking-widest select-none" style={{ writingMode: 'vertical-rl', letterSpacing: '0.1em' }}>
-              2000.7.20
+              2000.07.20
             </span>
           </div>
           {/* 하단 CLICK HERE! */}
