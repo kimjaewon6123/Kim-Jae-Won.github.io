@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Noto_Sans_KR } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import CustomCursor from "@/components/CustomCursor"
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <body className={notoSansKR.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <CustomCursor />
           {children}
         </ThemeProvider>
       </body>
