@@ -28,25 +28,25 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 220 16% 20%;
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --card: 220 16% 24%;
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 220 16% 24%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217 44% 72%;
+    --primary: 217 91% 60%;
     --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217 44% 72%;
+    --secondary: 200 15% 34%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
+    --muted: 220 14% 28%;
+    --muted-foreground: 210 20% 85%;
+    --accent: 217 91% 70%;
     --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62.8% 50%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 220 14% 32%;
+    --input: 220 14% 32%;
+    --ring: 217 91% 60%;
   }
 }
 
@@ -554,3 +554,17 @@
   left: 10%;
   animation: float 10s ease-in-out infinite 2s;
 }
+
+.dark .section-title {
+  color: hsl(217 91% 70%) !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  background-clip: initial !important;
+}
+
+/* 다크모드에서 포트폴리오/컨택트 등 파란색 텍스트 밝게 오버라이드 */
+.dark .text-\[\#2e4a7d\] { color: #7db7ff !important; }
+.dark .text-\[\#4766a6\] { color: #a5cfff !important; }
+.dark .text-\[\#5a6e8c\] { color: #b8d6ff !important; }
+.dark .highlight-text    { color: #b8d6ff !important; }

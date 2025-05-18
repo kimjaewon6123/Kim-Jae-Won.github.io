@@ -73,7 +73,7 @@ export default function AboutMe() {
   }
 
   return (
-    <section id="about" className="w-full flex flex-col items-center justify-center bg-white py-12 md:py-20 md:min-h-screen scroll-mt-24 md:scroll-mt-32 relative overflow-hidden">
+    <section id="about" className="w-full flex flex-col items-center justify-center bg-background py-12 md:py-20 md:min-h-screen scroll-mt-24 md:scroll-mt-32 relative overflow-hidden">
       {/* 배경 장식용 블루 그라데이션 원 */}
       <div className="hidden md:block absolute -top-32 -right-32 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#e6f2fb] to-[#b7cbe6] opacity-60 blur-2xl z-0" />
       <div className="hidden md:block absolute -bottom-32 -left-32 w-[320px] h-[320px] rounded-full bg-gradient-to-tr from-[#e6f2fb] to-[#b7cbe6] opacity-50 blur-2xl z-0" />
@@ -87,7 +87,7 @@ export default function AboutMe() {
           className="flex flex-col items-center flex-shrink-0 w-full max-w-[90vw] sm:max-w-xs md:max-w-[380px] bg-gradient-to-b from-[#e6f2fb] to-[#c7d8ee] rounded-2xl p-2 sm:p-4 md:p-10 shadow-xl transition-all duration-300 mx-auto md:sticky"
           style={{ boxShadow: '0 2px 24px 0 rgba(120,120,200,0.13)', top: '120px', zIndex: 20 }}
         >
-          <h2 className="text-2xl md:text-[2.5rem] font-bold text-[#38506b] text-center mb-4 md:mb-6 mt-0 leading-none select-none">About me</h2>
+          <h2 className="text-2xl md:text-[2.5rem] font-bold text-foreground text-center mb-4 md:mb-6 mt-0 leading-none select-none">About me</h2>
           <div className="relative w-full max-w-[220px] md:max-w-[260px] aspect-[4/5] mb-3 md:mb-4 overflow-visible rounded-xl transition-all duration-300 group hover:shadow-xl mx-auto" style={{ background: '#fff' }}>
             <motion.img
               src="/my2.png"
@@ -108,13 +108,13 @@ export default function AboutMe() {
               transition={{ type: 'spring', stiffness: 180, damping: 18 }}
             />
             {/* 우측 세로 텍스트 */}
-            <span className="absolute right-2 top-4 text-[#7a8a99] text-base md:text-lg tracking-widest select-none" style={{ writingMode: 'vertical-rl', letterSpacing: '0.1em' }}>
+            <span className="absolute right-2 top-4 text-foreground text-base md:text-lg tracking-widest select-none" style={{ writingMode: 'vertical-rl', letterSpacing: '0.1em' }}>
               2000.07.20
             </span>
           </div>
           {/* 하단 CLICK HERE! */}
           <motion.span
-            className="mt-3 md:mt-4 text-lg md:text-[1.3rem] font-bold text-[#e88b8b] tracking-wider cursor-pointer select-none transition-all duration-200"
+            className="mt-3 md:mt-4 text-lg md:text-[1.3rem] font-bold text-foreground tracking-wider cursor-pointer select-none transition-all duration-200"
             animate={{ scale: [1, 1.13, 1, 0.95, 1] }}
             transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{
@@ -135,7 +135,7 @@ export default function AboutMe() {
           viewport={{ once: true, amount: 0.4 }}
           className="flex-1 flex flex-col items-start justify-center rounded-2xl shadow-lg p-4 md:p-12 backdrop-blur-md bg-white/70 border border-transparent min-w-0" style={{ minHeight: 320 }}
         >
-          <h2 className="text-2xl md:text-[3rem] font-bold text-[#38506b] text-left mb-2 mt-0 leading-none">About me</h2>
+          <h2 className="text-2xl md:text-[3rem] font-bold text-foreground text-left mb-2 mt-0 leading-none">About me</h2>
           <div className="w-12 md:w-16 h-1 bg-[#97B1D6] rounded-full mb-4 md:mb-6" />
           {/* 슬라이드 전환 버튼 */}
           <div className="flex justify-end gap-2 mb-2 md:mb-4 w-full">
@@ -159,7 +159,7 @@ export default function AboutMe() {
           {activeSlide === 0 ? (
             <>
               {/* 프로필 정보 */}
-              <div className="min-h-[120px] md:min-h-[250px] whitespace-pre-line leading-relaxed text-base md:text-[1.15rem] text-[#222] mb-6 md:mb-8 break-words">
+              <div className="min-h-[120px] md:min-h-[250px] whitespace-pre-line leading-relaxed text-foreground text-base md:text-[1.15rem] text-[#222] mb-6 md:mb-8 break-words">
                 {profileData[activeProfile].content}
               </div>
               {/* 태그: Badge만, hover시 색상만 변경 */}
@@ -181,7 +181,7 @@ export default function AboutMe() {
               {/* 경력/활동 타임라인 복구 */}
               <div className="flex flex-col gap-6 md:gap-8 mt-2 md:mt-4">
                 <div>
-                  <div className="font-bold text-lg md:text-xl text-primary mb-1">주요 경력</div>
+                  <div className="font-bold text-lg md:text-xl text-foreground mb-1">주요 경력</div>
                   <ul className="list-disc pl-5 text-base md:text-lg text-[#222]">
                     <li>천재교육 에듀테크 PM 서비스/콘텐츠 기획자 10기 <span className="text-muted-foreground">(2024.12 - 2025.07)</span></li>
                     <li>IT'S TIME IT경영학과 프로젝트 <span className="text-muted-foreground">(2025.02 - 2025.07)</span></li>
@@ -190,7 +190,7 @@ export default function AboutMe() {
                   </ul>
                 </div>
                 <div>
-                  <div className="font-bold text-lg md:text-xl text-primary mb-1">자격증</div>
+                  <div className="font-bold text-lg md:text-xl text-foreground mb-1">자격증</div>
                   <ul className="list-disc pl-5 text-base md:text-lg text-[#222]">
                     <li>Google Analytics <span className="text-muted-foreground">(2025.05)</span></li>
                     <li>1종보통운전면허 <span className="text-muted-foreground">(2019.12)</span></li>
@@ -199,7 +199,7 @@ export default function AboutMe() {
                   </ul>
                 </div>
                 <div>
-                  <div className="font-bold text-lg md:text-xl text-primary mb-1">교육</div>
+                  <div className="font-bold text-lg md:text-xl text-foreground mb-1">교육</div>
                   <ul className="list-disc pl-5 text-base md:text-lg text-[#222]">
                     <li>천재교육 에듀테크 PM 서비스/콘텐츠 기획자 10기 <span className="text-muted-foreground">(2024.12 - 2025.07)</span></li>
                     <li>패스트캠퍼스 EXPORT PM/PO 4기 <span className="text-muted-foreground">(2024.09 - 2024.12)</span></li>

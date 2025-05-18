@@ -43,28 +43,46 @@ export default function Hero() {
       </motion.div>
       {/* 배경 */}
       <Image src="/back.png" alt="배경" fill priority className="object-cover z-0" />
-      {/* 텍스트/버튼 - clamp/vw+max-w로 부드러운 비율 반응형 (PC/노트북) + 모바일 대응 */}
+      {/* 모바일: 텍스트와 인물 이미지 완전 분리, 컬럼 레이아웃 */}
+      <div className="block sm:hidden w-full flex flex-col items-center">
+        <div className="w-full flex flex-col items-start px-4 pt-8">
+          <h1 className="text-white text-3xl font-bold mb-4">PRODUCT<br/>MANAGER</h1>
+        </div>
+        <div className="w-[120px] max-w-[45vw] aspect-[3/5] pointer-events-none select-none mt-8 mb-4">
+          <Image
+            src="/my.png"
+            alt="인물"
+            fill
+            priority
+            className="object-contain drop-shadow-2xl"
+            sizes="120px"
+            style={{ objectPosition: 'bottom center' }}
+          />
+        </div>
+      </div>
+      {/* 텍스트/버튼 - 왼쪽 정렬, 크게, 반응형 */}
       <motion.div
-        className="absolute top-40 left-[55%] -translate-x-[55%] z-20 w-full max-w-[440px] flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 mb-[40vh] md:left-[28%] md:translate-x-0 md:items-start md:text-left md:top-[400px]"
+        className="absolute top-[18%] sm:top-[32%] left-0 z-20 w-full max-w-none flex flex-col items-start justify-center px-4 sm:px-10 md:px-16 lg:px-24 xl:px-32"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.5 }}
+        style={{ pointerEvents: 'none' }}
       >
         <motion.h1
-          className="text-white font-bold mb-4 xl:mb-2 text-center md:text-left px-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-7xl break-normal leading-tight max-w-[950px]"
+          className="text-white font-bold mb-4 xl:mb-2 text-left text-[2.1rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl leading-[1.05] max-w-[1100px] drop-shadow-lg"
           style={{ fontFamily: "'Noto Sans KR', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif" }}
           variants={dropContainer}
           initial="hidden"
           animate="visible"
         >
-          <div className="flex flex-col items-center sm:block">
-            <div className="w-full sm:inline-block">
+          <div className="flex flex-col items-start">
+            <div>
               {"PRODUCT".split("").map((char, i) => (
                 <motion.span key={i} variants={dropLetter} style={{ display: "inline-block" }}>{char}</motion.span>
               ))}
             </div>
-            <div className="w-full sm:inline-block">
+            <div>
               {"MANAGER".split("").map((char, i) => (
                 <motion.span key={i} variants={dropLetter} style={{ display: "inline-block" }}>{char}</motion.span>
               ))}
@@ -72,10 +90,23 @@ export default function Hero() {
           </div>
         </motion.h1>
       </motion.div>
-      {/* 인물 이미지 - clamp/vw+max-w로 부드러운 비율 반응형 (PC/노트북) + 모바일 대응 */}
+      {/* 인물 이미지 - 모바일은 중앙, 크게, 텍스트 아래 / sm 이상은 기존 위치 */}
+      <div className="block sm:hidden w-full mt-8 flex justify-center">
+        <div className="w-[clamp(110px,32vw,150px)] max-w-[50vw] aspect-[3/5] pointer-events-none select-none mb-4">
+          <Image
+            src="/my.png"
+            alt="인물"
+            fill
+            priority
+            className="object-contain drop-shadow-2xl"
+            sizes="32vw"
+            style={{ objectPosition: 'bottom center' }}
+          />
+        </div>
+      </div>
       <motion.div
-        className="absolute bottom-0 left-[28%] -translate-x-[28%] md:left-1/2 md:-translate-x-1/2 z-10 aspect-[3/5] pointer-events-none select-none translate-y-3"
-        style={{ width: "clamp(260px, 24vw, 600px)", maxWidth: "90vw" }}
+        className="hidden sm:block absolute bottom-0 left-[28%] -translate-x-[28%] md:left-1/2 md:-translate-x-1/2 z-10 aspect-[3/5] pointer-events-none select-none"
+        style={{ width: "clamp(280px, 28vw, 800px)", maxWidth: "48vw" }}
         initial={{ opacity: 0, scale: 0.92 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{
@@ -92,8 +123,8 @@ export default function Hero() {
           fill
           priority
           className="object-contain drop-shadow-2xl"
-          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 24vw, 600px"
-          style={{ objectPosition: '25% center' }}
+          sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, (max-width: 1536px) 34vw, 800px"
+          style={{ objectPosition: 'bottom center' }}
         />
       </motion.div>
       {/* 하단 스크롤 인디케이터 */}

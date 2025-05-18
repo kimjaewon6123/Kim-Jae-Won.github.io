@@ -236,18 +236,18 @@ export default function Portfolio() {
                   <div className="flex flex-col justify-center gap-2 sm:gap-4 p-1 sm:p-6">
                     <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#2e4a7d] mb-0.5 sm:mb-1">{project.title}</h3>
                     <span className="text-sm sm:text-base md:text-lg text-muted-foreground mb-1 sm:mb-2">{project.subtitle}</span>
-                    <p className="text-xs sm:text-sm md:text-base text-[#444] mb-1 sm:mb-2">{project.description}</p>
+                    <p className="text-foreground text-xs sm:text-sm md:text-base mb-1 sm:mb-2">{project.description}</p>
                     <div className="mb-1 sm:mb-2">
                       <span className="font-semibold text-primary mr-1 sm:mr-2">주요 성과</span>
-                      <span className="text-[11px] sm:text-xs md:text-sm text-[#2e4a7d]/80">{project.impact}</span>
+                      <span className="text-foreground text-[11px] sm:text-xs md:text-sm">{project.impact}</span>
                     </div>
                     <div className="mb-1 sm:mb-2">
                       <span className="font-semibold text-primary mr-1 sm:mr-2">프로세스</span>
-                      <span className="text-[11px] sm:text-xs md:text-sm text-[#2e4a7d]/80">{project.process}</span>
+                      <span className="text-foreground text-[11px] sm:text-xs md:text-sm">{project.process}</span>
                     </div>
                     <div className="mb-1 sm:mb-2">
                       <span className="font-semibold text-primary mr-1 sm:mr-2">활용 도구</span>
-                      <span className="text-[11px] sm:text-xs md:text-sm text-[#2e4a7d]/80">{project.tech}</span>
+                      <span className="text-foreground text-[11px] sm:text-xs md:text-sm">{project.tech}</span>
                     </div>
                     <Button
                       asChild
