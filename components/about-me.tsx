@@ -184,8 +184,8 @@ export default function AboutMe() {
                   <div className="font-bold text-lg md:text-xl text-foreground mb-1">주요 경력</div>
                   <ul className="list-disc pl-5 text-base md:text-lg text-[#222]">
                     <li>천재교육 에듀테크 PM 서비스/콘텐츠 기획자 10기 <span className="text-muted-foreground">(2024.12 - 2025.07)</span></li>
-                    <li>IT'S TIME IT경영학과 프로젝트 <span className="text-muted-foreground">(2025.02 - 2025.07)</span></li>
-                    <li>NUFI 웹서비스 기획/운영 <span className="text-muted-foreground">(2024.03 - 2025.02)</span></li>
+                    <li>IT'S TIME PM  <span className="text-muted-foreground">(2025.02 - 2025.07)</span></li>
+                    <li>NUFI 동아리 기획부장 <span className="text-muted-foreground">(2024.03 - 2025.02)</span></li>
                     <li>패스트캠퍼스 EXPORT PM/PO 4기 <span className="text-muted-foreground">(2024.09 - 2024.12)</span></li>
                   </ul>
                 </div>
@@ -193,7 +193,7 @@ export default function AboutMe() {
                   <div className="font-bold text-lg md:text-xl text-foreground mb-1">자격증</div>
                   <ul className="list-disc pl-5 text-base md:text-lg text-[#222]">
                     <li>Google Analytics <span className="text-muted-foreground">(2025.05)</span></li>
-                    <li>1종보통운전면허 <span className="text-muted-foreground">(2019.12)</span></li>
+                    <li>1종보통 운전면허 <span className="text-muted-foreground">(2019.12)</span></li>
                     <li>정보기술자격(ITQ) 아래한글 A등급 <span className="text-muted-foreground">(2013.03)</span></li>
                     <li>정보기술자격(ITQ) 한글파워포인트(한쇼) B등급 <span className="text-muted-foreground">(2012.12)</span></li>
                   </ul>

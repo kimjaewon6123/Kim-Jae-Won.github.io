@@ -22,7 +22,7 @@ const projects = [
     tags: ["As is-To be 분석", "교사 대상 리서치", "현업 프로젝트 경험", "UI/UX 개선"],
     participation: "기획 100%",
     image: "/placeholder.svg?height=600&width=800",
-    liveUrl: "#",
+    liveUrl: "/docs/t셀파몰.pdf",
     docsUrl: "#",
   },
   {
@@ -37,7 +37,7 @@ const projects = [
     tags: ["117명 유저 설문", "AHP 분석 기획", "UX기반 광고 전략", "데이터 시각화"],
     participation: "기획 100%",
     image: "/p2.png",
-    liveUrl: "#",
+    liveUrl: "/docs/네이버웹툰.pdf",
     docsUrl: "#",
   },
   {

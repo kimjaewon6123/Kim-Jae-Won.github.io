@@ -45,17 +45,17 @@ export default function Hero() {
       <Image src="/back.png" alt="배경" fill priority className="object-cover z-0" />
       {/* 모바일: 텍스트와 인물 이미지 완전 분리, 컬럼 레이아웃 */}
       <div className="block sm:hidden w-full flex flex-col items-center">
-        <div className="w-full flex flex-col items-start px-4 pt-8">
+        <div className="w-full flex flex-col items-start px-4 pt-8 mt-8">
           <h1 className="text-white text-3xl font-bold mb-4">PRODUCT<br/>MANAGER</h1>
         </div>
-        <div className="w-[120px] max-w-[45vw] aspect-[3/5] pointer-events-none select-none mt-8 mb-4">
+        <div className="w-[clamp(48px,16vw,72px)] max-w-[24vw] aspect-[3/5] pointer-events-none select-none mt-8 mb-4">
           <Image
             src="/my.png"
             alt="인물"
             fill
             priority
             className="object-contain drop-shadow-2xl"
-            sizes="120px"
+            sizes="clamp(48px,16vw,72px)"
             style={{ objectPosition: 'bottom center' }}
           />
         </div>
