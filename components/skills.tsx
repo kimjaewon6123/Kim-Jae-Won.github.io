@@ -99,6 +99,9 @@ function ScatterToolImage({ src, alt, x, y, scale, rotation, imgSize }: {
     );
   }
 
+  // 모바일 환경 감지
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 500;
+
   return (
     <motion.img
       src={src}
@@ -116,10 +119,12 @@ function ScatterToolImage({ src, alt, x, y, scale, rotation, imgSize }: {
         y,
         scale,
         rotate: rotation,
+        boxShadow: isMobile ? undefined : '0 2px 8px 0 rgba(80,120,200,0.10)',
+        transition: 'box-shadow 0.18s cubic-bezier(.4,1,.7,1), z-index 0.18s',
       }}
       initial={{ opacity: 1, scale: 1 }}
-      whileTap={{ scale: 0.95 }}
-      whileHover={{ scale: 1.13, boxShadow: '0 4px 16px 0 rgba(80,120,200,0.18)' }}
+      whileTap={{}}
+      whileHover={{}}
       transition={{ type: 'spring', stiffness: 220, damping: 18 }}
       draggable={false}
     />
@@ -226,7 +231,7 @@ export default function Skills() {
           }
         }
       }
-      // 3. 커서/터치가 가까우면 해당 아이콘만 scale up + 살짝 도망
+      // 3. proximity(근접) 효과 복구: 커서가 가까이 가면 scale up + 도망
       for (let i = 0; i < ICON_COUNT; i++) {
         let icon = icons[i];
         let scale = 1;
