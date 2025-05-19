@@ -73,10 +73,12 @@ export default function AboutMe() {
   }
 
   return (
-    <section id="about" className="w-full flex flex-col items-center justify-center bg-background py-12 md:py-20 md:min-h-screen scroll-mt-24 md:scroll-mt-32 relative overflow-hidden">
-      {/* 배경 장식용 블루 그라데이션 원 */}
+    <section id="about" className="section-padding w-full flex flex-col items-center justify-center py-12 md:py-20 md:min-h-screen scroll-mt-24 md:scroll-mt-32 relative overflow-hidden bg-background dark:bg-gradient-to-b dark:from-[#23243a] dark:via-[#3a4a6a] dark:to-[#4a5a7a]">
+      {/* 포인트 블러/그라데이션 원 - 어긋나게 배치 */}
       <div className="hidden md:block absolute -top-32 -right-32 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#e6f2fb] to-[#b7cbe6] opacity-60 blur-2xl z-0" />
-      <div className="hidden md:block absolute -bottom-32 -left-32 w-[320px] h-[320px] rounded-full bg-gradient-to-tr from-[#e6f2fb] to-[#b7cbe6] opacity-50 blur-2xl z-0" />
+      <div className="hidden md:block absolute -bottom-24 -left-40 w-[320px] h-[320px] rounded-full bg-gradient-to-tr from-[#e6e6fa] to-[#b7cbe6] opacity-40 blur-2xl z-0" />
+      {/* 섹션 fade 연결 */}
+      <div className="absolute left-0 right-0 -bottom-2 h-12 bg-gradient-to-b from-transparent to-background dark:to-[#23243a] z-10 pointer-events-none" />
       <div className="max-w-6xl w-full mx-auto flex flex-col md:flex-row gap-8 md:gap-16 items-center justify-center z-10">
         {/* 왼쪽: 프로필 (애니메이션) */}
         <motion.div
@@ -84,15 +86,17 @@ export default function AboutMe() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.4 }}
-          className="flex flex-col items-center flex-shrink-0 w-full max-w-[90vw] sm:max-w-xs md:max-w-[380px] bg-gradient-to-b from-[#e6f2fb] to-[#c7d8ee] rounded-2xl p-2 sm:p-4 md:p-10 shadow-xl transition-all duration-300 mx-auto md:sticky"
+          className="flex flex-col items-center flex-shrink-0 w-full max-w-[90vw] sm:max-w-xs md:max-w-[380px] bg-gradient-to-b from-[#e6f2fb] to-[#c7d8ee] rounded-2xl p-2 sm:p-4 md:p-10 shadow-xl transition-all duration-300 mx-auto md:sticky group"
           style={{ boxShadow: '0 2px 24px 0 rgba(120,120,200,0.13)', top: '120px', zIndex: 20 }}
+          whileHover={{ y: -8, boxShadow: '0 8px 32px 0 rgba(80,120,200,0.18)' }}
         >
-          <h2 className="text-2xl md:text-[2.5rem] font-bold text-foreground text-center mb-4 md:mb-6 mt-0 leading-none select-none">About me</h2>
-          <div className="relative w-full max-w-[220px] md:max-w-[260px] aspect-[4/5] mb-3 md:mb-4 overflow-visible rounded-xl transition-all duration-300 group hover:shadow-xl mx-auto" style={{ background: '#fff' }}>
+          <h2 className="text-2xl md:text-[2.5rem] font-bold text-foreground dark:text-white text-center mb-4 md:mb-6 mt-0 leading-none select-none">About me</h2>
+          <div className="relative w-full max-w-[220px] md:max-w-[260px] aspect-[4/5] mb-3 md:mb-4 overflow-visible rounded-xl transition-all duration-300 group-hover:shadow-2xl mx-auto" style={{ background: '#fff' }}>
             <motion.img
               src="/my2.png"
               alt="Profile"
-              className="object-cover"
+              id="about-profile-img"
+              className="object-cover rounded-xl"
               style={{
                 width: '100%',
                 height: '100%',
@@ -104,7 +108,7 @@ export default function AboutMe() {
                 objectPosition: 'bottom center',
                 zIndex: 10,
               }}
-              whileHover={{ scale: 1.09, zIndex: 30 }}
+              whileHover={{ scale: 1.07 }}
               transition={{ type: 'spring', stiffness: 180, damping: 18 }}
             />
             {/* 우측 세로 텍스트 */}
@@ -123,6 +127,19 @@ export default function AboutMe() {
               textShadow: "0 0 16px #97B1D6, 0 2px 8px #b7cbe6"
             }}
             whileTap={{ scale: 0.93 }}
+            onClick={() => {
+              const img = document.getElementById('about-profile-img');
+              if (img) {
+                img.style.transition = 'transform 0.5s cubic-bezier(.4,1,.7,1)';
+                img.style.transform = 'scale(1.13)';
+                setTimeout(() => {
+                  img.style.transform = 'scale(1)';
+                  window.open('/resume.pdf', '_blank');
+                }, 700);
+              } else {
+                window.open('/resume.pdf', '_blank');
+              }
+            }}
           >
             CLICK HERE!
           </motion.span>
@@ -133,9 +150,9 @@ export default function AboutMe() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
           viewport={{ once: true, amount: 0.4 }}
-          className="flex-1 flex flex-col items-start justify-center rounded-2xl shadow-lg p-4 md:p-12 backdrop-blur-md bg-white/70 border border-transparent min-w-0" style={{ minHeight: 320 }}
+          className="flex-1 flex flex-col items-start justify-center rounded-2xl shadow-lg p-4 md:p-12 backdrop-blur-md bg-white/70 dark:bg-white/10 border border-transparent min-w-0" style={{ minHeight: 320 }}
         >
-          <h2 className="text-2xl md:text-[3rem] font-bold text-foreground text-left mb-2 mt-0 leading-none">About me</h2>
+          <h2 className="text-2xl md:text-[3rem] font-bold text-foreground dark:text-white text-left mb-2 mt-0 leading-none">About me</h2>
           <div className="w-12 md:w-16 h-1 bg-[#97B1D6] rounded-full mb-4 md:mb-6" />
           {/* 슬라이드 전환 버튼 */}
           <div className="flex justify-end gap-2 mb-2 md:mb-4 w-full">
@@ -159,21 +176,8 @@ export default function AboutMe() {
           {activeSlide === 0 ? (
             <>
               {/* 프로필 정보 */}
-              <div className="min-h-[120px] md:min-h-[250px] whitespace-pre-line leading-relaxed text-foreground text-base md:text-[1.15rem] text-[#222] mb-6 md:mb-8 break-words">
+              <div className="min-h-[120px] md:min-h-[250px] whitespace-pre-line leading-relaxed text-foreground dark:text-gray-100 text-base md:text-[1.15rem] text-[#222] mb-6 md:mb-8 break-words">
                 {profileData[activeProfile].content}
-              </div>
-              {/* 태그: Badge만, hover시 색상만 변경 */}
-              <div className="flex flex-wrap gap-2 md:gap-3 mt-2">
-                {tags.map((tag, index) => (
-                  <Badge
-                    key={index}
-                    variant="outline"
-                    className="tag text-base md:text-lg px-3 md:px-4 py-1.5 md:py-2 rounded-full border-primary/30 text-primary font-semibold bg-white transition-all duration-200 hover:bg-primary hover:text-white cursor-pointer"
-                    style={{ borderWidth: 2 }}
-                  >
-                    {tag}
-                  </Badge>
-                ))}
               </div>
             </>
           ) : (

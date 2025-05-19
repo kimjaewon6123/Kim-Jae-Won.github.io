@@ -568,3 +568,34 @@
 .dark .text-\[\#4766a6\] { color: #a5cfff !important; }
 .dark .text-\[\#5a6e8c\] { color: #b8d6ff !important; }
 .dark .highlight-text    { color: #b8d6ff !important; }
+
+/* 트렌디 오로라+노이즈+글래스 배경 */
+.section-bg {
+  position: relative;
+  background: linear-gradient(120deg, #e6e6fa 0%, #e6f2fb 40%, #b7cbe6 100%);
+  overflow: hidden;
+}
+.section-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url('/aurora.svg') center/cover no-repeat, url('/noise.png');
+  opacity: 0.18;
+  pointer-events: none;
+}
+.section-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(2.5px);
+  pointer-events: none;
+}
+.dark .section-bg {
+  background: linear-gradient(120deg, #23243a 0%, #2e3a5a 60%, #3a4a6a 100%);
+}
+.dark .section-bg::after {
+  background: rgba(30,32,48,0.22);
+}

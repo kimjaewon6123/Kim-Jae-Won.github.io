@@ -20,23 +20,39 @@ import { motion, useAnimation, useMotionValue } from "framer-motion"
 const skills = [
   {
     name: "실무기획",
-    icon: <FileText className="h-10 w-10 mb-4 text-primary" />,
-    description: "서비스 개선 계획 / 벤치마킹 / IA 설계 / 사용자 플로우 / 와이어프레임 / 프로토타입 / 기능 명세서",
+    icon: <FileText className="h-10 w-10 mb-4 text-primary mt-2" />,
+    keywords: [
+      "서비스 개선", "벤치마킹", "IA 설계", "와이어프레임", "프로토타입",
+       "#서비스기획", "#와이어프레임", "#프로토타입", "#UX설계"
+    ],
+    detail: "서비스 개선 계획, 벤치마킹, IA 설계, 사용자 플로우, 와이어프레임, 프로토타입, 기능 명세서 등 실무형 기획 역량을 보유하고 있습니다.",
   },
   {
     name: "전략 기반 기획",
     icon: <Workflow className="h-10 w-10 mb-4 text-primary" />,
-    description: "페르소나 설계 / 사용자 여정 지도 / 서비스 블루프린트 / 데이터 기반 설계 / 애자일 플래닝",
+    keywords: [
+      "페르소나 설계", "여정 지도", "블루프린트", "데이터 기반", "애자일",
+       "UX설계"
+    ],
+    detail: "페르소나 설계, 사용자 여정 지도, 서비스 블루프린트, 데이터 기반 설계, 애자일 플래닝 등 전략적 기획 경험이 있습니다.",
   },
   {
     name: "AI 활용 기획",
     icon: <Bot className="h-10 w-10 mb-4 text-primary" />,
-    description: "Prompt Engineering / Vibe Coding / ChatGPT 실무 활용",
+    keywords: [
+      "Prompt Engineering", "Vibe Coding", "ChatGPT 실무"
+      
+    ],
+    detail: "Prompt Engineering, Vibe Coding, ChatGPT 실무 활용 등 AI 기반 기획 역량을 보유하고 있습니다.",
   },
   {
     name: "협업 및 소통",
     icon: <Users className="h-10 w-10 mb-4 text-primary" />,
-    description: "팀 커뮤니케이션 / 이해관계자 관리 / 요구사항 분석 / 문서화",
+    keywords: [
+      "팀 커뮤니케이션", "이해관계자 관리", "요구사항 분석", "문서화"
+      
+    ],
+    detail: "팀 커뮤니케이션, 이해관계자 관리, 요구사항 분석, 문서화 등 협업 및 소통 역량을 갖추고 있습니다.",
   },
 ]
 
@@ -133,6 +149,7 @@ function ScatterToolImage({ src, alt, x, y, scale, rotation, imgSize }: {
 
 export default function Skills() {
   const [isVisible, setIsVisible] = useState(false)
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   // 1. 초기값 고정 (SSR/CSR 동일)
   const [sizes, setSizes] = useState({ areaW: 900, areaH: 320, img: 64 });
@@ -277,16 +294,17 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="section-padding bg-gradient-to-b from-background to-primary/5 relative overflow-hidden scroll-mt-24 md:scroll-mt-32"
+      className="section-padding relative overflow-hidden scroll-mt-24 md:scroll-mt-32 bg-background dark:bg-gradient-to-b dark:from-[#23243a] dark:via-[#3a4a6a] dark:to-[#4a5a7a]"
     >
-      {/* 자연스러운 블러/그라데이션 원 배경 (about me 스타일) */}
-      <div className="absolute -top-32 -right-32 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#e6f2fb] to-[#b7cbe6] opacity-60 blur-2xl z-0" />
-      <div className="absolute -bottom-32 -left-32 w-[320px] h-[320px] rounded-full bg-gradient-to-tr from-[#e6f2fb] to-[#b7cbe6] opacity-50 blur-2xl z-0" />
-
+      {/* 섹션 fade 연결 */}
+      <div className="absolute left-0 right-0 -top-2 h-12 bg-gradient-to-t from-transparent to-background dark:to-[#23243a] z-10 pointer-events-none" />
+      {/* 포인트 블러/그라데이션 원 - 어긋나게 배치 */}
+      <div className="absolute -top-20 -left-40 w-[320px] h-[320px] rounded-full bg-gradient-to-br from-[#e6e6fa] to-[#b7cbe6] opacity-40 blur-2xl z-0" />
+      <div className="absolute -bottom-24 -right-24 w-[260px] h-[260px] rounded-full bg-gradient-to-tr from-[#b7cbe6] to-[#e6f2fb] opacity-30 blur-2xl z-0" />
       <div className="container mx-auto px-4 text-center relative z-10">
         <h2
           className={cn(
-            "section-title text-[#2e4a7d] transition-all duration-700",
+            "section-title text-[#2e4a7d] dark:text-white transition-all duration-700",
             isVisible ? "opacity-100" : "opacity-0 translate-y-10",
           )}
         >
@@ -302,13 +320,22 @@ export default function Skills() {
           {skills.map((skill, index) => (
             <Card
               key={skill.name}
-              className="skill-item group transition-all duration-200 hover:shadow-lg"
+              className="skill-item group transition-all duration-200 hover:shadow-lg hover:scale-105 cursor-pointer dark:bg-white/10"
+              onClick={() => setOpenIndex(openIndex === index ? null : index)}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <CardContent className="p-6 flex flex-col items-center justify-center relative z-10">
-                <div className="mb-4">{skill.icon}</div>
+              <CardContent className="p-6 flex flex-col items-center justify-center relative z-10 dark:text-white">
+                <div className="mb-4 min-h-[56px] flex items-center justify-center">{skill.icon}</div>
                 <h3 className="text-xl font-bold mb-2">{skill.name}</h3>
-                <p className="text-sm text-muted-foreground text-center">{skill.description}</p>
+                <div className="flex flex-wrap gap-2 justify-center mb-2">
+                  {skill.keywords.map((kw, i) => (
+                    <span key={i} className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">{kw}</span>
+                  ))}
+                </div>
+                {openIndex === index && (
+                  <div className="mt-2 text-sm text-muted-foreground text-center animate-fadeIn">
+                    {skill.detail}
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
@@ -316,7 +343,7 @@ export default function Skills() {
 
         <h2
           className={cn(
-            "section-title text-[#2e4a7d] transition-all duration-700",
+            "section-title text-[#2e4a7d] dark:text-white transition-all duration-700",
             isVisible ? "opacity-100" : "opacity-0 translate-y-10",
           )}
         >

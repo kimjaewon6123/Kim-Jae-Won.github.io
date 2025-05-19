@@ -14,13 +14,14 @@ const projects = [
     id: "project1",
     title: "교육 플랫폼 UX 혁신",
     subtitle: "(천재교육 T셀파몰 리뉴얼)",
+    period: "2024.01.14~2024.01.24",
     description:
-      "교사 사용자 리서치를 통해 발견한 핵심 페인포인트 3가지를 해결하여 구매 전환율 27% 향상 및 사용자 만족도 개선. 현업 담당자와의 협업을 통해 실제 서비스에 적용된 개선안 기획.",
-    impact: "구매 전환율 27% 향상, 사용자 만족도 4.2→4.7점 상승",
-    process: "심층 인터뷰 10명, 설문조사 87명, 경쟁사 분석, 퍼소나 설계, 사용자 여정 지도 작성",
-    tech: "Figma, Miro, Notion, Excel",
-    tags: ["As is-To be 분석", "교사 대상 리서치", "현업 프로젝트 경험", "UI/UX 개선"],
-    participation: "기획 100%",
+      "현직 초등교사 10명 대상 시나리오 기반 UT(사용자 테스트)와 경쟁사 UX 분석 등 실사용 맥락에 기반한 리서치와 실무형 기획을 직접 수행. 실제 교사들의 니즈와 행동을 관찰하여 상품 탐색, 후기, 장바구니 등 주요 UX를 사용자 흐름 중심으로 재설계하고, 후기 기반 커뮤니티 기능을 신규 기획했습니다.",
+    impact: "현직 교사 대상 UT/인터뷰 직접 설계 및 실행, Maze 테스트 후기→장바구니 이동 성공률 76% 달성, 데이터 기반 UX 개선 및 커뮤니티 활성화, 경쟁사 분석·시장분석·A/B 테스트 등 실전 기획 경험",
+    process: "교사 10명 심층 인터뷰, 경쟁사 3종 UX 분석, 페르소나/여정지도, 시나리오 기반 UT, A/B 테스트, TAM/SAM/SOM 시장분석, 와이어프레임 작성",
+    tech: "Figma, Google Forms, Notion, Zoom, Slack",
+    tags: ["현업 프로젝트 경험", "교사 대상 UT", "유저 리서치", "커뮤니티 기능 기획", "데이터 기반 개선", "시장분석"],
+    participation: "UX 리서치 및 기획 총괄",
     image: "/placeholder.svg?height=600&width=800",
     liveUrl: "/docs/t셀파몰.pdf",
     docsUrl: "#",
@@ -28,14 +29,15 @@ const projects = [
   {
     id: "project2",
     title: "데이터 기반 광고 전략",
-    subtitle: "(네이버 웹툰 쿠키오븐)",
+    subtitle: "(네이버 웹툰 쿠키오븐 리디자인)",
+    period: "2024.09.16~2024.10.03",
     description:
-      "117명의 웹툰 사용자 설문과 AHP 분석을 통해 광고 선택 요인을 정량적으로 분석하고, 사용자 경험을 해치지 않는 새로운 광고 UI 설계. 기존 대비 광고 클릭률 32% 향상 방안 제시.",
-    impact: "광고 클릭률 32% 향상 예측, 사용자 이탈률 18% 감소 예상",
-    process: "117명 사용자 설문, AHP 분석, 히트맵 분석, A/B 테스트 설계",
-    tech: "SPSS, Excel, Figma, Google Analytics",
-    tags: ["117명 유저 설문", "AHP 분석 기획", "UX기반 광고 전략", "데이터 시각화"],
-    participation: "기획 100%",
+      "117명 사용자 설문 데이터를 AHP 계층분석법으로 정량 분석하여, 사용자 선택 기준(보상 효율성, 콘텐츠 흥미도, 브랜드 인지도 등)에 기반한 UI 구조와 광고 노출 전략을 설계한 데이터 기반 UX 기획한 프로젝트입니다.",
+    impact: "AHP 분석으로 광고 선택 기준의 중요도(보상 효율성 53.18% > 콘텐츠 흥미도 28.32% > 브랜드 인지도 18.49%) 도출, 목표 쿠키 기반 추천·광고 정렬/필터·실시간 신뢰도 안내 UI 등 사용자 중심 기능 설계, 무작위 노출 구조에서 맞춤형 추천 전략 중심 UI로 전환",
+    process: "117명 사용자 설문 설계 및 수집, 광고 선택 요인 정의, AHP 계층분석 적용, 연령/성별별 분석 및 시각화, 기존 UI 분석, To-Be UI 설계 및 정책 제안, Figma 리디자인 시안 제작",
+    tech: "Figma, Google Forms, Notion, Slack",
+    tags: ["AHP 분석", "데이터 기반 기획", "UX 리서치", "UI/UX 리디자인", "광고 전략 설계"],
+    participation: "UX 리서치 및 분석 기반 기획",
     image: "/p2.png",
     liveUrl: "/docs/네이버웹툰.pdf",
     docsUrl: "#",
@@ -43,29 +45,31 @@ const projects = [
   {
     id: "project3",
     title: "애자일 팀 리더십",
-    subtitle: "(팝업스토어 커뮤니티 앱)",
+    subtitle: "(POP-POP: 팝업스토어 실시간 정보 공유 커뮤니티 앱)",
+    period: "2025.03.04 ~ 2025.06.28",
     description:
-      "6인 팀의 PM으로서 2주 단위 스프린트 방식으로 실시간 팝업스토어 정보 공유 앱을 성공적으로 기획. 팀원 간 효율적인 협업 시스템 구축으로 일정 내 MVP 출시 달성.",
-    impact: "기획 단계 일정 준수율 100%, 팀 만족도 조사 4.8/5점",
-    process: "애자일 스프린트, 데일리 스크럼, 백로그 관리, 회고 미팅 진행",
-    tech: "Jira, Slack, Figma, Miro",
-    tags: ["6인 협업 리딩", "커뮤니케이션", "애자일 스프린트", "백로그 관리"],
-    participation: "기획 100%, 팀 리드",
+      "6인 팀의 PM으로 참여해 기획부터 설계, 협업, 개발, 배포까지 전 주기를 직접 경험한 실전 프로젝트. 2주 단위 스프린트 방식으로 팀을 운영하며, 예정된 기간 내 MVP를 성공적으로 출시했습니다.",
+    impact: "6인 팀의 PM으로서 2주 단위 스프린트 운영, 전체 일정 기획 및 우선순위 정리, 세부 기능 30+개 설계 및 구현, 디자인 시스템 수립 및 와이어프레임 제작, 프론트/백엔드 연동 및 실제 앱 MVP 배포",
+    process: "팀원 역할 정의, Notion 기반 스프린트 플래닝/회고, 기능 요구사항 정의 및 IA 설계, Figma 와이어프레임 및 프로토타입 제작, 프론트/백엔드 연동, 1차 테스트 및 피드백 반영",
+    tech: "Figma, Google Drive, Notion, Jira",
+    tags: ["PM 실전 경험", "애자일 협업", "MVP 출시", "기획-디자인-개발 소통", "사용자 여정 설계"],
+    participation: "프로젝트 매니저(PM) & UX 기획 총괄",
     image: "/p3.png",
     liveUrl: "#",
     docsUrl: "#",
   },
   {
     id: "project4",
-    title: "풀 사이클 프로젝트",
-    subtitle: "(미용실 예약 시스템)",
+    title: "풀사이클 프로젝트",
+    subtitle: "(미용실 실시간 예약 시스템 웹앱)",
+    period: "2025.04.17 ~ 2025.04.30",
     description:
-      "기획부터 개발 협업까지 전 과정을 경험한 풀 사이클 프로젝트. ERD 설계 및 DB 구조화 작업에 직접 참여하여 개발자와의 원활한 협업 진행. VIBE CODING을 통한 프로토타입 제작.",
-    impact: "예약 프로세스 단축 (5단계→3단계), 사용자 이탈률 25% 감소",
-    process: "요구사항 분석, ERD 설계, 와이어프레임 제작, 개발자 협업",
-    tech: "Figma, MySQL, GitHub, VS Code",
-    tags: ["개발 이해도", "VIBE CODING", "ERD 및 DB설계", "풀스택 협업"],
-    participation: "기획 100%, 개발 협업",
+      "당일 예약 및 취소 좌석 공유 기능을 중심으로 한 실시간 예약 시스템. 기획부터 UX 설계, DB 구조화, 프로토타입 제작까지 혼자서 풀사이클로 수행한 개인 프로젝트.",
+    impact: "기획부터 설계, 개발까지 전 과정 단독 주도, ERD 및 MySQL 기반 DB 구조 정의, Vibe Coding 기반 HTML/CSS 웹앱 프로토타입 구현 및 메인 페이지+로그인 흐름 완성",
+    process: "문제 정의 및 사용자 페인포인트 분석, 요구사항 정의서/유즈케이스/흐름도/시퀀스 다이어그램 작성, ERD 및 DB 구조 설계, HTML/CSS 기반 UI/UX 프로토타입 제작",
+    tech: "MySQL Workbench, Figma, HTML/CSS/JS, VS Code, Notion, Google Sheets/Docs",
+    tags: ["풀사이클 기획", "DB 구조화", "UX 설계", "웹앱 프로토타입", "문제 중심 기획"],
+    participation: "기획 · 설계 · 디자인 · 프론트 협업 총괄 (개인 프로젝트)",
     image: "/p4.png",
     liveUrl: "#",
     docsUrl: "#",
@@ -155,7 +159,7 @@ export default function Portfolio() {
   }, [])
 
   return (
-    <section id="portfolio" className="section-padding bg-background relative overflow-hidden">
+    <section id="portfolio" className="section-padding bg-[#f8fafc] dark:bg-gradient-to-b dark:from-[#23243a] dark:via-[#3a4a6a] dark:to-[#4a5a7a] relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 dot-pattern opacity-30 z-0"></div>
 
@@ -190,7 +194,7 @@ export default function Portfolio() {
 
             {projects.map((project) => (
               <TabsContent key={project.id} value={project.id} className="mt-0 animate-fadeIn">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-start w-full max-w-full px-0 sm:px-2 mt-10 sm:mt-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-center w-full max-w-full px-0 sm:px-2 mt-10 sm:mt-20">
                   <motion.div
                     whileHover={{ scale: 1.025, boxShadow: '0 8px 32px 0 rgba(80,120,200,0.13)' }}
                     transition={{ type: 'spring', stiffness: 260, damping: 20 }}
@@ -234,7 +238,13 @@ export default function Portfolio() {
                     </div>
                   </motion.div>
                   <div className="flex flex-col justify-center gap-2 sm:gap-4 p-1 sm:p-6">
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#2e4a7d] mb-0.5 sm:mb-1">{project.title}</h3>
+                    <div className="flex flex-row items-center justify-between w-full mb-1">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#2e4a7d] mb-0.5 sm:mb-1">{project.title}</h3>
+                      <div className="flex flex-col items-end text-xs sm:text-sm md:text-base text-muted-foreground">
+                        {project.period && <span className="font-medium">{project.period}</span>}
+                        {project.participation && <span className="">{project.participation}</span>}
+                      </div>
+                    </div>
                     <span className="text-sm sm:text-base md:text-lg text-muted-foreground mb-1 sm:mb-2">{project.subtitle}</span>
                     <p className="text-foreground text-xs sm:text-sm md:text-base mb-1 sm:mb-2">{project.description}</p>
                     <div className="mb-1 sm:mb-2">

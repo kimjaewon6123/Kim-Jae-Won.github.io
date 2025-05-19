@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -143,16 +143,11 @@ export default function Gallery() {
   return (
     <section
       id="gallery"
-      className="section-padding bg-gradient-to-b from-primary/5 to-background relative overflow-hidden"
+      className="section-padding relative overflow-hidden bg-[#f8fafc] dark:bg-gradient-to-b dark:from-[#23243a] dark:via-[#3a4a6a] dark:to-[#4a5a7a]"
     >
-      {/* 자연스러운 블러/그라데이션 원 배경 (통일감+변형) */}
-      <div className="absolute -top-36 -right-28 w-[380px] h-[340px] rounded-full bg-gradient-to-br from-[#e6e6fa] via-[#e6f2fb] to-[#b7cbe6] opacity-60 blur-[80px] z-0" />
-      <div className="absolute -bottom-24 -left-36 w-[300px] h-[260px] rounded-full bg-gradient-to-tr from-[#b7cbe6] via-[#e6fff8] to-[#a3b8e6] opacity-40 blur-[60px] z-0" />
-      {/* subtle noise overlay */}
-      <div className="absolute inset-0 pointer-events-none z-0" style={{background: 'url(/noise.png)', opacity: 0.07}} />
-      {/* linear-gradient overlay */}
-      <div className="absolute inset-0 pointer-events-none z-0" style={{background: 'linear-gradient(100deg,rgba(255,255,255,0.18)_0%,rgba(183,203,230,0.10)_100%)'}} />
-
+      {/* 포인트 블러/그라데이션 원 */}
+      <div className="absolute -top-28 -right-28 w-[340px] h-[300px] rounded-full bg-gradient-to-br from-[#e6e6fa] via-[#e6f2fb] to-[#b7cbe6] opacity-50 blur-2xl z-0" />
+      <div className="absolute -bottom-20 -left-32 w-[260px] h-[220px] rounded-full bg-gradient-to-tr from-[#b7cbe6] via-[#e6fff8] to-[#a3b8e6] opacity-30 blur-2xl z-0" />
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
           className={cn(
@@ -251,6 +246,7 @@ export default function Gallery() {
 
         <Dialog open={!!selectedImage} onOpenChange={() => closeImage()}>
           <DialogContent className="max-w-4xl p-0 overflow-hidden">
+            <DialogTitle className="sr-only">{selectedTitle}</DialogTitle>
             <Button
               variant="ghost"
               size="icon"
@@ -265,7 +261,7 @@ export default function Gallery() {
               )}
             </div>
             <div className="p-4 bg-background">
-              <h3 className="text-xl font-bold">{selectedTitle}</h3>
+              {/* DialogTitle이 이미 있으므로 h3는 제거 */}
             </div>
           </DialogContent>
         </Dialog>
