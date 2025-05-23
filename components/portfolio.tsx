@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ExternalLink, FileText, ArrowRight, TrendingUp, Zap, Award } from "lucide-react"
+import { ExternalLink, FileText, ArrowRight, TrendingUp, Zap, Award, Search, ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
@@ -30,7 +30,7 @@ const projects = [
     id: "project2",
     title: "데이터 기반 광고 전략",
     subtitle: "(네이버 웹툰 쿠키오븐 리디자인)",
-    period: "2024.09.16~2024.10.03",
+    period: "2025.02.20~2025.02.28",
     description:
       "117명 사용자 설문 데이터를 AHP 계층분석법으로 정량 분석하여, 사용자 선택 기준(보상 효율성, 콘텐츠 흥미도, 브랜드 인지도 등)에 기반한 UI 구조와 광고 노출 전략을 설계한 데이터 기반 UX 기획한 프로젝트입니다.",
     impact: "AHP 분석으로 광고 선택 기준의 중요도(보상 효율성 53.18% > 콘텐츠 흥미도 28.32% > 브랜드 인지도 18.49%) 도출, 목표 쿠키 기반 추천·광고 정렬/필터·실시간 신뢰도 안내 UI 등 사용자 중심 기능 설계, 무작위 노출 구조에서 맞춤형 추천 전략 중심 UI로 전환",
@@ -46,91 +46,63 @@ const projects = [
     id: "project3",
     title: "애자일 팀 리더십",
     subtitle: "(POP-POP: 팝업스토어 실시간 정보 공유 커뮤니티 앱)",
-    period: "2025.03.04 ~ 2025.06.28",
+    period: "2024.01.14~2024.01.24",
     description:
-      "6인 팀의 PM으로 참여해 기획부터 설계, 협업, 개발, 배포까지 전 주기를 직접 경험한 실전 프로젝트. 2주 단위 스프린트 방식으로 팀을 운영하며, 예정된 기간 내 MVP를 성공적으로 출시했습니다.",
-    impact: "6인 팀의 PM으로서 2주 단위 스프린트 운영, 전체 일정 기획 및 우선순위 정리, 세부 기능 30+개 설계 및 구현, 디자인 시스템 수립 및 와이어프레임 제작, 프론트/백엔드 연동 및 실제 앱 MVP 배포",
-    process: "팀원 역할 정의, Notion 기반 스프린트 플래닝/회고, 기능 요구사항 정의 및 IA 설계, Figma 와이어프레임 및 프로토타입 제작, 프론트/백엔드 연동, 1차 테스트 및 피드백 반영",
-    tech: "Figma, Google Drive, Notion, Jira",
+      "현직 초등교사 10명 대상 시나리오 기반 UT(사용자 테스트)와 경쟁사 UX 분석 등 실사용 맥락에 기반한 리서치와 실무형 기획을 직접 수행. 실제 교사들의 니즈와 행동을 관찰하여 상품 탐색, 후기, 장바구니 등 주요 UX를 사용자 흐름 중심으로 재설계하고, 후기 기반 커뮤니티 기능을 신규 기획했습니다.",
+    impact: "현직 교사 대상 UT/인터뷰 직접 설계 및 실행, Maze 테스트 후기→장바구니 이동 성공률 76% 달성, 데이터 기반 UX 개선 및 커뮤니티 활성화, 경쟁사 분석·시장분석·A/B 테스트 등 실전 기획 경험",
+    process: "교사 10명 심층 인터뷰, 경쟁사 3종 UX 분석, 페르소나/여정지도, 시나리오 기반 UT, A/B 테스트, TAM/SAM/SOM 시장분석, 와이어프레임 작성",
+    tech: "Figma, Google Forms, Notion, Zoom, Slack",
     tags: ["PM 실전 경험", "애자일 협업", "MVP 출시", "기획-디자인-개발 소통", "사용자 여정 설계"],
-    participation: "프로젝트 매니저(PM) & UX 기획 총괄",
+    participation: "UX 리서치 및 기획 총괄",
     image: "/p3.png",
     liveUrl: "#",
     docsUrl: "#",
   },
   {
     id: "project4",
-    title: "풀사이클 프로젝트",
+    title: "AI 기반 실무형 풀사이클 개발",
     subtitle: "(미용실 실시간 예약 시스템 웹앱)",
-    period: "2025.04.17 ~ 2025.04.30",
+    period: "2024.03.01~2024.03.18",
     description:
-      "당일 예약 및 취소 좌석 공유 기능을 중심으로 한 실시간 예약 시스템. 기획부터 UX 설계, DB 구조화, 프로토타입 제작까지 혼자서 풀사이클로 수행한 개인 프로젝트.",
-    impact: "기획부터 설계, 개발까지 전 과정 단독 주도, ERD 및 MySQL 기반 DB 구조 정의, Vibe Coding 기반 HTML/CSS 웹앱 프로토타입 구현 및 메인 페이지+로그인 흐름 완성",
-    process: "문제 정의 및 사용자 페인포인트 분석, 요구사항 정의서/유즈케이스/흐름도/시퀀스 다이어그램 작성, ERD 및 DB 구조 설계, HTML/CSS 기반 UI/UX 프로토타입 제작",
-    tech: "MySQL Workbench, Figma, HTML/CSS/JS, VS Code, Notion, Google Sheets/Docs",
-    tags: ["풀사이클 기획", "DB 구조화", "UX 설계", "웹앱 프로토타입", "문제 중심 기획"],
-    participation: "기획 · 설계 · 디자인 · 프론트 협업 총괄 (개인 프로젝트)",
+      "예약 부도 문제를 주제로, 데이터 기반 리서치와 AI 도구(Curator, GPT, Claude)를 활용해 기획부터 개발까지 전 과정을 단독 수행한 프로젝트입니다. 실사용 흐름을 고려해 예약, 결제, 취소, 알림 기능을 설계하고, JSP와 MySQL 기반으로 MVP를 구현했습니다.",
+    impact: "예약·결제·취소·알림 전 기능 구현, ERD 설계 및 JSP 기반 UI 완성\n예약 성공률 향상을 위한 사용자 흐름 중심 기능 설계\nAI 도구 활용을 통한 실무형 개발 경험 확보",
+    process: "문제 정의 및 데스크 리서치\n기능 정의 및 ERD 설계\nJSP 기반 화면 구현 및 예약 로직 개발\nAI 도구로 코드 자동화 및 품질 개선",
+    tech: "Cursor, ChatGPT, Claude, JSP, Java Servlet, MySQL, Figma, Notion, GitHub",
+    tags: ["풀사이클 개발", "AI 활용", "JSP", "MySQL", "실시간 예약", "MVP 구현"],
+    participation: "기획 및 프론트·백엔드 개발 전 과정 단독 수행",
     image: "/p4.png",
     liveUrl: "#",
     docsUrl: "#",
   },
   {
     id: "project5",
-    title: "사용자 행동 데이터 분석",
-    subtitle: "(이커머스 구매 여정 최적화)",
+    title: "교육 플랫폼 전환율 분석",
+    subtitle: "(밀크T CCR 향상 프로젝트)",
+    period: "2024.02.03~2024.02.13",
     description:
-      "5,000명 이상의 사용자 행동 데이터를 분석하여 구매 전환율에 영향을 미치는 핵심 요소 발견. 데이터 기반 인사이트를 통해 UI 개선 방안 도출 및 적용 후 전환율 22% 향상.",
-    impact: "구매 전환율 22% 향상, 장바구니 이탈률 17% 감소",
-    process: "데이터 수집, 클러스터링 분석, 상관관계 분석, A/B 테스트",
-    tech: "Python, Tableau, Google Analytics, Excel",
-    tags: ["데이터 시각화", "Python 분석", "인사이트 도출", "A/B 테스트"],
-    participation: "기획 100%, 데이터 분석",
-    image: "/placeholder.svg?height=600&width=800",
-    liveUrl: "#",
+      "밀크T의 약 10만 건 학습 데이터를 기반으로 콘텐츠별 전환율(CCR)을 분석하고, 전환 기여도가 낮은 이북 콘텐츠 유형을 개선 타겟으로 도출한 프로젝트입니다. 학년별·유형별 분석을 통해 AI 콘텐츠의 높은 전환 기여도도 확인했으며, 콘텐츠 추천과 UI 개선 전략을 함께 설계했습니다.",
+    impact: "CCR 기반 전환 분석 프레임 수립 및 콘텐츠 유형별 기여도 도출\n전환율 낮은 이북 콘텐츠 분석 → 개선 타깃 선정\nAI 콘텐츠의 전환 효과 확인 및 전략적 확대 제안\n학년별 콘텐츠 소비 특성 시각화 및 UX 개선 방향 설정",
+    process: "10만 건 학습 로그 수집 및 CCR 기준 정립\n과목/학년/콘텐츠 유형별 분석 및 시각화\n전환율 하위 콘텐츠 집중 분석 (e북 템플릿 97% 영어)\n개선 대상 콘텐츠 선정 및 전략 제안 도출",
+    tech: "Excel, Python(pandas), Notion, Figma",
+    tags: ["CCR 분석", "전환율 개선", "데이터 기반 UX", "AI 콘텐츠", "콘텐츠 추천", "UX 전략"],
+    participation: "데이터 분석 기반 UX 전략 수립",
+    image: "/p5.png",
+    liveUrl: "/docs/밀크T.pdf",
     docsUrl: "#",
   },
   {
     id: "project6",
-    title: "AI 고객 서비스 혁신",
-    subtitle: "(맞춤형 챗봇 개발)",
+    title: "OpenAI API 기반 서비스 기획 및 개발",
+    subtitle: "(MBTI 성향 챗봇 & 논술 첨삭 플랫폼)",
+    period: "2025.04.22~2025.05.15",
     description:
-      "고객 문의 데이터 1,000건 이상을 분석하여 자주 묻는 질문 패턴을 파악하고, GPT 기반 챗봇 프롬프트 엔지니어링을 통해 응답 정확도 92%의 챗봇 개발. 고객 응대 시간 65% 단축.",
-    impact: "고객 응대 시간 65% 단축, 사용자 만족도 4.7/5점",
-    process: "문의 데이터 분석, 프롬프트 엔지니어링, 사용자 시나리오 설계, 테스트",
-    tech: "GPT API, Python, Figma, Notion",
-    tags: ["AI 활용", "프롬프트 엔지니어링", "사용자 시나리오", "자동화"],
-    participation: "기획 100%, AI 프롬프트 설계",
-    image: "/placeholder.svg?height=600&width=800",
-    liveUrl: "#",
-    docsUrl: "#",
-  },
-  {
-    id: "project7",
-    title: "신규 서비스 MVP 설계",
-    subtitle: "(소셜 러닝 플랫폼)",
-    description:
-      "경쟁사 분석과 시장 조사를 통해 교육 시장의 블루오션을 발견하고, 소셜 러닝 기반의 새로운 서비스 컨셉 기획. 최소 기능으로 구성된 MVP를 설계하여 2개월 만에 베타 서비스 출시.",
-    impact: "초기 사용자 300명 확보, 사용자 피드백 평균 4.5/5점",
-    process: "시장 분석, 경쟁사 분석, 사용자 인터뷰, MVP 정의, 로드맵 설계",
-    tech: "Figma, Miro, Notion, Excel",
-    tags: ["시장 분석", "경쟁사 분석", "MVP 정의", "제품 로드맵"],
-    participation: "기획 100%, 제품 전략",
-    image: "/placeholder.svg?height=600&width=800",
-    liveUrl: "#",
-    docsUrl: "#",
-  },
-  {
-    id: "project8",
-    title: "종합 서비스 기획안",
-    subtitle: "(핀테크 앱 리디자인)",
-    description:
-      "사용자 조사와 데이터 분석을 바탕으로 핀테크 앱의 종합 개선 기획안 작성. 경영진 프레젠테이션을 통해 프로젝트 예산 승인 획득. 명확한 문서화와 설득력 있는 제안으로 이해관계자 지지 확보.",
-    impact: "프로젝트 예산 100% 승인, 경영진 만족도 4.8/5점",
-    process: "사용자 조사, 데이터 분석, 기획안 작성, 프레젠테이션",
-    tech: "PowerPoint, Excel, Figma, Notion",
-    tags: ["문서화", "프레젠테이션", "이해관계자 설득", "예산 확보"],
-    participation: "기획 100%, 프레젠테이션",
-    image: "/placeholder.svg?height=600&width=800",
+      "두 프로젝트 모두 OpenAI API 및 LLM 기술을 중심으로 진행한 실무형 과제입니다. MBTI 챗봇 프로젝트에서는 16가지 성향별 챗봇을 구축하고, GPT 기반 프롬프트 엔지니어링과 RAG, 메모리 주입을 활용해 성향에 맞는 응답을 설계했습니다. 논술 첨삭 서비스 프로젝트에서는 OCR, 구조 분석, Rubric 기반 Fine-Tuning 구조를 설계하고, GPT API를 활용한 논술 자동 피드백 시스템을 기획했습니다.",
+    impact: "MBTI 유형별 LLM 응답 설계 및 성향 테스트 챗봇 구현\nAgent AI + GPT 조합 기반 논술 첨삭 흐름 설계\nPrompt + RAG + 평가 기준 설정 등 고도화된 프롬프트 엔지니어링 적용\nGPT API 연동 기반 서비스 프로토타입 기획 및 시연 경험 확보",
+    process: "MBTI 데이터 수집 및 성향 응답 설계\n챗봇 UI/UX 및 프론트/백엔드 구조 구현\n논술 OCR → GPT 분석 → 항목별 피드백 시스템 설계\nRubric 기반 평가 기준 정립 및 RLHF 적용 설계\nOpenAI API 연동 테스트 및 프롬프트 품질 개선",
+    tech: "OpenAI API, Cursor, GPT-4, Figma, React",
+    tags: ["GPT API", "LLM 서비스", "프롬프트 엔지니어링", "RAG", "Agent AI", "논술 첨삭", "챗봇"],
+    participation: "AI 기술 활용 서비스 설계 및 GPT API 연동 실습",
+    image: "/p6.png",
     liveUrl: "#",
     docsUrl: "#",
   },
@@ -166,7 +138,7 @@ export default function Portfolio() {
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
           className={cn(
-            "section-title text-[#2e4a7d] transition-all duration-700",
+            "section-title text-[#2e4a7d] transition-all duration-700 text-3xl font-extrabold mb-6 text-center leading-tight",
             isVisible ? "opacity-100" : "opacity-0 translate-y-10",
           )}
         >
@@ -180,12 +152,17 @@ export default function Portfolio() {
           )}
         >
           <Tabs defaultValue="project1" value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="flex items-center justify-start bg-transparent w-full min-w-0 px-0 gap-1 max-sm:overflow-x-auto max-sm:scrollbar-hide max-sm:scroll-snap-x max-sm:mandatory max-sm:w-full max-sm:min-w-0 max-sm:gap-1 sm:flex-nowrap sm:overflow-x-visible sm:w-auto sm:gap-2" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <TabsList className="flex items-center justify-start sm:justify-center bg-transparent w-full min-w-0 px-0 gap-2 sm:gap-4 overflow-x-auto sm:overflow-x-visible scroll-snap-x mandatory sm:w-auto">
               {projects.map((project) => (
                 <TabsTrigger
                   key={project.id}
                   value={project.id}
-                  className="portfolio-tab mx-1 min-w-[120px] max-w-[200px] flex-shrink-0 scroll-snap-align-start text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap"
+                  className={cn(
+                    "portfolio-tab mx-1 min-w-[140px] max-w-[240px] flex-shrink-0 scroll-snap-align-start text-base px-3 py-2 whitespace-nowrap rounded-lg transition-all duration-200",
+                    activeTab === project.id
+                      ? "text-[#2e4a7d] bg-white/80 font-bold sm:text-[#2e4a7d] sm:bg-transparent sm:font-bold"
+                      : "text-[#2e4a7d]/60 bg-white/40 font-semibold sm:text-[#2e4a7d]/80 sm:bg-transparent sm:font-semibold"
+                  )}
                 >
                   {project.title}
                 </TabsTrigger>
@@ -194,74 +171,129 @@ export default function Portfolio() {
 
             {projects.map((project) => (
               <TabsContent key={project.id} value={project.id} className="mt-0 animate-fadeIn">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-center w-full max-w-full px-0 sm:px-2 mt-10 sm:mt-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center w-full max-w-full px-0 sm:px-4 mt-8 sm:mt-20">
                   <motion.div
                     whileHover={{ scale: 1.025, boxShadow: '0 8px 32px 0 rgba(80,120,200,0.13)' }}
                     transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                    className="relative aspect-video overflow-hidden rounded-2xl shadow-xl bg-white flex items-center justify-center group transition-all duration-300"
-                    style={{ minHeight: 180 }}
+                    className="relative aspect-video overflow-hidden rounded-xl bg-white/60 sm:bg-white/10 backdrop-blur-md flex items-center justify-center group transition-all duration-300 border-none shadow-none hover:bg-primary/10"
+                    style={{ minHeight: 220 }}
                   >
-                    <motion.div
-                      className="w-full h-full"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: 'spring', stiffness: 200, damping: 18 }}
-                      style={{ position: 'absolute', inset: 0, zIndex: 1 }}
-                    >
-                      <Image
-                        src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
-                        alt={project.title}
-                        fill
-                        className={project.id === 'project3' ? "object-contain group-hover:scale-105 transition-transform duration-500" : "object-cover group-hover:scale-105 transition-transform duration-500"}
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
-                        style={project.id === 'project3'
-                          ? {
-                              minWidth: 0,
-                              objectPosition: 'center top',
-                              maxWidth: '95%',
-                              maxHeight: '92%',
-                              position: 'absolute',
-                              top: '50%',
-                              left: '49%',
-                              transform: 'translate(-50%, -50%)',
-                            }
-                          : { minWidth: 0, objectPosition: 'center top' }}
-                      />
-                    </motion.div>
-                    <div className="absolute bottom-0 left-0 w-full p-3 sm:p-6 flex flex-col gap-1 sm:gap-2 rounded-b-2xl" style={{background: 'linear-gradient(0deg, rgba(40,40,40,0.60) 70%, rgba(40,40,40,0.0) 100%)', zIndex: 2}}>
-                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-0.5 sm:mb-1" style={{textShadow:'0 2px 8px rgba(0,0,0,0.7)'}}>{project.title}</h3>
-                      <span className="text-[11px] sm:text-xs md:text-sm text-white/80 mb-1 sm:mb-2" style={{textShadow:'0 1px 4px rgba(0,0,0,0.5)'}}>{project.subtitle}</span>
-                      <div className="flex flex-wrap gap-1 sm:gap-2 mb-1 sm:mb-2">
-                        {project.tags.map((tag, idx) => (
-                          <span key={idx} className="px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-[#2e4a7d] text-white shadow transition-colors duration-200 hover:bg-[#4766a6]" style={{textShadow:'0 1px 2px rgba(0,0,0,0.2)'}}>{tag}</span>
-                        ))}
-                      </div>
+                    <div className="w-full h-full" style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+                      {project.id === 'project5' ? (
+                        <a
+                          href="/docs/밀크T.pdf"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute inset-0 z-30"
+                          aria-label="밀크T PDF 새탭 열기"
+                          style={{ display: 'block' }}
+                        >
+                          <Image
+                            src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
+                            alt={project.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
+                            style={{ minWidth: 0, objectPosition: 'center top' }}
+                          />
+                        </a>
+                      ) : (
+                        <Image
+                          src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
+                          alt={project.title}
+                          fill
+                          className={
+                            project.id === 'project3' || project.id === 'project6'
+                              ? "object-contain group-hover:scale-105 transition-transform duration-500"
+                              : "object-cover group-hover:scale-105 transition-transform duration-500"
+                          }
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
+                          style={
+                            project.id === 'project3' || project.id === 'project6'
+                              ? {
+                                  minWidth: 0,
+                                  objectPosition: 'center top',
+                                  maxWidth: '92%',
+                                  maxHeight: '92%',
+                                  position: 'absolute',
+                                  top: '50%',
+                                  left: '50%',
+                                  transform: 'translate(-50%, -50%)',
+                                  padding: '0.5rem',
+                                }
+                              : { minWidth: 0, objectPosition: 'center top' }
+                          }
+                        />
+                      )}
                     </div>
+                    {/* hover 시 등장하는 검정 그라데이션 + 제목/부제/태그 전체를 a 태그로 감싸 PDF로 이동 */}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={
+                          "absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer z-20 px-3 py-4 rounded-xl bg-gradient-to-t from-black/80 to-black/0 flex flex-col items-start justify-end pb-4 sm:pb-8 w-[90%] h-[90%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:inset-0 sm:w-full sm:h-full sm:left-auto sm:top-auto sm:translate-x-0 sm:translate-y-0 sm:rounded-2xl sm:px-8 sm:py-10 sm:gap-4"
+                        }
+                        style={{
+                          background: "linear-gradient(0deg, rgba(20,20,30,0.82) 70%, rgba(20,20,30,0.0) 100%)",
+                          zIndex: 20,
+                          textDecoration: 'none',
+                          boxShadow: 'none',
+                        }}
+                        aria-label="PDF 미리보기"
+                      >
+                        <h3 className="text-base sm:text-xl font-bold text-[#2e4a7d] mb-1 w-full text-left sm:text-white sm:mb-2 sm:text-2xl sm:font-extrabold" style={{textShadow:'0 2px 8px rgba(46,74,125,0.13)'}}>{project.title}</h3>
+                        <span className="text-xs sm:text-base text-muted-foreground mb-2 w-full text-left sm:text-white/80 sm:mb-2" style={{textShadow:'0 1px 4px rgba(46,74,125,0.08)'}}>{project.subtitle}</span>
+                        <div className="flex flex-wrap gap-1 mb-2 justify-start w-full sm:justify-start sm:gap-2">
+                          {project.tags.map((tag, idx) => (
+                            <span key={idx} className="px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#e3eaf7]/80 text-[#2e4a7d] border-none shadow-none transition-all duration-200 sm:bg-white/10 sm:text-white sm:text-xs sm:px-3 sm:py-1.5 sm:rounded-xl">{tag}</span>
+                          ))}
+                        </div>
+                        {/* 돋보기 아이콘 (hover와 무관하게 항상 우측 하단에 고정) */}
+                        <span
+                          className="absolute z-30 flex items-center justify-center right-5 bottom-5 sm:right-9 sm:bottom-9"
+                          style={{ pointerEvents: 'none' }}
+                        >
+                          <span
+                            className="flex items-center justify-center rounded-full bg-white/70 backdrop-blur-md border border-[#b7cbe6] shadow-lg transition-all duration-200 w-[44px] h-[44px] sm:w-[56px] sm:h-[56px]"
+                            style={{
+                              boxShadow: '0 4px 16px 0 rgba(80,120,200,0.16)',
+                            }}
+                          >
+                            <ArrowUpRight className="w-6 h-6 text-[#4766a6] opacity-100" />
+                          </span>
+                        </span>
+                      </a>
+                    )}
                   </motion.div>
-                  <div className="flex flex-col justify-center gap-2 sm:gap-4 p-1 sm:p-6">
-                    <div className="flex flex-row items-center justify-between w-full mb-1">
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#2e4a7d] mb-0.5 sm:mb-1">{project.title}</h3>
-                      <div className="flex flex-col items-end text-xs sm:text-sm md:text-base text-muted-foreground">
-                        {project.period && <span className="font-medium">{project.period}</span>}
-                        {project.participation && <span className="">{project.participation}</span>}
+                  <div className="flex flex-col justify-center gap-3 p-2 sm:gap-6 sm:p-8">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full mb-2 gap-1 sm:gap-0">
+                      <h3 className="text-lg sm:text-2xl font-bold text-[#2e4a7d] mb-0.5 leading-tight sm:mb-1 sm:leading-tight break-keep max-w-full">
+                        {project.title}
+                      </h3>
+                      <div className="flex flex-col items-start sm:items-end text-xs sm:text-base md:text-lg text-muted-foreground font-medium sm:ml-4 mt-1 sm:mt-0">
+                        {project.period && <span className="font-semibold whitespace-nowrap max-w-full truncate">{project.period}</span>}
+                        {project.participation && <span className="whitespace-nowrap max-w-full truncate">{project.participation}</span>}
                       </div>
                     </div>
-                    <span className="text-sm sm:text-base md:text-lg text-muted-foreground mb-1 sm:mb-2">{project.subtitle}</span>
-                    <p className="text-foreground text-xs sm:text-sm md:text-base mb-1 sm:mb-2">{project.description}</p>
+                    <span className="text-sm text-muted-foreground mb-1 font-semibold sm:text-lg sm:mb-2">{project.subtitle}</span>
+                    <p className="text-foreground text-sm sm:text-base md:text-lg mb-2 sm:mb-3 leading-relaxed">{project.description}</p>
                     <div className="mb-1 sm:mb-2">
-                      <span className="font-semibold text-primary mr-1 sm:mr-2">주요 성과</span>
-                      <span className="text-foreground text-[11px] sm:text-xs md:text-sm">{project.impact}</span>
+                      <span className="font-bold text-primary mr-2 sm:mr-3">주요 성과</span>
+                      <span className="text-foreground text-xs sm:text-sm md:text-base">{project.impact}</span>
                     </div>
                     <div className="mb-1 sm:mb-2">
-                      <span className="font-semibold text-primary mr-1 sm:mr-2">프로세스</span>
-                      <span className="text-foreground text-[11px] sm:text-xs md:text-sm">{project.process}</span>
+                      <span className="font-bold text-primary mr-2 sm:mr-3">프로세스</span>
+                      <span className="text-foreground text-xs sm:text-sm md:text-base">{project.process}</span>
                     </div>
                     <div className="mb-1 sm:mb-2">
-                      <span className="font-semibold text-primary mr-1 sm:mr-2">활용 도구</span>
-                      <span className="text-foreground text-[11px] sm:text-xs md:text-sm">{project.tech}</span>
+                      <span className="font-bold text-primary mr-2 sm:mr-3">활용 도구</span>
+                      <span className="text-foreground text-xs sm:text-sm md:text-base">{project.tech}</span>
                     </div>
                     <Button
                       asChild
-                      className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 mt-1 sm:mt-2 self-end"
+                      className="bg-gradient-to-r from-primary to-blue-400 hover:from-blue-500 hover:to-primary transition-all duration-300 w-full sm:w-auto text-base sm:text-lg px-4 sm:px-8 mt-2 sm:mt-4 self-end text-white font-bold border-0 rounded-xl shadow-none"
                     >
                       <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                         프로젝트 보기

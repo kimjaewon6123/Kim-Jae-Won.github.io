@@ -304,7 +304,7 @@ export default function Skills() {
       <div className="container mx-auto px-4 text-center relative z-10">
         <h2
           className={cn(
-            "section-title text-[#2e4a7d] dark:text-white transition-all duration-700",
+            "section-title text-[#2e4a7d] transition-all duration-700 text-3xl sm:text-4xl md:text-5xl font-extrabold text-center",
             isVisible ? "opacity-100" : "opacity-0 translate-y-10",
           )}
         >
@@ -320,7 +320,7 @@ export default function Skills() {
           {skills.map((skill, index) => (
             <Card
               key={skill.name}
-              className="skill-item group transition-all duration-200 hover:shadow-lg hover:scale-105 cursor-pointer dark:bg-white/10"
+              className="skill-item group transition-all duration-200 hover:scale-105 cursor-pointer bg-white/10 backdrop-blur-sm rounded-xl border-none shadow-none"
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
             >
               <CardContent className="p-6 flex flex-col items-center justify-center relative z-10 dark:text-white">
@@ -328,7 +328,7 @@ export default function Skills() {
                 <h3 className="text-xl font-bold mb-2">{skill.name}</h3>
                 <div className="flex flex-wrap gap-2 justify-center mb-2">
                   {skill.keywords.map((kw, i) => (
-                    <span key={i} className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">{kw}</span>
+                    <span key={i} className="px-2 py-0.5 rounded-full bg-white/10 text-primary text-xs font-semibold border border-primary/10 shadow-none">{kw}</span>
                   ))}
                 </div>
                 {openIndex === index && (

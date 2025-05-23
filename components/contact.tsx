@@ -31,7 +31,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="section-padding relative overflow-hidden bg-background dark:bg-gradient-to-b dark:from-[#23243a] dark:via-[#3a4a6a] dark:to-[#4a5a7a]"
+      className="section-padding relative overflow-hidden bg-gradient-to-br from-[#f8fafc] via-primary/5 to-blue-50 dark:bg-gradient-to-b dark:from-[#23243a] dark:via-[#3a4a6a] dark:to-[#4a5a7a]"
     >
       {/* 섹션 fade 연결 */}
       <div className="absolute left-0 right-0 -top-2 h-12 bg-gradient-to-t from-transparent to-background dark:to-[#23243a] z-10 pointer-events-none" />
@@ -43,11 +43,21 @@ export default function Contact() {
           <div
             className={cn("transition-all duration-700", isVisible ? "opacity-100" : "opacity-0 translate-x-[-50px]")}
           >
-            <h2 className="section-title text-left mb-8 text-[#2e4a7d] dark:text-white">Contact</h2>
-            <div className="relative aspect-video md:aspect-square rounded-lg overflow-hidden shadow-lg gradient-border">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-                <div className="relative w-3/4 h-3/4 bg-white/10 backdrop-blur-sm rounded-lg shadow-inner animate-float"></div>
-              </div>
+            <motion.h2
+              className={cn(
+                "section-title text-[#2e4a7d] text-3xl sm:text-4xl md:text-5xl font-extrabold text-center leading-tight",
+                isVisible ? "opacity-100" : "opacity-0 translate-y-10",
+              )}
+            >
+              Contact
+            </motion.h2>
+            <div className="relative aspect-video md:aspect-square rounded-xl overflow-hidden bg-white/10 backdrop-blur-sm flex items-center justify-center">
+              <img
+                src="/my.png"
+                alt="프로필 이미지"
+                className="absolute inset-0 w-full h-full object-contain"
+                style={{ pointerEvents: 'none' }}
+              />
             </div>
           </div>
 
@@ -57,7 +67,7 @@ export default function Contact() {
               isVisible ? "opacity-100" : "opacity-0 translate-x-[50px]",
             )}
           >
-            <Card className="bg-background/80 dark:bg-white/10 backdrop-blur-sm border-none shadow-lg glass-card w-full max-w-full">
+            <Card className="bg-white/10 backdrop-blur-sm border-none shadow-none glass-card w-full max-w-full rounded-xl">
               <CardContent className="p-3 sm:p-6 dark:text-white">
                 <div className="text-center mb-4 sm:mb-8">
                   <motion.p
@@ -77,7 +87,7 @@ export default function Contact() {
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center w-full">
                   <Button
                     asChild
-                    className="flex items-center bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 group"
+                    className="flex items-center bg-gradient-to-r from-primary to-blue-400 hover:from-blue-500 hover:to-primary transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 group rounded-xl shadow-none"
                   >
                     <a href="mailto:twice6123@naver.com" target="_blank" rel="noopener noreferrer">
                       <motion.span whileHover={{ x: 4, scale: 1.13 }} transition={{ type: 'spring', stiffness: 220, damping: 18 }} className="flex items-center">
@@ -89,7 +99,7 @@ export default function Contact() {
                   <Button
                     asChild
                     variant="outline"
-                    className="flex items-center border-primary/20 hover:bg-primary/5 hover:text-primary shadow-sm hover:shadow-md transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 group"
+                    className="flex items-center border-primary/20 hover:bg-primary/5 hover:text-primary transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 group rounded-xl shadow-none"
                   >
                     <a href="#" target="_blank" rel="noopener noreferrer">
                       <motion.span whileHover={{ x: 4, scale: 1.13 }} transition={{ type: 'spring', stiffness: 220, damping: 18 }} className="flex items-center">
@@ -101,7 +111,7 @@ export default function Contact() {
                   <Button
                     asChild
                     variant="outline"
-                    className="flex items-center border-primary/20 hover:bg-primary/5 hover:text-primary shadow-sm hover:shadow-md transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 group"
+                    className="flex items-center border-primary/20 hover:bg-primary/5 hover:text-primary transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 group rounded-xl shadow-none"
                   >
                     <a href="https://instagram.com/w0n.zip" target="_blank" rel="noopener noreferrer">
                       <motion.span whileHover={{ x: 4, scale: 1.13 }} transition={{ type: 'spring', stiffness: 220, damping: 18 }} className="flex items-center">

@@ -86,31 +86,39 @@ export default function AboutMe() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.4 }}
-          className="flex flex-col items-center flex-shrink-0 w-full max-w-[90vw] sm:max-w-xs md:max-w-[380px] bg-gradient-to-b from-[#e6f2fb] to-[#c7d8ee] rounded-2xl p-2 sm:p-4 md:p-10 shadow-xl transition-all duration-300 mx-auto md:sticky group"
-          style={{ boxShadow: '0 2px 24px 0 rgba(120,120,200,0.13)', top: '120px', zIndex: 20 }}
+          className="flex flex-col items-center flex-shrink-0 w-full max-w-[90vw] sm:max-w-xs md:max-w-[380px] bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-8 transition-all duration-300 mx-auto md:sticky group"
+          style={{ top: '120px', zIndex: 20 }}
           whileHover={{ y: -8, boxShadow: '0 8px 32px 0 rgba(80,120,200,0.18)' }}
         >
-          <h2 className="text-2xl md:text-[2.5rem] font-bold text-foreground dark:text-white text-center mb-4 md:mb-6 mt-0 leading-none select-none">About me</h2>
+          <h2 className="section-title text-[#2e4a7d] text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-4 md:mb-8 mt-0 leading-tight select-none">About me</h2>
           <div className="relative w-full max-w-[220px] md:max-w-[260px] aspect-[4/5] mb-3 md:mb-4 overflow-visible rounded-xl transition-all duration-300 group-hover:shadow-2xl mx-auto" style={{ background: '#fff' }}>
-            <motion.img
-              src="/my2.png"
-              alt="Profile"
-              id="about-profile-img"
-              className="object-cover rounded-xl"
-              style={{
-                width: '100%',
-                height: '100%',
-                position: 'absolute',
-                left: 0,
-                bottom: 0,
-                transform: 'none',
-                display: 'block',
-                objectPosition: 'bottom center',
-                zIndex: 10,
-              }}
-              whileHover={{ scale: 1.07 }}
-              transition={{ type: 'spring', stiffness: 180, damping: 18 }}
-            />
+            <a
+              href="/docs/이력서.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'block', width: '100%', height: '100%' }}
+              aria-label="이력서 PDF 새탭 열기"
+            >
+              <motion.img
+                src="/my2.png"
+                alt="Profile"
+                id="about-profile-img"
+                className="object-cover rounded-xl"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  position: 'absolute',
+                  left: 0,
+                  bottom: 0,
+                  transform: 'none',
+                  display: 'block',
+                  objectPosition: 'bottom center',
+                  zIndex: 10,
+                }}
+                whileHover={{ scale: 1.07 }}
+                transition={{ type: 'spring', stiffness: 180, damping: 18 }}
+              />
+            </a>
             {/* 우측 세로 텍스트 */}
             <span className="absolute right-2 top-4 text-foreground text-base md:text-lg tracking-widest select-none" style={{ writingMode: 'vertical-rl', letterSpacing: '0.1em' }}>
               2000.07.20
@@ -150,10 +158,9 @@ export default function AboutMe() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
           viewport={{ once: true, amount: 0.4 }}
-          className="flex-1 flex flex-col items-start justify-center rounded-2xl shadow-lg p-4 md:p-12 backdrop-blur-md bg-white/70 dark:bg-white/10 border border-transparent min-w-0" style={{ minHeight: 320 }}
+          className="flex-1 flex flex-col items-center justify-center rounded-xl p-4 md:p-12 backdrop-blur-md bg-white/10 min-w-0" style={{ minHeight: 320 }}
         >
-          <h2 className="text-2xl md:text-[3rem] font-bold text-foreground dark:text-white text-left mb-2 mt-0 leading-none">About me</h2>
-          <div className="w-12 md:w-16 h-1 bg-[#97B1D6] rounded-full mb-4 md:mb-6" />
+          <h2 className="section-title text-[#2e4a7d] text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-4 md:mb-8 mt-0 leading-tight">About me</h2>
           {/* 슬라이드 전환 버튼 */}
           <div className="flex justify-end gap-2 mb-2 md:mb-4 w-full">
             <Button
@@ -176,13 +183,13 @@ export default function AboutMe() {
           {activeSlide === 0 ? (
             <>
               {/* 프로필 정보 */}
-              <div className="min-h-[120px] md:min-h-[250px] whitespace-pre-line leading-relaxed text-foreground dark:text-gray-100 text-base md:text-[1.15rem] text-[#222] mb-6 md:mb-8 break-words">
+              <div className="min-h-[250px] md:min-h-[250px] whitespace-pre-line leading-relaxed text-foreground dark:text-gray-100 text-base md:text-[1.15rem] text-[#222] mb-6 md:mb-8 break-words">
                 {profileData[activeProfile].content}
               </div>
             </>
           ) : (
-            <div className="w-full">
-              {/* 경력/활동 타임라인 복구 */}
+            <div className="w-full min-h-[250px] md:min-h-[250px] flex flex-col justify-center">
+              {/* 경력/활동 타임라인 복구 (교육 항목 제거) */}
               <div className="flex flex-col gap-6 md:gap-8 mt-2 md:mt-4">
                 <div>
                   <div className="font-bold text-lg md:text-xl text-foreground mb-1">주요 경력</div>
@@ -200,13 +207,6 @@ export default function AboutMe() {
                     <li>1종보통 운전면허 <span className="text-muted-foreground">(2019.12)</span></li>
                     <li>정보기술자격(ITQ) 아래한글 A등급 <span className="text-muted-foreground">(2013.03)</span></li>
                     <li>정보기술자격(ITQ) 한글파워포인트(한쇼) B등급 <span className="text-muted-foreground">(2012.12)</span></li>
-                  </ul>
-                </div>
-                <div>
-                  <div className="font-bold text-lg md:text-xl text-foreground mb-1">교육</div>
-                  <ul className="list-disc pl-5 text-base md:text-lg text-[#222]">
-                    <li>천재교육 에듀테크 PM 서비스/콘텐츠 기획자 10기 <span className="text-muted-foreground">(2024.12 - 2025.07)</span></li>
-                    <li>패스트캠퍼스 EXPORT PM/PO 4기 <span className="text-muted-foreground">(2024.09 - 2024.12)</span></li>
                   </ul>
                 </div>
               </div>

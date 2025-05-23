@@ -92,3 +92,7 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+html, body, *, *:hover, *:active, *:focus, *:visited, *:drag, *:focus-visible, *:focus-within {
+  cursor: none !important;
+}

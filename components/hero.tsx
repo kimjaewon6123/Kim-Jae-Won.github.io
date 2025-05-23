@@ -42,23 +42,27 @@ export default function Hero() {
         </span>
       </motion.div>
       {/* 배경 */}
-      <Image src="/back.png" alt="배경" fill priority className="object-cover z-0" />
-      {/* 모바일: 텍스트와 인물 이미지 완전 분리, 컬럼 레이아웃 */}
-      <div className="block sm:hidden w-full flex flex-col items-center">
-        <div className="w-full flex flex-col items-start px-4 pt-8 mt-8">
-          <h1 className="text-white text-3xl font-bold mb-4">PRODUCT<br/>MANAGER</h1>
-        </div>
-        <div className="w-[clamp(48px,16vw,72px)] max-w-[24vw] aspect-[3/5] pointer-events-none select-none mt-8 mb-4">
-          <Image
-            src="/my.png"
-            alt="인물"
-            fill
-            priority
-            className="object-contain drop-shadow-2xl"
-            sizes="clamp(48px,16vw,72px)"
-            style={{ objectPosition: 'bottom center' }}
-          />
-        </div>
+      <Image 
+        src="/back.png" 
+        alt="배경" 
+        fill 
+        priority 
+        className="object-cover z-0" 
+        style={{ objectFit: 'cover', objectPosition: 'center' }}
+      />
+      {/* 모바일: 브릿지 멘트 - 나비 위치, 왼쪽 정렬 */}
+      {/* 이 부분 전체 삭제 */}
+      {/* 인물 이미지 - 하단 정렬 (배경 하단과 맞춤) */}
+      <div className="block sm:hidden absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center w-[clamp(120px,60vw,220px)] max-w-[70vw] aspect-[3/5] z-10">
+        <Image
+          src="/my.png"
+          alt="인물"
+          fill
+          priority
+          className="object-contain drop-shadow-2xl"
+          sizes="60vw"
+          style={{ objectPosition: 'bottom center' }}
+        />
       </div>
       {/* 텍스트/버튼 - 왼쪽 정렬, 크게, 반응형 */}
       <motion.div
@@ -76,6 +80,16 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
+          {/* 브릿지 멘트 - 항상 PRODUCT MANAGER 위에 */}
+          <span
+            className="block mb-2 sm:mb-4 text-[#2e4a7d] text-base sm:text-xl md:text-2xl font-bold leading-snug drop-shadow-lg"
+            style={{
+              textShadow: '0 2px 8px rgba(0,0,0,0.22), 0 1px 2px rgba(0,0,0,0.18)',
+              wordBreak: 'keep-all',
+            }}
+          >
+            <span className="text-white/95">AI기술과 사람을 잇는,</span><br/>브릿지
+          </span>
           <div className="flex flex-col items-start">
             <div>
               {"PRODUCT".split("").map((char, i) => (
@@ -91,8 +105,8 @@ export default function Hero() {
         </motion.h1>
       </motion.div>
       {/* 인물 이미지 - 모바일은 중앙, 크게, 텍스트 아래 / sm 이상은 기존 위치 */}
-      <div className="block sm:hidden w-full mt-8 flex justify-center">
-        <div className="w-[clamp(110px,32vw,150px)] max-w-[50vw] aspect-[3/5] pointer-events-none select-none mb-4">
+      {/* <div className="block sm:hidden w-full mt-8 flex justify-center">
+        <div className="w-[clamp(90px,24vw,120px)] max-w-[38vw] aspect-[3/5] pointer-events-none select-none mb-4">
           <Image
             src="/my.png"
             alt="인물"
@@ -103,7 +117,7 @@ export default function Hero() {
             style={{ objectPosition: 'bottom center' }}
           />
         </div>
-      </div>
+      </div> */}
       <motion.div
         className="hidden sm:block absolute bottom-0 left-[28%] -translate-x-[28%] md:left-1/2 md:-translate-x-1/2 z-10 aspect-[3/5] pointer-events-none select-none"
         style={{ width: "clamp(280px, 28vw, 800px)", maxWidth: "48vw" }}

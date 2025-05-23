@@ -5,7 +5,7 @@ import { ModeToggle } from "@/components/mode-toggle"
 import { cn } from "@/lib/utils"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 
 const navItems = [
   { name: "HOME", href: "#home" },
@@ -95,6 +95,7 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent>
+              <SheetTitle className="sr-only">메뉴</SheetTitle>
               <nav className="flex flex-col gap-4 mt-8">
                 {navItems.map((item) => (
                   <a
