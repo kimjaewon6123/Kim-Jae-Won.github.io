@@ -90,7 +90,7 @@ export default function AboutMe() {
           style={{ top: '120px', zIndex: 20 }}
           whileHover={{ y: -8, boxShadow: '0 8px 32px 0 rgba(80,120,200,0.18)' }}
         >
-          <h2 className="section-title text-[#2e4a7d] text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-4 md:mb-8 mt-0 leading-tight select-none">About me</h2>
+          <h2 className="section-title text-[#2e4a7d] text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 md:mb-8 mt-0 leading-tight select-none">About me</h2>
           <div className="relative w-full max-w-[220px] md:max-w-[260px] aspect-[4/5] mb-3 md:mb-4 overflow-visible rounded-xl transition-all duration-300 group-hover:shadow-2xl mx-auto" style={{ background: '#fff' }}>
             <a
               href="/docs/이력서.pdf"
@@ -158,9 +158,8 @@ export default function AboutMe() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
           viewport={{ once: true, amount: 0.4 }}
-          className="flex-1 flex flex-col items-center justify-center rounded-xl p-4 md:p-12 backdrop-blur-md bg-white/10 min-w-0" style={{ minHeight: 320 }}
+          className="flex-1 flex flex-col items-center justify-center rounded-xl p-4 md:p-12 backdrop-blur-sm bg-white/10 min-w-0" style={{ minHeight: 320 }}
         >
-          <h2 className="section-title text-[#2e4a7d] text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-4 md:mb-8 mt-0 leading-tight">About me</h2>
           {/* 슬라이드 전환 버튼 */}
           <div className="flex justify-end gap-2 mb-2 md:mb-4 w-full">
             <Button

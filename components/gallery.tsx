@@ -9,97 +9,113 @@ import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 
+type GalleryItem = {
+  id: string;
+  title: string;
+  images: string[];
+  thumbnail?: string;
+}
+
 const galleryCategories = [
   {
     id: "wireframes",
-    title: "와이어프레임",
+    title: "화면설계서",
     items: [
       {
-        id: "wire1",
-        title: "천재교육 교구몰 와이어프레임",
-        image: "/placeholder.svg?height=600&width=800",
+        id: "wf1",
+        title: "POP-POP 화면설계서서",
+        images: [
+          "/pop/pp1.png",
+          "/pop/pp2.png",
+          "/pop/pp3.png",
+          "/pop/pp4.png",
+          "/pop/pp5.png"
+        ],
       },
       {
         id: "wire2",
         title: "IT'S TIME 프로젝트 와이어프레임",
-        image: "/placeholder.svg?height=600&width=800",
+        images: [],
       },
       {
         id: "wire3",
-        title: "NUFI 웹서비스 와이어프레임",
-        image: "/placeholder.svg?height=600&width=800",
+        title: "리뉴얼 기출로 화면설계서",
+        images: [
+          "/ki/기출로1.png",
+          "/ki/기출로2.png",
+          "/ki/기출로3.png"
+        ],
       },
       {
         id: "wire4",
         title: "패스트캠퍼스 프로젝트 와이어프레임",
-        image: "/placeholder.svg?height=600&width=800",
-      },
-    ],
-  },
-  {
-    id: "prototypes",
-    title: "프로토타입",
-    items: [
-      {
-        id: "proto1",
-        title: "천재교육 교구몰 프로토타입",
-        image: "/placeholder.svg?height=600&width=800",
-      },
-      {
-        id: "proto2",
-        title: "IT'S TIME 프로젝트 프로토타입",
-        image: "/placeholder.svg?height=600&width=800",
-      },
-      {
-        id: "proto3",
-        title: "NUFI 웹서비스 프로토타입",
-        image: "/placeholder.svg?height=600&width=800",
-      },
-      {
-        id: "proto4",
-        title: "패스트캠퍼스 프로젝트 프로토타입",
-        image: "/placeholder.svg?height=600&width=800",
+        images: [],
       },
     ],
   },
   {
     id: "documents",
-    title: "기획 문서",
+    title: "기획문서",
     items: [
       {
         id: "doc1",
-        title: "서비스 기획서",
-        image: "/placeholder.svg?height=600&width=800",
+        title: "POP-POP IA",
+        images: [
+          "/pop/popia.jpg"
+        ],
       },
       {
         id: "doc2",
         title: "사용자 여정 지도",
-        image: "/placeholder.svg?height=600&width=800",
+        images: [],
       },
       {
         id: "doc3",
         title: "서비스 블루프린트",
-        image: "/placeholder.svg?height=600&width=800",
+        images: [],
       },
       {
         id: "doc4",
         title: "기능 명세서",
-        image: "/placeholder.svg?height=600&width=800",
+        images: [],
       },
       {
         id: "doc5",
         title: "페르소나 설계",
-        image: "/placeholder.svg?height=600&width=800",
+        images: [],
       },
     ],
   },
+  {
+    id: "etc",
+    title: "기타문서",
+    items: [
+      { id: "etc1", title: "기타문서 1", images: [] },
+      { id: "etc2", title: "기타문서 2", images: [] },
+      { id: "etc3", title: "기타문서 3", images: [] },
+      { id: "etc4", title: "기타문서 4", images: [] },
+    ],
+  },
 ]
+
+// pop 폴더 이미지 리스트
+const popImages = [
+  "/pop/pp1.png",
+  "/pop/pp2.png",
+  "/pop/pp3.png",
+  "/pop/pp4.png",
+  "/pop/pp5.png",
+];
 
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState("wireframes")
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [selectedTitle, setSelectedTitle] = useState<string>("")
   const [isVisible, setIsVisible] = useState(false)
+  const [showPopGallery, setShowPopGallery] = useState(false)
+  const [popIndex, setPopIndex] = useState(0)
+  const [slideImages, setSlideImages] = useState<string[]>([])
+  const [slideIndex, setSlideIndex] = useState(0)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -119,13 +135,33 @@ export default function Gallery() {
     }
   }, [])
 
-  const openImage = (image: string, title: string) => {
-    setSelectedImage(image)
+  useEffect(() => {
+    // 이미지 프리로딩
+    const preloadImages = () => {
+      galleryCategories.forEach(category => {
+        category.items.forEach(item => {
+          if (item.images && item.images.length > 0) {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = item.images[0];
+            document.head.appendChild(link);
+          }
+        });
+      });
+    };
+    preloadImages();
+  }, []);
+
+  const openImage = (images: string[], title: string) => {
+    setSlideImages(images && images.length > 0 ? images : ["/placeholder.svg?height=600&width=800"])
+    setSlideIndex(0)
     setSelectedTitle(title)
   }
 
   const closeImage = () => {
-    setSelectedImage(null)
+    setSlideImages([])
+    setSelectedTitle("")
   }
 
   const nextCategory = () => {
@@ -138,6 +174,14 @@ export default function Gallery() {
     const currentIndex = galleryCategories.findIndex((cat) => cat.id === activeTab)
     const prevIndex = currentIndex === 0 ? galleryCategories.length - 1 : currentIndex - 1
     setActiveTab(galleryCategories[prevIndex].id)
+  }
+
+  // 기존 openImage 함수 대체: popover 클릭 시 popImages 전체를 보여주도록
+  const openPopGallery = () => {
+    setSelectedImage(null);
+    setSelectedTitle("");
+    setShowPopGallery(true);
+    setPopIndex(0);
   }
 
   return (
@@ -157,7 +201,7 @@ export default function Gallery() {
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ type: "spring", stiffness: 60, damping: 18 }}
         >
-          Design Gallery
+          Document
         </motion.h2>
 
         <motion.div
@@ -208,24 +252,16 @@ export default function Gallery() {
                   exit={{ opacity: 0, y: 30 }}
                   transition={{ type: "spring", stiffness: 60, damping: 18 }}
                 >
-                  {category.items.map((item) => (
+                  {category.items.map((item, idx) => (
                     <motion.div
                       key={item.id}
                       className="gallery-item cursor-pointer card-hover gradient-border w-full min-w-0"
-                      onClick={() => openImage(item.image, item.title)}
+                      onClick={() => openImage(item.images || [], item.title)}
                       initial={{ opacity: 0, scale: 0.97 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ type: "spring", stiffness: 70, damping: 20, delay: 0.1 }}
                     >
-                      <div className="relative aspect-square sm:aspect-video overflow-hidden rounded-lg shadow-md p-1 sm:p-0 w-full min-w-0 group">
-                        <motion.img
-                          src={item.image || "/placeholder.svg"}
-                          alt={item.title}
-                          className="object-cover transition-transform duration-500"
-                          style={{ minWidth: 0, position: 'absolute', inset: 0, width: '100%', height: '100%' }}
-                          whileHover={{ scale: 1.06 }}
-                          transition={{ type: 'spring', stiffness: 200, damping: 18 }}
-                        />
+                      <div className="relative aspect-square sm:aspect-video overflow-hidden rounded-lg shadow-md p-1 sm:p-0 w-full min-w-0 group bg-white">
                         <motion.div
                           className="gallery-overlay absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 transition-opacity duration-300 z-10"
                           initial={{ opacity: 0 }}
@@ -235,6 +271,23 @@ export default function Gallery() {
                           <ZoomIn className="h-8 w-8 mb-2 text-white" />
                           <h3 className="text-xs sm:text-base font-bold text-center break-words w-full px-1 sm:px-2 text-white drop-shadow-lg">{item.title}</h3>
                         </motion.div>
+                        {item.images && item.images[0] ? (
+                          <div className="absolute inset-0 w-full h-full">
+                            <Image
+                              src={item.images[0]}
+                              alt={item.title + ' 썸네일'}
+                              fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              className="object-cover absolute inset-0 w-full h-full mx-auto block z-0"
+                              priority={idx === 0}
+                              loading={idx === 0 ? 'eager' : 'lazy'}
+                            />
+                          </div>
+                        ) : (
+                          <div className="absolute inset-0 w-full h-full bg-gray-100 flex items-center justify-center">
+                            <span className="text-gray-400 text-xs">썸네일 없음</span>
+                          </div>
+                        )}
                       </div>
                     </motion.div>
                   ))}
@@ -244,7 +297,7 @@ export default function Gallery() {
           </Tabs>
         </motion.div>
 
-        <Dialog open={!!selectedImage} onOpenChange={() => closeImage()}>
+        <Dialog open={slideImages.length > 0} onOpenChange={closeImage}>
           <DialogContent className="max-w-4xl p-0 overflow-hidden">
             <DialogTitle className="sr-only">{selectedTitle}</DialogTitle>
             <Button
@@ -255,13 +308,101 @@ export default function Gallery() {
             >
               <X className="h-4 w-4" />
             </Button>
-            <div className="relative aspect-square sm:aspect-video w-full">
-              {selectedImage && (
-                <Image src={selectedImage || "/placeholder.svg"} alt={selectedTitle} fill className="object-contain" />
-              )}
+            <div className="relative w-full flex flex-col items-center">
+              <div className="w-full flex justify-center items-center min-h-[60vh]">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setSlideIndex((slideIndex-1+slideImages.length)%slideImages.length)}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-background/70"
+                  aria-label="이전 이미지"
+                >
+                  <ChevronLeft className="h-8 w-8" />
+                </Button>
+                <Image
+                  src={slideImages[slideIndex]}
+                  alt={`슬라이드 이미지 크게보기`}
+                  width={1200}
+                  height={900}
+                  className="object-contain rounded-xl shadow-lg max-h-[80vh] max-w-[90vw] w-full h-auto mx-2 sm:mx-12"
+                  sizes="(max-width: 768px) 90vw, 1200px"
+                  priority
+                />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setSlideIndex((slideIndex+1)%slideImages.length)}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-background/70"
+                  aria-label="다음 이미지"
+                >
+                  <ChevronRight className="h-8 w-8" />
+                </Button>
+              </div>
+              <div className="flex flex-row items-center justify-center gap-2 w-full overflow-x-auto py-4 mt-2">
+                {slideImages.map((img, i) => (
+                  <img
+                    key={`${img}-${i}`}
+                    src={img}
+                    alt={`슬라이드 이미지 ${i+1}`}
+                    className={`object-contain rounded-lg shadow-md max-h-[60px] max-w-[60px] border ${slideIndex===i?"border-primary ring-2 ring-primary":"border-transparent"}`}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => setSlideIndex(i)}
+                  />
+                ))}
+              </div>
             </div>
-            <div className="p-4 bg-background">
-              {/* DialogTitle이 이미 있으므로 h3는 제거 */}
+          </DialogContent>
+        </Dialog>
+
+        <Dialog open={showPopGallery} onOpenChange={() => setShowPopGallery(false)}>
+          <DialogContent className="max-w-4xl p-0 overflow-hidden">
+            <DialogTitle className="sr-only">POP 이미지 모음</DialogTitle>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setShowPopGallery(false)}
+              className="absolute right-2 top-2 z-10 bg-background/80 rounded-full"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+            <div className="relative w-full flex flex-col items-center">
+              <div className="w-full flex justify-center items-center min-h-[60vh]">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setPopIndex((popIndex-1+popImages.length)%popImages.length)}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-background/70"
+                  aria-label="이전 이미지"
+                >
+                  <ChevronLeft className="h-8 w-8" />
+                </Button>
+                <img
+                  src={popImages[popIndex]}
+                  alt={`POP 이미지 크게보기`}
+                  className="object-contain rounded-xl shadow-lg max-h-[80vh] max-w-[90vw] w-full h-auto mx-2 sm:mx-12"
+                />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setPopIndex((popIndex+1)%popImages.length)}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-background/70"
+                  aria-label="다음 이미지"
+                >
+                  <ChevronRight className="h-8 w-8" />
+                </Button>
+              </div>
+              <div className="flex flex-row items-center justify-center gap-2 w-full overflow-x-auto py-4 mt-2">
+                {popImages.map((img, i) => (
+                  <img
+                    key={img}
+                    src={img}
+                    alt={`POP 이미지 ${i+1}`}
+                    className={`object-contain rounded-lg shadow-md max-h-[60px] max-w-[60px] border ${popIndex===i?"border-primary ring-2 ring-primary":"border-transparent"}`}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => setPopIndex(i)}
+                  />
+                ))}
+              </div>
             </div>
           </DialogContent>
         </Dialog>

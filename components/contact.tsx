@@ -31,21 +31,21 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="section-padding relative overflow-hidden bg-gradient-to-br from-[#f8fafc] via-primary/5 to-blue-50 dark:bg-gradient-to-b dark:from-[#23243a] dark:via-[#3a4a6a] dark:to-[#4a5a7a]"
+      className="relative overflow-hidden bg-gradient-to-br from-[#f8fafc] via-primary/5 to-blue-50 dark:bg-gradient-to-b dark:from-[#23243a] dark:via-[#3a4a6a] dark:to-[#4a5a7a]"
     >
       {/* 섹션 fade 연결 */}
       <div className="absolute left-0 right-0 -top-2 h-12 bg-gradient-to-t from-transparent to-background dark:to-[#23243a] z-10 pointer-events-none" />
       {/* 포인트 블러/그라데이션 원 - 어긋나게 배치 */}
       <div className="absolute -top-24 -right-24 w-[320px] h-[260px] rounded-full bg-gradient-to-br from-[#e6f2fb] via-white to-[#b7cbe6] opacity-40 blur-2xl z-0" />
       <div className="absolute -bottom-20 -left-32 w-[220px] h-[180px] rounded-full bg-gradient-to-tr from-[#e6e6fa] via-[#b7cbe6] to-[#a3b8e6] opacity-20 blur-2xl z-0" />
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12 items-center w-full max-w-full px-2 sm:px-4">
           <div
             className={cn("transition-all duration-700", isVisible ? "opacity-100" : "opacity-0 translate-x-[-50px]")}
           >
             <motion.h2
               className={cn(
-                "section-title text-[#2e4a7d] text-3xl sm:text-4xl md:text-5xl font-extrabold text-center leading-tight",
+                "section-title text-[#2e4a7d] text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight",
                 isVisible ? "opacity-100" : "opacity-0 translate-y-10",
               )}
             >
@@ -101,7 +101,7 @@ export default function Contact() {
                     variant="outline"
                     className="flex items-center border-primary/20 hover:bg-primary/5 hover:text-primary transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 group rounded-xl shadow-none"
                   >
-                    <a href="#" target="_blank" rel="noopener noreferrer">
+                    <a href="/docs/이력서.pdf" target="_blank" rel="noopener noreferrer">
                       <motion.span whileHover={{ x: 4, scale: 1.13 }} transition={{ type: 'spring', stiffness: 220, damping: 18 }} className="flex items-center">
                         <FileText className="mr-2 h-4 w-4" />
                         이력서 다운로드

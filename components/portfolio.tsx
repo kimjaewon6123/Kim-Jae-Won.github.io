@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ExternalLink, FileText, ArrowRight, TrendingUp, Zap, Award, Search, ArrowUpRight } from "lucide-react"
+import { ExternalLink, FileText, ArrowRight, TrendingUp, Zap, Award, Search, ArrowUpRight, Github } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
@@ -22,7 +22,7 @@ const projects = [
     tech: "Figma, Google Forms, Notion, Zoom, Slack",
     tags: ["현업 프로젝트 경험", "교사 대상 UT", "유저 리서치", "커뮤니티 기능 기획", "데이터 기반 개선", "시장분석"],
     participation: "UX 리서치 및 기획 총괄",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/p1.png",
     liveUrl: "/docs/t셀파몰.pdf",
     docsUrl: "#",
   },
@@ -175,7 +175,7 @@ export default function Portfolio() {
                   <motion.div
                     whileHover={{ scale: 1.025, boxShadow: '0 8px 32px 0 rgba(80,120,200,0.13)' }}
                     transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                    className="relative aspect-video overflow-hidden rounded-xl bg-white/60 sm:bg-white/10 backdrop-blur-md flex items-center justify-center group transition-all duration-300 border-none shadow-none hover:bg-primary/10"
+                    className="relative aspect-video overflow-hidden rounded-xl bg-white flex items-center justify-center group transition-all duration-300 border-none shadow-none hover:bg-white/90"
                     style={{ minHeight: 220 }}
                   >
                     <div className="w-full h-full" style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
@@ -252,16 +252,16 @@ export default function Portfolio() {
                         </div>
                         {/* 돋보기 아이콘 (hover와 무관하게 항상 우측 하단에 고정) */}
                         <span
-                          className="absolute z-30 flex items-center justify-center right-5 bottom-5 sm:right-9 sm:bottom-9"
+                          className="absolute z-30 flex items-center justify-center right-3 bottom-3 sm:right-4 sm:bottom-4"
                           style={{ pointerEvents: 'none' }}
                         >
                           <span
-                            className="flex items-center justify-center rounded-full bg-white/70 backdrop-blur-md border border-[#b7cbe6] shadow-lg transition-all duration-200 w-[44px] h-[44px] sm:w-[56px] sm:h-[56px]"
+                            className="flex items-center justify-center rounded-full bg-white/70 backdrop-blur-md border border-[#b7cbe6] shadow-lg transition-all duration-200 w-[32px] h-[32px] sm:w-[40px] sm:h-[40px]"
                             style={{
                               boxShadow: '0 4px 16px 0 rgba(80,120,200,0.16)',
                             }}
                           >
-                            <ArrowUpRight className="w-6 h-6 text-[#4766a6] opacity-100" />
+                            <ArrowUpRight className="w-4 h-4 text-[#4766a6] opacity-100" />
                           </span>
                         </span>
                       </a>
@@ -291,14 +291,26 @@ export default function Portfolio() {
                       <span className="font-bold text-primary mr-2 sm:mr-3">활용 도구</span>
                       <span className="text-foreground text-xs sm:text-sm md:text-base">{project.tech}</span>
                     </div>
-                    <Button
-                      asChild
-                      className="bg-gradient-to-r from-primary to-blue-400 hover:from-blue-500 hover:to-primary transition-all duration-300 w-full sm:w-auto text-base sm:text-lg px-4 sm:px-8 mt-2 sm:mt-4 self-end text-white font-bold border-0 rounded-xl shadow-none"
-                    >
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        프로젝트 보기
-                      </a>
-                    </Button>
+                    <div className="flex gap-2 mt-2">
+                      <Button
+                        asChild
+                        className="bg-[#b7cbe6] hover:bg-[#9AB2D8] text-white font-bold px-3 py-1.5 rounded-full shadow-lg text-xs"
+                      >
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <FileText className="w-4 h-4 mr-1" />
+                          <span>PDF 미리보기</span>
+                        </a>
+                      </Button>
+                      <Button
+                        asChild
+                        className="bg-[#2d333b] hover:bg-[#1f2428] text-white font-bold px-3 py-1.5 rounded-full shadow-lg text-xs"
+                      >
+                        <a href={project.docsUrl} target="_blank" rel="noopener noreferrer">
+                          <Github className="w-4 h-4 mr-1" />
+                          <span>Git</span>
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </TabsContent>

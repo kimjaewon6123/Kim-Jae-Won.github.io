@@ -1,11 +1,13 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import {
-  FileText,
-  Users,
+  ClipboardCheck,
+  Target,
+  Brain,
+  UsersRound,
   GitBranch,
   Workflow,
   Figma,
@@ -13,46 +15,28 @@ import {
   FileCode2,
   Trello,
   MessageSquare,
-  Bot,
 } from "lucide-react"
-import { motion, useAnimation, useMotionValue } from "framer-motion"
 
 const skills = [
   {
-    name: "실무기획",
-    icon: <FileText className="h-10 w-10 mb-4 text-primary mt-2" />,
-    keywords: [
-      "서비스 개선", "벤치마킹", "IA 설계", "와이어프레임", "프로토타입",
-       "#서비스기획", "#와이어프레임", "#프로토타입", "#UX설계"
-    ],
-    detail: "서비스 개선 계획, 벤치마킹, IA 설계, 사용자 플로우, 와이어프레임, 프로토타입, 기능 명세서 등 실무형 기획 역량을 보유하고 있습니다.",
+    icon: ClipboardCheck,
+    slogan: '실무 중심의 기획, 디테일에서 경쟁력이 나온다',
+    description: '서비스 개선, IA 설계, 와이어프레임 및 프로토타입 작성 등 기획 전반의 실무형 문서화 역량 보유',
   },
   {
-    name: "전략 기반 기획",
-    icon: <Workflow className="h-10 w-10 mb-4 text-primary" />,
-    keywords: [
-      "페르소나 설계", "여정 지도", "블루프린트", "데이터 기반", "애자일",
-       "UX설계"
-    ],
-    detail: "페르소나 설계, 사용자 여정 지도, 서비스 블루프린트, 데이터 기반 설계, 애자일 플래닝 등 전략적 기획 경험이 있습니다.",
+    icon: Target,
+    slogan: '사용자 중심 전략을 구조화하다',
+    description: '페르소나 설계, 여정 지도, 블루프린트 기반의 전략적 기획과 데이터 기반 의사결정 경험 보유',
   },
   {
-    name: "AI 활용 기획",
-    icon: <Bot className="h-10 w-10 mb-4 text-primary" />,
-    keywords: [
-      "Prompt Engineering", "Vibe Coding", "ChatGPT 실무"
-      
-    ],
-    detail: "Prompt Engineering, Vibe Coding, ChatGPT 실무 활용 등 AI 기반 기획 역량을 보유하고 있습니다.",
+    icon: Brain,
+    slogan: 'AI와 함께 기획을 더 빠르고 똑똑하게',
+    description: 'Prompt Engineering, Vibe Coding, ChatGPT 등 생성형 AI를 활용한 기획 자동화 및 혁신 경험',
   },
   {
-    name: "협업 및 소통",
-    icon: <Users className="h-10 w-10 mb-4 text-primary" />,
-    keywords: [
-      "팀 커뮤니케이션", "이해관계자 관리", "요구사항 분석", "문서화"
-      
-    ],
-    detail: "팀 커뮤니케이션, 이해관계자 관리, 요구사항 분석, 문서화 등 협업 및 소통 역량을 갖추고 있습니다.",
+    icon: UsersRound,
+    slogan: '다양한 팀과 함께 목표를 실현하는 커뮤니케이터',
+    description: '팀 커뮤니케이션, 요구사항 분석, 이해관계자 협업을 통해 효과적인 실행력을 이끈 경험',
   },
 ]
 
@@ -69,124 +53,11 @@ const toolImages = [
   { src: "/10.png", alt: "tool10" },
   { src: "/11.png", alt: "tool11" },
   { src: "/12.png", alt: "tool12" },
+  { src: "/13.png", alt: "tool13" },
 ]
-
-// 반응형 크기 계산 함수
-function getResponsiveSizes() {
-  const vw = typeof window !== "undefined" ? window.innerWidth : 1100;
-  let areaW = 1100, areaH = 320, img = 64;
-  if (vw <= 500) { // 모바일
-    areaW = Math.min(vw - 32, 480);
-    areaH = Math.max(120, Math.floor(areaW * 0.5));
-    img = Math.max(28, Math.floor(areaW / 11));
-  } else if (vw <= 900) { // 태블릿
-    areaW = Math.min(vw - 64, 800);
-    areaH = Math.max(180, Math.floor(areaW * 0.4));
-    img = Math.max(36, Math.floor(areaW / 15));
-  }
-  return { areaW, areaH, img };
-}
-
-function ScatterToolImage({ src, alt, x, y, scale, rotation, imgSize }: {
-  src: string;
-  alt: string;
-  x: any;
-  y: any;
-  scale: any;
-  rotation: any;
-  imgSize: number;
-}) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-  if (!mounted) {
-    // SSR에서는 투명한 placeholder span만 렌더
-    return (
-      <span
-        style={{
-          position: "absolute",
-          width: imgSize + "px",
-          height: imgSize + "px",
-          left: "0px",
-          top: "0px",
-          opacity: 0,
-          pointerEvents: "none",
-        }}
-      />
-    );
-  }
-
-  // 모바일 환경 감지
-  const isMobile = typeof window !== "undefined" && window.innerWidth <= 500;
-
-  return (
-    <motion.img
-      src={src}
-      alt={alt}
-      style={{
-        position: "absolute",
-        width: imgSize + "px",
-        height: imgSize + "px",
-        touchAction: "none",
-        userSelect: "none",
-        zIndex: 2,
-        left: "0px",
-        top: "0px",
-        x,
-        y,
-        scale,
-        rotate: rotation,
-        boxShadow: isMobile ? undefined : '0 2px 8px 0 rgba(80,120,200,0.10)',
-        transition: 'box-shadow 0.18s cubic-bezier(.4,1,.7,1), z-index 0.18s',
-      }}
-      initial={{ opacity: 1, scale: 1 }}
-      whileTap={{}}
-      whileHover={{}}
-      transition={{ type: 'spring', stiffness: 220, damping: 18 }}
-      draggable={false}
-    />
-  );
-}
 
 export default function Skills() {
   const [isVisible, setIsVisible] = useState(false)
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-  // 1. 초기값 고정 (SSR/CSR 동일)
-  const [sizes, setSizes] = useState({ areaW: 900, areaH: 320, img: 64 });
-
-  // 2. motionValue를 useRef로 한 번만 생성
-  const iconsRef = useRef(
-    toolImages.map(() => ({
-      x: useMotionValue(0),
-      y: useMotionValue(0),
-      scale: useMotionValue(1),
-      rotation: useMotionValue(0),
-      vx: 0,
-      vy: 0,
-    }))
-  );
-
-  // 3. 사이즈가 바뀔 때 값만 재설정 (useEffect)
-  useEffect(() => {
-    iconsRef.current.forEach(icon => {
-      icon.x.set(Math.random() * (sizes.areaW - sizes.img));
-      icon.y.set(Math.random() * (sizes.areaH - sizes.img));
-      icon.scale.set(1);
-      icon.rotation.set((Math.random() - 0.5) * 40);
-      icon.vx = (Math.random() - 0.5) * 1.2;
-      icon.vy = (Math.random() - 0.5) * 1.2;
-    });
-  }, [sizes.areaW, sizes.areaH, sizes.img]);
-
-  // 4. 마운트 후에만 실제 크기 반영
-  useEffect(() => {
-    function handleResize() {
-      setSizes(getResponsiveSizes());
-    }
-    handleResize(); // 마운트 후 1회
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -206,91 +77,6 @@ export default function Skills() {
     }
   }, [])
 
-  const areaRef = useRef<HTMLDivElement | null>(null);
-  const pointerRef = useRef<{ x: number; y: number } | null>(null);
-  const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
-
-  // 애니메이션 루프
-  useEffect(() => {
-    let raf: number;
-    function animateIcons() {
-      const pointer = pointerRef.current;
-      const icons = iconsRef.current;
-      const ICON_COUNT = toolImages.length;
-      const REPULSION_RADIUS = Math.max(40, sizes.img * 1.3);
-      const CURSOR_RADIUS = Math.max(60, sizes.img * 2.2);
-      // 1. 랜덤 이동(기본 속도)
-      for (let i = 0; i < ICON_COUNT; i++) {
-        let icon = icons[i];
-        let x = icon.x.get() + icon.vx;
-        let y = icon.y.get() + icon.vy;
-        // 벽에 닿으면 튕김
-        if (x < 0) { x = 0; icon.vx *= -1; }
-        if (x > sizes.areaW - sizes.img) { x = sizes.areaW - sizes.img; icon.vx *= -1; }
-        if (y < 0) { y = 0; icon.vy *= -1; }
-        if (y > sizes.areaH - sizes.img) { y = sizes.areaH - sizes.img; icon.vy *= -1; }
-        icon.x.set(x);
-        icon.y.set(y);
-      }
-      // 2. 서로 가까우면 살짝 회피(반발력)
-      for (let i = 0; i < ICON_COUNT; i++) {
-        for (let j = 0; j < ICON_COUNT; j++) {
-          if (i === j) continue;
-          const iconA = icons[i];
-          const iconB = icons[j];
-          const dx = (iconA.x.get() + sizes.img/2) - (iconB.x.get() + sizes.img/2);
-          const dy = (iconA.y.get() + sizes.img/2) - (iconB.y.get() + sizes.img/2);
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < REPULSION_RADIUS && dist > 0) {
-            const repel = (REPULSION_RADIUS - dist) / REPULSION_RADIUS * 0.7;
-            iconA.x.set(iconA.x.get() + (dx / dist) * repel);
-            iconA.y.set(iconA.y.get() + (dy / dist) * repel);
-          }
-        }
-      }
-      // 3. proximity(근접) 효과 복구: 커서가 가까이 가면 scale up + 도망
-      for (let i = 0; i < ICON_COUNT; i++) {
-        let icon = icons[i];
-        let scale = 1;
-        if (pointer) {
-          const dx = pointer.x - (icon.x.get() + sizes.img/2);
-          const dy = pointer.y - (icon.y.get() + sizes.img/2);
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < CURSOR_RADIUS) {
-            scale = 1.18;
-            icon.x.set(icon.x.get() - dx * 0.08);
-            icon.y.set(icon.y.get() - dy * 0.08);
-          }
-        }
-        icon.scale.set(scale);
-      }
-      raf = window.requestAnimationFrame(animateIcons);
-    }
-    raf = window.requestAnimationFrame(animateIcons);
-    return () => window.cancelAnimationFrame(raf);
-  }, [sizes.areaW, sizes.areaH, sizes.img]);
-
-  // 영역 내 마우스/터치 위치 추적 + mousePos 상태 업데이트
-  const handleAreaMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!areaRef.current) return;
-    const rect = areaRef.current.getBoundingClientRect();
-    const pos = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-    pointerRef.current = pos;
-    setMousePos(pos);
-  };
-  const handleAreaTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!areaRef.current) return;
-    const rect = areaRef.current.getBoundingClientRect();
-    const touch = e.touches[0];
-    const pos = { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
-    pointerRef.current = pos;
-    setMousePos(pos);
-  };
-  const handleAreaMouseLeave = () => {
-    pointerRef.current = null;
-    setMousePos(null);
-  };
-
   return (
     <section
       id="skills"
@@ -301,10 +87,11 @@ export default function Skills() {
       {/* 포인트 블러/그라데이션 원 - 어긋나게 배치 */}
       <div className="absolute -top-20 -left-40 w-[320px] h-[320px] rounded-full bg-gradient-to-br from-[#e6e6fa] to-[#b7cbe6] opacity-40 blur-2xl z-0" />
       <div className="absolute -bottom-24 -right-24 w-[260px] h-[260px] rounded-full bg-gradient-to-tr from-[#b7cbe6] to-[#e6f2fb] opacity-30 blur-2xl z-0" />
+      
       <div className="container mx-auto px-4 text-center relative z-10">
         <h2
           className={cn(
-            "section-title text-[#2e4a7d] transition-all duration-700 text-3xl sm:text-4xl md:text-5xl font-extrabold text-center",
+            "section-title text-[#9AB2D8] transition-all duration-700 text-3xl sm:text-4xl md:text-5xl font-extrabold text-center",
             isVisible ? "opacity-100" : "opacity-0 translate-y-10",
           )}
         >
@@ -318,76 +105,52 @@ export default function Skills() {
           )}
         >
           {skills.map((skill, index) => (
-            <Card
-              key={skill.name}
-              className="skill-item group transition-all duration-200 hover:scale-105 cursor-pointer bg-white/10 backdrop-blur-sm rounded-xl border-none shadow-none"
-              onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            <div
+              key={index}
+              className="skill-item flex flex-col items-start text-left p-6 rounded-xl transition-transform duration-300 hover:scale-105"
             >
-              <CardContent className="p-6 flex flex-col items-center justify-center relative z-10 dark:text-white">
-                <div className="mb-4 min-h-[56px] flex items-center justify-center">{skill.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{skill.name}</h3>
-                <div className="flex flex-wrap gap-2 justify-center mb-2">
-                  {skill.keywords.map((kw, i) => (
-                    <span key={i} className="px-2 py-0.5 rounded-full bg-white/10 text-primary text-xs font-semibold border border-primary/10 shadow-none">{kw}</span>
-                  ))}
-                </div>
-                {openIndex === index && (
-                  <div className="mt-2 text-sm text-muted-foreground text-center animate-fadeIn">
-                    {skill.detail}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+              <skill.icon className="w-16 h-16 mb-4 text-[#9AB2D8] dark:text-[#b7cbe6]" />
+              <h3 className="text-lg font-semibold mb-1 text-foreground leading-tight">{skill.slogan}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mt-2">{skill.description}</p>
+            </div>
           ))}
         </div>
 
         <h2
           className={cn(
-            "section-title text-[#2e4a7d] dark:text-white transition-all duration-700",
+            "section-title text-[#9AB2D8] dark:text-white transition-all duration-700",
             isVisible ? "opacity-100" : "opacity-0 translate-y-10",
           )}
         >
           Tools I Use
         </h2>
 
-        <div
-          ref={areaRef}
-          style={{
-            width: `min(100vw, ${sizes.areaW}px)`,
-            height: `${sizes.areaH}px`,
-            position: "relative",
-            margin: "0 auto",
-            background: "#f8fafc",
-            borderRadius: 24,
-            overflow: "hidden",
-            cursor: "none",
-            maxWidth: "100%",
-            minWidth: 0,
-            touchAction: "none",
-          }}
-          onMouseMove={handleAreaMouseMove}
-          onMouseLeave={handleAreaMouseLeave}
-          onTouchMove={handleAreaTouchMove}
-          onTouchEnd={handleAreaMouseLeave}
-        >
-          {toolImages.map((tool, index) => {
-            const icon = iconsRef.current[index];
-            if (!icon || !icon.x || !icon.y || !icon.scale || !icon.rotation) return null;
-            return (
-              <ScatterToolImage
+        {/* 기존 툴 이미지 영역을 가로 스크롤 가능한 영역으로 변경 */}
+        <div className="relative w-full overflow-hidden py-4">
+          <div className="flex animate-scroll space-x-8">
+            {toolImages.map((tool, index) => (
+              <img
                 key={index}
                 src={tool.src}
                 alt={tool.alt}
-                x={icon.x}
-                y={icon.y}
-                scale={icon.scale}
-                rotation={icon.rotation}
-                imgSize={sizes.img}
+                className="w-16 h-16 flex-shrink-0 object-contain"
               />
-            );
-          })}
+            ))}
+            {/* 무한 스크롤을 위한 복제 이미지 */}
+            {toolImages.map((tool, index) => (
+              <img
+                key={`duplicate-${index}`}
+                src={tool.src}
+                alt={tool.alt}
+                className="w-16 h-16 flex-shrink-0 object-contain"
+              />
+            ))}
+          </div>
         </div>
+
       </div>
     </section>
   )
 }
+
+/* 스크롤바 숨김 (선택 사항) */

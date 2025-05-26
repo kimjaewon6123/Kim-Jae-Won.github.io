@@ -21,7 +21,11 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-end overflow-hidden max-w-[1920px] mx-auto">
+    <section
+      id="home"
+      className="w-full h-screen relative z-10 overflow-x-hidden max-w-full"
+      style={{ background: "#f8fafc" }}
+    >
       {/* 최상단 CREATIVE KIM JAEWON */}
       <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 text-center pointer-events-none">
         <span className="tracking-widest text-gray-700 text-sm xl:text-base font-light">CREATIVE KIM JAEWON</span>
@@ -53,16 +57,23 @@ export default function Hero() {
       {/* 모바일: 브릿지 멘트 - 나비 위치, 왼쪽 정렬 */}
       {/* 이 부분 전체 삭제 */}
       {/* 인물 이미지 - 하단 정렬 (배경 하단과 맞춤) */}
-      <div className="block sm:hidden absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center w-[clamp(120px,60vw,220px)] max-w-[70vw] aspect-[3/5] z-10">
-        <Image
-          src="/my.png"
-          alt="인물"
-          fill
-          priority
-          className="object-contain drop-shadow-2xl"
-          sizes="60vw"
-          style={{ objectPosition: 'bottom center' }}
-        />
+      {/* 스크롤 유도 더블 화살표 */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 bottom-16 z-30 flex flex-col items-center"
+        style={{ pointerEvents: 'none' }}
+      >
+        <motion.svg
+          width="56" height="56" viewBox="0 0 56 56" fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          initial={{ y: 0, opacity: 0.7 }}
+          animate={{ y: [0, 18, 0], opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ display: 'block' }}
+        >
+          <polyline points="16,22 28,34 40,22" stroke="#fff" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          <polyline points="16,10 28,22 40,10" stroke="#fff" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        </motion.svg>
+        <span className="mt-2 text-white text-base sm:text-lg font-semibold drop-shadow-lg select-none" style={{letterSpacing:'0.04em'}}>SCROLL</span>
       </div>
       {/* 텍스트/버튼 - 왼쪽 정렬, 크게, 반응형 */}
       <motion.div
@@ -75,7 +86,6 @@ export default function Hero() {
       >
         <motion.h1
           className="text-white font-bold mb-4 xl:mb-2 text-left text-[2.1rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl leading-[1.05] max-w-[1100px] drop-shadow-lg"
-          style={{ fontFamily: "'Noto Sans KR', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif" }}
           variants={dropContainer}
           initial="hidden"
           animate="visible"
@@ -105,8 +115,8 @@ export default function Hero() {
         </motion.h1>
       </motion.div>
       {/* 인물 이미지 - 모바일은 중앙, 크게, 텍스트 아래 / sm 이상은 기존 위치 */}
-      {/* <div className="block sm:hidden w-full mt-8 flex justify-center">
-        <div className="w-[clamp(90px,24vw,120px)] max-w-[38vw] aspect-[3/5] pointer-events-none select-none mb-4">
+      <div className="block sm:hidden w-full mt-8 flex justify-center">
+        <div className="w-[90px] max-w-[28vw] min-w-0 aspect-[3/5] pointer-events-none select-none mb-4 custom-mobile-img-size">
           <Image
             src="/my.png"
             alt="인물"
@@ -117,7 +127,7 @@ export default function Hero() {
             style={{ objectPosition: 'bottom center' }}
           />
         </div>
-      </div> */}
+      </div>
       <motion.div
         className="hidden sm:block absolute bottom-0 left-[28%] -translate-x-[28%] md:left-1/2 md:-translate-x-1/2 z-10 aspect-[3/5] pointer-events-none select-none"
         style={{ width: "clamp(280px, 28vw, 800px)", maxWidth: "48vw" }}
@@ -141,16 +151,6 @@ export default function Hero() {
           style={{ objectPosition: 'bottom center' }}
         />
       </motion.div>
-      {/* 하단 스크롤 인디케이터 */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center scroll-indicator pointer-events-none select-none">
-        <span className="text-sm text-muted-foreground mb-1">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ArrowDown className="h-6 w-6 text-muted-foreground" />
-        </motion.div>
-      </div>
     </section>
   )
 } 
