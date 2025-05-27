@@ -23,7 +23,7 @@ const galleryCategories = [
     items: [
       {
         id: "wf1",
-        title: "POP-POP 화면설계서서",
+        title: "POP-POP 화면설계서",
         images: [
           "/pop/pp1.png",
           "/pop/pp2.png",
@@ -66,13 +66,18 @@ const galleryCategories = [
       },
       {
         id: "doc2",
-        title: "사용자 여정 지도",
-        images: [],
+        title: "POP-POP 와이어프레임",
+        images: [
+          "/pop/wire1.png"
+        ],
       },
       {
         id: "doc3",
-        title: "서비스 블루프린트",
-        images: [],
+        title: "POP-POP 메뉴구조도"
+        ,
+        images: [
+          "/pop/menu1.png"
+        ],
       },
       {
         id: "doc4",
@@ -90,10 +95,37 @@ const galleryCategories = [
     id: "etc",
     title: "기타문서",
     items: [
-      { id: "etc1", title: "기타문서 1", images: [] },
-      { id: "etc2", title: "기타문서 2", images: [] },
-      { id: "etc3", title: "기타문서 3", images: [] },
-      { id: "etc4", title: "기타문서 4", images: [] },
+      { id: "etc1", title: "POP POP 시스템 기능 흐름도", images: ["/pop/sy1.jpg"] },
+      { id: "etc2", title: "풀사이클 유즈케이스 시나리오", images: [
+        "/use/1조 유즈케이스 시나리오 (1)_1.png",
+        "/use/1조 유즈케이스 시나리오 (1)_2.png",
+        "/use/1조 유즈케이스 시나리오 (1)_3.png",
+        "/use/1조 유즈케이스 시나리오 (1)_4.png",
+        "/use/1조 유즈케이스 시나리오 (1)_5.png",
+        "/use/1조 유즈케이스 시나리오 (1)_6.png",
+        "/use/1조 유즈케이스 시나리오 (1)_7.png",
+        "/use/1조 유즈케이스 시나리오 (1)_8.png",
+        "/use/1조 유즈케이스 시나리오 (1)_9.png"
+      ] },
+      { id: "etc3", title: "풀사이클 요구사항 정의서", images: [
+        "/demand1.jpg",
+        "/demand2.jpg",
+        "/demand3.jpg",
+        "/demand4.jpg",
+        "/demand5.jpg"
+      ] },
+      { id: "etc4", title: "풀사이클 유즈케이스 다이어그램", images: ["/use1.jpg"] },
+      { id: "etc5", title: "풀사이클 시퀀스 다이어그램", images: [
+        "/seq1.jpg",
+        "/seq2.jpg",
+        "/seq3.jpg",
+        "/seq4.jpg",
+        "/seq5.jpg",
+        "/seq6.jpg",
+        "/seq7.jpg"
+      ] },
+      { id: "etc6", title: "풀사이클 ERD", images: ["/erd.jpg"] },
+      { id: "etc7", title: "기타문서 7", images: [] },
     ],
   },
 ]
@@ -140,12 +172,13 @@ export default function Gallery() {
     const preloadImages = () => {
       galleryCategories.forEach(category => {
         category.items.forEach(item => {
-          if (item.images && item.images.length > 0) {
-            const link = document.createElement('link');
-            link.rel = 'preload';
-            link.as = 'image';
-            link.href = item.images[0];
-            document.head.appendChild(link);
+          if (item.images && Array.isArray(item.images)) {
+            item.images.forEach(imgPath => {
+              if (typeof imgPath === 'string' && imgPath.trim() !== '') {
+                const img = new window.Image();
+                img.src = imgPath;
+              }
+            });
           }
         });
       });
@@ -271,7 +304,7 @@ export default function Gallery() {
                           <ZoomIn className="h-8 w-8 mb-2 text-white" />
                           <h3 className="text-xs sm:text-base font-bold text-center break-words w-full px-1 sm:px-2 text-white drop-shadow-lg">{item.title}</h3>
                         </motion.div>
-                        {item.images && item.images[0] ? (
+                        {item.images && item.images[0] && typeof item.images[0] === 'string' && item.images[0].trim() !== '' ? (
                           <div className="absolute inset-0 w-full h-full">
                             <Image
                               src={item.images[0]}
@@ -281,6 +314,8 @@ export default function Gallery() {
                               className="object-cover absolute inset-0 w-full h-full mx-auto block z-0"
                               priority={idx === 0}
                               loading={idx === 0 ? 'eager' : 'lazy'}
+                              quality={100}
+                              unoptimized
                             />
                           </div>
                         ) : (
@@ -319,15 +354,21 @@ export default function Gallery() {
                 >
                   <ChevronLeft className="h-8 w-8" />
                 </Button>
-                <Image
-                  src={slideImages[slideIndex]}
-                  alt={`슬라이드 이미지 크게보기`}
-                  width={1200}
-                  height={900}
-                  className="object-contain rounded-xl shadow-lg max-h-[80vh] max-w-[90vw] w-full h-auto mx-2 sm:mx-12"
-                  sizes="(max-width: 768px) 90vw, 1200px"
-                  priority
-                />
+                {slideImages[slideIndex] && typeof slideImages[slideIndex] === 'string' && slideImages[slideIndex].trim() !== '' ? (
+                  <Image
+                    src={slideImages[slideIndex]}
+                    alt={`슬라이드 이미지 크게보기`}
+                    width={1200}
+                    height={900}
+                    className="object-contain rounded-xl shadow-lg max-h-[80vh] max-w-[90vw] w-full h-auto mx-2 sm:mx-12"
+                    sizes="(max-width: 768px) 90vw, 1200px"
+                    priority
+                  />
+                ) : (
+                  <div className="object-contain rounded-xl shadow-lg max-h-[80vh] max-w-[90vw] w-full h-auto mx-2 sm:mx-12 flex items-center justify-center bg-gray-100">
+                    <span className="text-gray-400 text-xs">이미지 없음</span>
+                  </div>
+                )}
                 <Button
                   variant="ghost"
                   size="icon"
@@ -339,16 +380,18 @@ export default function Gallery() {
                 </Button>
               </div>
               <div className="flex flex-row items-center justify-center gap-2 w-full overflow-x-auto py-4 mt-2">
-                {slideImages.map((img, i) => (
-                  <img
-                    key={`${img}-${i}`}
-                    src={img}
-                    alt={`슬라이드 이미지 ${i+1}`}
-                    className={`object-contain rounded-lg shadow-md max-h-[60px] max-w-[60px] border ${slideIndex===i?"border-primary ring-2 ring-primary":"border-transparent"}`}
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => setSlideIndex(i)}
-                  />
-                ))}
+                {slideImages.map((img, i) =>
+                  img && typeof img === 'string' && img.trim() !== '' ? (
+                    <img
+                      key={`${img}-${i}`}
+                      src={img}
+                      alt={`슬라이드 이미지 ${i+1}`}
+                      className={`object-contain rounded-lg shadow-md max-h-[60px] max-w-[60px] border ${slideIndex===i?"border-primary ring-2 ring-primary":"border-transparent"}`}
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => setSlideIndex(i)}
+                    />
+                  ) : null
+                )}
               </div>
             </div>
           </DialogContent>
