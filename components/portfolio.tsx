@@ -11,6 +11,7 @@ import { motion } from "framer-motion"
 import PDFModal from "./PDFModal"
 
 const projects = [
+  // 1. 교육 플랫폼 UX 혁신
   {
     id: "project1",
     title: "교육 플랫폼 UX 혁신",
@@ -27,38 +28,24 @@ const projects = [
     liveUrl: "/docs/t셀파몰.pdf",
     docsUrl: "#",
   },
-  {
-    id: "project2",
-    title: "데이터 기반 광고 전략",
-    subtitle: "(네이버 웹툰 쿠키오븐 리디자인)",
-    period: "2025.02.20~2025.02.28",
-    description:
-      "117명 사용자 설문 데이터를 AHP 계층분석법으로 정량 분석하여, 사용자 선택 기준(보상 효율성, 콘텐츠 흥미도, 브랜드 인지도 등)에 기반한 UI 구조와 광고 노출 전략을 설계한 데이터 기반 UX 기획한 프로젝트입니다.",
-    impact: "AHP 분석으로 광고 선택 기준의 중요도(보상 효율성 53.18% > 콘텐츠 흥미도 28.32% > 브랜드 인지도 18.49%) 도출, 목표 쿠키 기반 추천·광고 정렬/필터·실시간 신뢰도 안내 UI 등 사용자 중심 기능 설계, 무작위 노출 구조에서 맞춤형 추천 전략 중심 UI로 전환",
-    process: "117명 사용자 설문 설계 및 수집, 광고 선택 요인 정의, AHP 계층분석 적용, 연령/성별별 분석 및 시각화, 기존 UI 분석, To-Be UI 설계 및 정책 제안, Figma 리디자인 시안 제작",
-    tech: "Figma, Google Forms, Notion, Slack",
-    tags: ["AHP 분석", "데이터 기반 기획", "UX 리서치", "UI/UX 리디자인", "광고 전략 설계"],
-    participation: "UX 리서치 및 분석 기반 기획",
-    image: "/p2.png",
-    liveUrl: "/docs/네이버웹툰.pdf",
-    docsUrl: "#",
-  },
+  // 2. 애자일 팀 리더십
   {
     id: "project3",
     title: "애자일 팀 리더십",
     subtitle: "(POP-POP: 팝업스토어 실시간 정보 공유 커뮤니티 앱)",
     period: "2024.01.14~2024.01.24",
     description:
-      "현직 초등교사 10명 대상 시나리오 기반 UT(사용자 테스트)와 경쟁사 UX 분석 등 실사용 맥락에 기반한 리서치와 실무형 기획을 직접 수행. 실제 교사들의 니즈와 행동을 관찰하여 상품 탐색, 후기, 장바구니 등 주요 UX를 사용자 흐름 중심으로 재설계하고, 후기 기반 커뮤니티 기능을 신규 기획했습니다.",
-    impact: "현직 교사 대상 UT/인터뷰 직접 설계 및 실행, Maze 테스트 후기→장바구니 이동 성공률 76% 달성, 데이터 기반 UX 개선 및 커뮤니티 활성화, 경쟁사 분석·시장분석·A/B 테스트 등 실전 기획 경험",
-    process: "교사 10명 심층 인터뷰, 경쟁사 3종 UX 분석, 페르소나/여정지도, 시나리오 기반 UT, A/B 테스트, TAM/SAM/SOM 시장분석, 와이어프레임 작성",
-    tech: "Figma, Google Forms, Notion, Zoom, Slack",
+      "팝업스토어 정보 공유 커뮤니티 앱 기획 및 개발 프로젝트입니다. 사용자 리서치를 통해 팝업스토어 정보의 실시간성과 커뮤니티 기능의 필요성을 도출하고, 이를 바탕으로 MVP를 개발했습니다.",
+    impact: "사용자 리서치 기반 핵심 기능 도출, 애자일 방식의 MVP 개발 및 출시, 사용자 피드백 기반 지속적 개선, 팀 협업 프로세스 구축",
+    process: "사용자 리서치, 페르소나/여정지도 설계, 기능 정의, 와이어프레임 작성, MVP 개발 및 출시, 사용자 피드백 수집 및 개선",
+    tech: "Figma, Notion, Slack, GitHub",
     tags: ["PM 실전 경험", "애자일 협업", "MVP 출시", "기획-디자인-개발 소통", "사용자 여정 설계"],
-    participation: "UX 리서치 및 기획 총괄",
+    participation: "PM 및 기획 총괄",
     image: "/p3.png",
     liveUrl: "#",
     docsUrl: "https://github.com/ita-poppop/backend.git",
   },
+  // 3. AI 기반 실무형 풀사이클 개발
   {
     id: "project4",
     title: "AI 기반 실무형 풀사이클 개발",
@@ -74,6 +61,23 @@ const projects = [
     image: "/p4.png",
     liveUrl: "/docs/Full.pdf",
     docsUrl: "https://github.com/kimjaewon6123/scrs.git",
+  },
+  // 4. 데이터 기반 광고 전략
+  {
+    id: "project2",
+    title: "데이터 기반 광고 전략",
+    subtitle: "(네이버 웹툰 쿠키오븐 리디자인)",
+    period: "2025.02.20~2025.02.28",
+    description:
+      "117명 사용자 설문 데이터를 AHP 계층분석법으로 정량 분석하여, 사용자 선택 기준(보상 효율성, 콘텐츠 흥미도, 브랜드 인지도 등)에 기반한 UI 구조와 광고 노출 전략을 설계한 데이터 기반 UX 기획한 프로젝트입니다.",
+    impact: "AHP 분석으로 광고 선택 기준의 중요도(보상 효율성 53.18% > 콘텐츠 흥미도 28.32% > 브랜드 인지도 18.49%) 도출, 목표 쿠키 기반 추천·광고 정렬/필터·실시간 신뢰도 안내 UI 등 사용자 중심 기능 설계, 무작위 노출 구조에서 맞춤형 추천 전략 중심 UI로 전환",
+    process: "117명 사용자 설문 설계 및 수집, 광고 선택 요인 정의, AHP 계층분석 적용, 연령/성별별 분석 및 시각화, 기존 UI 분석, To-Be UI 설계 및 정책 제안, Figma 리디자인 시안 제작",
+    tech: "Figma, Google Forms, Notion, Slack",
+    tags: ["AHP 분석", "데이터 기반 기획", "UX 리서치", "UI/UX 리디자인", "광고 전략 설계"],
+    participation: "UX 리서치 및 분석 기반 기획",
+    image: "/p2.png",
+    liveUrl: "/docs/네이버웹툰.pdf",
+    docsUrl: "#",
   },
   {
     id: "project5",
@@ -113,6 +117,7 @@ export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("project1")
   const [isVisible, setIsVisible] = useState(false)
   const [selectedPDF, setSelectedPDF] = useState<string | null>(null)
+  const [showComingSoon, setShowComingSoon] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -131,6 +136,19 @@ export default function Portfolio() {
       if (section) observer.unobserve(section)
     }
   }, [])
+
+  // 안내 모달 컴포넌트
+  function ComingSoonModal({ open, onClose }: { open: boolean, onClose: () => void }) {
+    if (!open) return null;
+    return (
+      <div style={{ position: 'fixed', inset: 0, zIndex: 99999, background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ background: 'white', borderRadius: 20, padding: '2.5rem 2.5rem 2rem 2.5rem', boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 280, minHeight: 120, textAlign: 'center', fontSize: '1.15rem', fontWeight: 600, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24 }}>
+          <span style={{ marginBottom: 12, fontSize: '1.18rem', color: '#2e4a7d', fontWeight: 700, letterSpacing: '-0.5px' }}>곧 업로드 예정입니다</span>
+          <button onClick={onClose} style={{ background: '#b7cbe6', color: 'white', border: 'none', borderRadius: 8, padding: '0.7rem 2.2rem', fontWeight: 600, fontSize: '1.08rem', cursor: 'pointer', boxShadow: '0 2px 8px rgba(80,120,200,0.13)' }}>확인</button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <section id="portfolio" className="section-padding bg-[#f8fafc] dark:bg-gradient-to-b dark:from-[#23243a] dark:via-[#3a4a6a] dark:to-[#4a5a7a] relative overflow-hidden">
@@ -181,7 +199,38 @@ export default function Portfolio() {
                     style={{ minHeight: 220 }}
                   >
                     <div className="w-full h-full" style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-                      {project.id === 'project4' ? (
+                      {(project.id === 'project3' || project.id === 'project6') ? (
+                        <button
+                          type="button"
+                          className="absolute inset-0 z-30 w-full h-full cursor-pointer"
+                          aria-label="곧 업로드 예정입니다"
+                          style={{ display: 'block', background: 'transparent', border: 'none', padding: 0 }}
+                          onClick={() => setShowComingSoon(true)}
+                        >
+                          <Image
+                            src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
+                            alt={project.title}
+                            fill
+                            className={
+                              project.id === 'project3' || project.id === 'project6'
+                                ? "object-contain group-hover:scale-105 transition-transform duration-500"
+                                : "object-cover group-hover:scale-105 transition-transform duration-500"
+                            }
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
+                            style={{
+                              minWidth: 0,
+                              objectPosition: 'center top',
+                              maxWidth: '100%',
+                              maxHeight: '100%',
+                              position: 'absolute',
+                              top: '50%',
+                              left: '50%',
+                              transform: 'translate(-50%, -50%)',
+                              padding: '0.2rem',
+                            }}
+                          />
+                        </button>
+                      ) : project.id === 'project4' ? (
                         <button
                           type="button"
                           className="absolute inset-0 z-30 w-full h-full cursor-pointer"
@@ -199,74 +248,75 @@ export default function Portfolio() {
                           />
                         </button>
                       ) : (
-                        <Image
-                          src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
-                          alt={project.title}
-                          fill
-                          className={
-                            project.id === 'project3' || project.id === 'project6'
-                              ? "object-contain group-hover:scale-105 transition-transform duration-500"
-                              : "object-cover group-hover:scale-105 transition-transform duration-500"
-                          }
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
-                          style={
-                            project.id === 'project3' || project.id === 'project6'
-                              ? {
-                                  minWidth: 0,
-                                  objectPosition: 'center top',
-                                  maxWidth: '92%',
-                                  maxHeight: '92%',
-                                  position: 'absolute',
-                                  top: '50%',
-                                  left: '50%',
-                                  transform: 'translate(-50%, -50%)',
-                                  padding: '0.5rem',
-                                }
-                              : { minWidth: 0, objectPosition: 'center top' }
-                          }
-                        />
+                        <>
+                          <Image
+                            src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
+                            alt={project.title}
+                            fill
+                            className={
+                              project.id === 'project3' || project.id === 'project6'
+                                ? "object-contain group-hover:scale-105 transition-transform duration-500"
+                                : "object-cover group-hover:scale-105 transition-transform duration-500"
+                            }
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
+                            style={
+                              project.id === 'project3' || project.id === 'project6'
+                                ? {
+                                    minWidth: 0,
+                                    objectPosition: 'center top',
+                                    maxWidth: '100%',
+                                    maxHeight: '100%',
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    transform: 'translate(-50%, -50%)',
+                                    padding: '0.2rem',
+                                  }
+                                : { minWidth: 0, objectPosition: 'center top' }
+                            }
+                          />
+                          {project.liveUrl && (
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={
+                                "absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer z-20 px-3 py-4 rounded-xl bg-gradient-to-t from-black/80 to-black/0 flex flex-col items-start justify-end pb-4 sm:pb-8 w-[90%] h-[90%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:inset-0 sm:w-full sm:h-full sm:left-auto sm:top-auto sm:translate-x-0 sm:translate-y-0 sm:rounded-2xl sm:px-8 sm:py-10 sm:gap-4"
+                              }
+                              style={{
+                                background: "linear-gradient(0deg, rgba(20,20,30,0.82) 70%, rgba(20,20,30,0.0) 100%)",
+                                zIndex: 20,
+                                textDecoration: 'none',
+                                boxShadow: 'none',
+                              }}
+                              aria-label="PDF 미리보기"
+                            >
+                              <h3 className="text-base sm:text-xl font-bold text-[#2e4a7d] mb-1 w-full text-left sm:text-white sm:mb-2 sm:text-2xl sm:font-extrabold" style={{textShadow:'0 2px 8px rgba(46,74,125,0.13)'}}>{project.title}</h3>
+                              <span className="text-xs sm:text-base text-muted-foreground mb-2 w-full text-left sm:text-white/80 sm:mb-2" style={{textShadow:'0 1px 4px rgba(46,74,125,0.08)'}}>{project.subtitle}</span>
+                              <div className="flex flex-wrap gap-1 mb-2 justify-start w-full sm:justify-start sm:gap-2">
+                                {project.tags.map((tag, idx) => (
+                                  <span key={idx} className="px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#e3eaf7]/80 text-[#2e4a7d] border-none shadow-none transition-all duration-200 sm:bg-white/10 sm:text-white sm:text-xs sm:px-3 sm:py-1.5 sm:rounded-xl">{tag}</span>
+                                ))}
+                              </div>
+                              {/* 돋보기 아이콘 (hover와 무관하게 항상 우측 하단에 고정) */}
+                              <span
+                                className="absolute z-30 flex items-center justify-center right-3 bottom-3 sm:right-4 sm:bottom-4"
+                                style={{ pointerEvents: 'none' }}
+                              >
+                                <span
+                                  className="flex items-center justify-center rounded-full bg-white/70 backdrop-blur-md border border-[#b7cbe6] shadow-lg transition-all duration-200 w-[32px] h-[32px] sm:w-[40px] sm:h-[40px]"
+                                  style={{
+                                    boxShadow: '0 4px 16px 0 rgba(80,120,200,0.16)',
+                                  }}
+                                >
+                                  <ArrowUpRight className="w-4 h-4 text-[#4766a6] opacity-100" />
+                                </span>
+                              </span>
+                            </a>
+                          )}
+                        </>
                       )}
                     </div>
-                    {/* hover 시 등장하는 검정 그라데이션 + 제목/부제/태그 전체를 a 태그로 감싸 PDF로 이동 */}
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={
-                          "absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer z-20 px-3 py-4 rounded-xl bg-gradient-to-t from-black/80 to-black/0 flex flex-col items-start justify-end pb-4 sm:pb-8 w-[90%] h-[90%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:inset-0 sm:w-full sm:h-full sm:left-auto sm:top-auto sm:translate-x-0 sm:translate-y-0 sm:rounded-2xl sm:px-8 sm:py-10 sm:gap-4"
-                        }
-                        style={{
-                          background: "linear-gradient(0deg, rgba(20,20,30,0.82) 70%, rgba(20,20,30,0.0) 100%)",
-                          zIndex: 20,
-                          textDecoration: 'none',
-                          boxShadow: 'none',
-                        }}
-                        aria-label="PDF 미리보기"
-                      >
-                        <h3 className="text-base sm:text-xl font-bold text-[#2e4a7d] mb-1 w-full text-left sm:text-white sm:mb-2 sm:text-2xl sm:font-extrabold" style={{textShadow:'0 2px 8px rgba(46,74,125,0.13)'}}>{project.title}</h3>
-                        <span className="text-xs sm:text-base text-muted-foreground mb-2 w-full text-left sm:text-white/80 sm:mb-2" style={{textShadow:'0 1px 4px rgba(46,74,125,0.08)'}}>{project.subtitle}</span>
-                        <div className="flex flex-wrap gap-1 mb-2 justify-start w-full sm:justify-start sm:gap-2">
-                          {project.tags.map((tag, idx) => (
-                            <span key={idx} className="px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#e3eaf7]/80 text-[#2e4a7d] border-none shadow-none transition-all duration-200 sm:bg-white/10 sm:text-white sm:text-xs sm:px-3 sm:py-1.5 sm:rounded-xl">{tag}</span>
-                          ))}
-                        </div>
-                        {/* 돋보기 아이콘 (hover와 무관하게 항상 우측 하단에 고정) */}
-                        <span
-                          className="absolute z-30 flex items-center justify-center right-3 bottom-3 sm:right-4 sm:bottom-4"
-                          style={{ pointerEvents: 'none' }}
-                        >
-                          <span
-                            className="flex items-center justify-center rounded-full bg-white/70 backdrop-blur-md border border-[#b7cbe6] shadow-lg transition-all duration-200 w-[32px] h-[32px] sm:w-[40px] sm:h-[40px]"
-                            style={{
-                              boxShadow: '0 4px 16px 0 rgba(80,120,200,0.16)',
-                            }}
-                          >
-                            <ArrowUpRight className="w-4 h-4 text-[#4766a6] opacity-100" />
-                          </span>
-                        </span>
-                      </a>
-                    )}
                   </motion.div>
                   <div className="flex flex-col justify-center gap-3 p-2 sm:gap-6 sm:p-8">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full mb-2 gap-1 sm:gap-0">
@@ -297,7 +347,15 @@ export default function Portfolio() {
                         asChild
                         className="bg-[#b7cbe6] hover:bg-[#9AB2D8] text-white font-bold px-3 py-1.5 rounded-full shadow-lg text-xs"
                       >
-                        <button onClick={() => setSelectedPDF(project.liveUrl)}>
+                        <button
+                          onClick={() => {
+                            if (project.id === 'project3' || project.id === 'project6') {
+                              setShowComingSoon(true);
+                            } else {
+                              setSelectedPDF(project.liveUrl);
+                            }
+                          }}
+                        >
                           <FileText className="w-4 h-4 mr-1" />
                           <span>PDF 미리보기</span>
                         </button>
@@ -329,6 +387,7 @@ export default function Portfolio() {
           pdfUrl={selectedPDF}
         />
       )}
+      <ComingSoonModal open={showComingSoon} onClose={() => setShowComingSoon(false)} />
     </section>
   )
 }

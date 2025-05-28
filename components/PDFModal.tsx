@@ -1,10 +1,7 @@
 "use client"
 
-import { useState, useEffect, useMemo, useRef, useLayoutEffect } from "react"
+import { useState, useRef, useLayoutEffect } from "react"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
-import { Document, Page, pdfjs } from "react-pdf"
-import "react-pdf/dist/esm/Page/AnnotationLayer.css"
-import "react-pdf/dist/esm/Page/TextLayer.css"
 
 interface PDFModalProps {
   isOpen: boolean
@@ -13,30 +10,8 @@ interface PDFModalProps {
 }
 
 export default function PDFModal({ isOpen, onClose, pdfUrl }: PDFModalProps) {
-  const [numPages, setNumPages] = useState<number>(0)
-  const [error, setError] = useState<string | null>(null)
-  const [isWorkerLoaded, setIsWorkerLoaded] = useState(false)
   const [containerWidth, setContainerWidth] = useState<number>(0)
   const containerRef = useRef<HTMLDivElement>(null)
-
-  const pdfOptions = useMemo(() => ({
-    cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
-    cMapPacked: true,
-    standardFontDataUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/standard_fonts/',
-  }), [])
-
-  useEffect(() => {
-    const loadWorker = async () => {
-      try {
-        pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`
-        setIsWorkerLoaded(true)
-      } catch (err) {
-        console.error('PDF 워커 로드 실패:', err)
-        setError('PDF 뷰어를 초기화하는 중 오류가 발생했습니다.')
-      }
-    }
-    loadWorker()
-  }, [])
 
   useLayoutEffect(() => {
     function updateWidth() {
@@ -49,68 +24,59 @@ export default function PDFModal({ isOpen, onClose, pdfUrl }: PDFModalProps) {
     return () => window.removeEventListener('resize', updateWidth)
   }, [isOpen])
 
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
-    setNumPages(numPages)
-    setError(null)
-  }
-
-  function onDocumentLoadError(error: Error) {
-    setError("PDF를 불러오는 중 오류가 발생했습니다.")
-    console.error("PDF 로드 에러:", error)
-  }
-
-  if (!isWorkerLoaded) {
-    return (
-      <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className="max-w-6xl h-[90vh] overflow-hidden">
-          <DialogTitle className="sr-only">PDF 문서 뷰어</DialogTitle>
-          <div className="flex items-center justify-center h-full">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-          </div>
-        </DialogContent>
-      </Dialog>
-    )
-  }
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl h-[90vh] p-0">
+      <DialogContent 
+        style={{ 
+          width: '90vw', 
+          height: '90vh', 
+          maxWidth: '90vw', 
+          maxHeight: '90vh', 
+          minWidth: 320,
+          minHeight: 200,
+          padding: 24,
+          zIndex: 9999,
+          overflow: 'visible',
+          background: 'white',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.25)'
+        }}
+      >
         <DialogTitle className="sr-only">PDF 문서 뷰어</DialogTitle>
-        <div className="w-full h-full flex flex-col">
+        <button
+          onClick={onClose}
+          style={{
+            position: 'absolute',
+            top: 16,
+            right: 16,
+            zIndex: 10000,
+            background: 'rgba(0,0,0,0.5)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '50%',
+            width: 40,
+            height: 40,
+            fontSize: 24,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          aria-label="닫기"
+        >
+          ×
+        </button>
+        <div className="w-full h-full flex flex-col" style={{height: '100%'}}>
           <div
             ref={containerRef}
-            className="flex-1 overflow-y-auto max-h-[80vh] flex flex-col items-center bg-white"
-            style={{ minHeight: 0 }}
+            className="flex-1 flex flex-col items-center bg-white"
+            style={{ minHeight: 0, height: '100%', width: '100%' }}
           >
-            {error ? (
-              <div className="flex items-center justify-center h-full text-red-500">
-                {error}
-              </div>
-            ) : (
-              <Document
-                file={pdfUrl}
-                onLoadSuccess={onDocumentLoadSuccess}
-                onLoadError={onDocumentLoadError}
-                className="flex flex-col items-center w-full"
-                loading={
-                  <div className="flex items-center justify-center h-full">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                  </div>
-                }
-                options={pdfOptions}
-              >
-                {Array.from(new Array(numPages), (_, index) => (
-                  <div key={`page_${index + 1}`} className="mb-4 w-full flex justify-center">
-                    <Page
-                      pageNumber={index + 1}
-                      renderTextLayer={false}
-                      renderAnnotationLayer={false}
-                      width={containerWidth > 0 ? Math.min(containerWidth, 900) : 900}
-                    />
-                  </div>
-                ))}
-              </Document>
-            )}
+            <iframe
+              src={pdfUrl}
+              className="w-full h-full"
+              style={{ border: 'none', width: '100%', height: '100%' }}
+              title="PDF Viewer"
+            />
           </div>
         </div>
       </DialogContent>

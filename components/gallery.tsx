@@ -30,7 +30,11 @@ const galleryCategories = [
           "/pop/pp2.png",
           "/pop/pp3.png",
           "/pop/pp4.png",
-          "/pop/pp5.png"
+          "/pop/pp5.png",
+          "/pop/wire1.png",
+          "/pop/wire2.png",
+          "/pop/wire3.png",
+          "/pop/wire4.png"
         ],
       },
       {
@@ -76,6 +80,13 @@ const galleryCategories = [
       },
       {
         id: "doc4",
+        title: "POP-POP 기능명세서",
+        images: [
+          "/pop/기능.png"
+        ],
+      },
+      {
+        id: "doc5",
         title: "T 셀파몰 와이어프레임",
         images: [
           "/t-wire1.png",
@@ -83,21 +94,21 @@ const galleryCategories = [
         ],
       },
       {
-        id: "doc5",
+        id: "doc6",
         title: "WBS",
         images: [
           "/WBS.png"
         ],
       },
       {
-        id: "doc6",
+        id: "doc7",
         title: "유저 리서치",
         images: [
           "/user.png"
         ],
       },
       {
-        id: "doc7",
+        id: "doc8",
         title: "경쟁사 분석",
         images: [
           "/경쟁사.png"
