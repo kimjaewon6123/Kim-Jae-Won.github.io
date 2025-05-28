@@ -8,6 +8,7 @@ import { ExternalLink, FileText, ArrowRight, TrendingUp, Zap, Award, Search, Arr
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
+import PDFModal from "./PDFModal"
 
 const projects = [
   {
@@ -56,7 +57,7 @@ const projects = [
     participation: "UX 리서치 및 기획 총괄",
     image: "/p3.png",
     liveUrl: "#",
-    docsUrl: "#",
+    docsUrl: "https://github.com/ita-poppop/backend.git",
   },
   {
     id: "project4",
@@ -67,12 +68,12 @@ const projects = [
       "예약 부도 문제를 주제로, 데이터 기반 리서치와 AI 도구(Curator, GPT, Claude)를 활용해 기획부터 개발까지 전 과정을 단독 수행한 프로젝트입니다. 실사용 흐름을 고려해 예약, 결제, 취소, 알림 기능을 설계하고, JSP와 MySQL 기반으로 MVP를 구현했습니다.",
     impact: "예약·결제·취소·알림 전 기능 구현, ERD 설계 및 JSP 기반 UI 완성\n예약 성공률 향상을 위한 사용자 흐름 중심 기능 설계\nAI 도구 활용을 통한 실무형 개발 경험 확보",
     process: "문제 정의 및 데스크 리서치\n기능 정의 및 ERD 설계\nJSP 기반 화면 구현 및 예약 로직 개발\nAI 도구로 코드 자동화 및 품질 개선",
-    tech: "Cursor, ChatGPT, Claude, JSP, Java Servlet, MySQL, Figma, Notion, GitHub",
+    tech: "Cursor, ChatGPT, Claude, JSP, Java Servlet, MySQL, Figma, Notion",
     tags: ["풀사이클 개발", "AI 활용", "JSP", "MySQL", "실시간 예약", "MVP 구현"],
     participation: "기획 및 프론트·백엔드 개발 전 과정 단독 수행",
     image: "/p4.png",
-    liveUrl: "#",
-    docsUrl: "#",
+    liveUrl: "/docs/Full.pdf",
+    docsUrl: "https://github.com/kimjaewon6123/scrs.git",
   },
   {
     id: "project5",
@@ -104,13 +105,14 @@ const projects = [
     participation: "AI 기술 활용 서비스 설계 및 GPT API 연동 실습",
     image: "/p6.png",
     liveUrl: "#",
-    docsUrl: "#",
+    docsUrl: "https://github.com/kimjaewon6123/mbti.git",
   },
 ]
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("project1")
   const [isVisible, setIsVisible] = useState(false)
+  const [selectedPDF, setSelectedPDF] = useState<string | null>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -179,14 +181,13 @@ export default function Portfolio() {
                     style={{ minHeight: 220 }}
                   >
                     <div className="w-full h-full" style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-                      {project.id === 'project5' ? (
-                        <a
-                          href="/docs/밀크T.pdf"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="absolute inset-0 z-30"
-                          aria-label="밀크T PDF 새탭 열기"
-                          style={{ display: 'block' }}
+                      {project.id === 'project4' ? (
+                        <button
+                          type="button"
+                          className="absolute inset-0 z-30 w-full h-full cursor-pointer"
+                          aria-label="풀사이클 PDF 미리보기"
+                          style={{ display: 'block', background: 'transparent', border: 'none', padding: 0 }}
+                          onClick={() => setSelectedPDF(project.liveUrl)}
                         >
                           <Image
                             src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
@@ -196,7 +197,7 @@ export default function Portfolio() {
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
                             style={{ minWidth: 0, objectPosition: 'center top' }}
                           />
-                        </a>
+                        </button>
                       ) : (
                         <Image
                           src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
@@ -296,20 +297,22 @@ export default function Portfolio() {
                         asChild
                         className="bg-[#b7cbe6] hover:bg-[#9AB2D8] text-white font-bold px-3 py-1.5 rounded-full shadow-lg text-xs"
                       >
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                        <button onClick={() => setSelectedPDF(project.liveUrl)}>
                           <FileText className="w-4 h-4 mr-1" />
                           <span>PDF 미리보기</span>
-                        </a>
+                        </button>
                       </Button>
-                      <Button
-                        asChild
-                        className="bg-[#2d333b] hover:bg-[#1f2428] text-white font-bold px-3 py-1.5 rounded-full shadow-lg text-xs"
-                      >
-                        <a href={project.docsUrl} target="_blank" rel="noopener noreferrer">
-                          <Github className="w-4 h-4 mr-1" />
-                          <span>Git</span>
-                        </a>
-                      </Button>
+                      {project.id !== "project1" && project.id !== "project2" && project.id !== "project5" && (
+                        <Button
+                          asChild
+                          className="bg-[#2d333b] hover:bg-[#1f2428] text-white font-bold px-3 py-1.5 rounded-full shadow-lg text-xs"
+                        >
+                          <a href={project.docsUrl} target="_blank" rel="noopener noreferrer">
+                            <Github className="w-4 h-4 mr-1" />
+                            <span>Git</span>
+                          </a>
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -318,6 +321,14 @@ export default function Portfolio() {
           </Tabs>
         </div>
       </div>
+
+      {selectedPDF && (
+        <PDFModal
+          isOpen={!!selectedPDF}
+          onClose={() => setSelectedPDF(null)}
+          pdfUrl={selectedPDF}
+        />
+      )}
     </section>
   )
 }

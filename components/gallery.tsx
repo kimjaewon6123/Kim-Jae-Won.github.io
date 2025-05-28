@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
+import PDFModal from "./PDFModal"
 
 type GalleryItem = {
   id: string;
@@ -33,11 +34,6 @@ const galleryCategories = [
         ],
       },
       {
-        id: "wire2",
-        title: "IT'S TIME 프로젝트 와이어프레임",
-        images: [],
-      },
-      {
         id: "wire3",
         title: "리뉴얼 기출로 화면설계서",
         images: [
@@ -47,8 +43,8 @@ const galleryCategories = [
         ],
       },
       {
-        id: "wire4",
-        title: "패스트캠퍼스 프로젝트 와이어프레임",
+        id: "wire2",
+        title: "T-셀파몰 화면설계서",
         images: [],
       },
     ],
@@ -66,28 +62,46 @@ const galleryCategories = [
       },
       {
         id: "doc2",
-        title: "POP-POP 와이어프레임",
-        images: [
-          "/pop/wire1.png"
-        ],
-      },
-      {
-        id: "doc3",
-        title: "POP-POP 메뉴구조도"
-        ,
+        title: "POP-POP 메뉴구조도",
         images: [
           "/pop/menu1.png"
         ],
       },
       {
+        id: "doc3",
+        title: "POP-POP 와이어프레임임",
+        images: [
+          "/pop/wire1.png"
+        ],
+      },
+      {
         id: "doc4",
-        title: "기능 명세서",
-        images: [],
+        title: "T 셀파몰 와이어프레임",
+        images: [
+          "/t-wire1.png",
+          "/t-wire2.png"
+        ],
       },
       {
         id: "doc5",
-        title: "페르소나 설계",
-        images: [],
+        title: "WBS",
+        images: [
+          "/WBS.png"
+        ],
+      },
+      {
+        id: "doc6",
+        title: "유저 리서치",
+        images: [
+          "/user.png"
+        ],
+      },
+      {
+        id: "doc7",
+        title: "경쟁사 분석",
+        images: [
+          "/경쟁사.png"
+        ],
       },
     ],
   },
@@ -125,7 +139,7 @@ const galleryCategories = [
         "/seq7.jpg"
       ] },
       { id: "etc6", title: "풀사이클 ERD", images: ["/erd.jpg"] },
-      { id: "etc7", title: "기타문서 7", images: [] },
+      { id: "etc7", title: "네이버 웹툰 쿠키 충전소 이용자의 광고 선택 요인 분석", images: ["/naver.png"] },
     ],
   },
 ]
@@ -148,6 +162,9 @@ export default function Gallery() {
   const [popIndex, setPopIndex] = useState(0)
   const [slideImages, setSlideImages] = useState<string[]>([])
   const [slideIndex, setSlideIndex] = useState(0)
+  const [showDocxModal, setShowDocxModal] = useState(false)
+  const [showPDFModal, setShowPDFModal] = useState(false)
+  const [pdfUrl, setPdfUrl] = useState("")
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -185,6 +202,12 @@ export default function Gallery() {
     };
     preloadImages();
   }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setPdfUrl(`${window.location.origin}/네이버%20웹툰%20쿠키%20충전소%20이용자의%20광고%20선택%20요인%20분석.pdf`)
+    }
+  }, [])
 
   const openImage = (images: string[], title: string) => {
     setSlideImages(images && images.length > 0 ? images : ["/placeholder.svg?height=600&width=800"])
@@ -285,47 +308,62 @@ export default function Gallery() {
                   exit={{ opacity: 0, y: 30 }}
                   transition={{ type: "spring", stiffness: 60, damping: 18 }}
                 >
-                  {category.items.map((item, idx) => (
-                    <motion.div
-                      key={item.id}
-                      className="gallery-item cursor-pointer card-hover gradient-border w-full min-w-0"
-                      onClick={() => openImage(item.images || [], item.title)}
-                      initial={{ opacity: 0, scale: 0.97 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ type: "spring", stiffness: 70, damping: 20, delay: 0.1 }}
-                    >
-                      <div className="relative aspect-square sm:aspect-video overflow-hidden rounded-lg shadow-md p-1 sm:p-0 w-full min-w-0 group bg-white">
-                        <motion.div
-                          className="gallery-overlay absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 transition-opacity duration-300 z-10"
-                          initial={{ opacity: 0 }}
-                          whileHover={{ opacity: 1 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <ZoomIn className="h-8 w-8 mb-2 text-white" />
-                          <h3 className="text-xs sm:text-base font-bold text-center break-words w-full px-1 sm:px-2 text-white drop-shadow-lg">{item.title}</h3>
-                        </motion.div>
-                        {item.images && item.images[0] && typeof item.images[0] === 'string' && item.images[0].trim() !== '' ? (
-                          <div className="absolute inset-0 w-full h-full">
-                            <Image
-                              src={item.images[0]}
-                              alt={item.title + ' 썸네일'}
-                              fill
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              className="object-cover absolute inset-0 w-full h-full mx-auto block z-0"
-                              priority={idx === 0}
-                              loading={idx === 0 ? 'eager' : 'lazy'}
-                              quality={100}
-                              unoptimized
-                            />
-                          </div>
-                        ) : (
-                          <div className="absolute inset-0 w-full h-full bg-gray-100 flex items-center justify-center">
-                            <span className="text-gray-400 text-xs">썸네일 없음</span>
-                          </div>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
+                  {category.items.map((item, idx) => {
+                    const [imgError, setImgError] = useState(false);
+                    return (
+                      <motion.div
+                        key={item.id}
+                        className="gallery-item cursor-pointer card-hover gradient-border w-full min-w-0"
+                        onClick={() => {
+                          if (category.id === 'etc' && item.id === 'etc7') {
+                            setPdfUrl("/docs/네이버 웹툰 쿠키 충전소 이용자의 광고 선택 요인 분석.pdf");
+                            setShowPDFModal(true);
+                          } else {
+                            openImage(item.images || [], item.title);
+                          }
+                        }}
+                        initial={{ opacity: 0, scale: 0.97 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ type: "spring", stiffness: 70, damping: 20, delay: 0.1 }}
+                      >
+                        <div className="relative aspect-square sm:aspect-video overflow-hidden rounded-lg shadow-md p-1 sm:p-0 w-full min-w-0 group bg-white">
+                          <motion.div
+                            className="gallery-overlay absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 transition-opacity duration-300 z-10"
+                            initial={{ opacity: 0 }}
+                            whileHover={{ opacity: 1 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <ZoomIn className="h-8 w-8 mb-2 text-white" />
+                            <h3 className="text-xs sm:text-base font-bold text-center break-words w-full px-1 sm:px-2 text-white drop-shadow-lg">{item.title}</h3>
+                          </motion.div>
+                          {item.images && item.images[0] && typeof item.images[0] === 'string' && item.images[0].trim() !== '' && !imgError ? (
+                            <div className="absolute inset-0 w-full h-full">
+                              <Image
+                                src={item.images[0]}
+                                alt={item.title + ' 썸네일'}
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                className={
+                                  category.id === 'etc' && item.id === 'etc7'
+                                    ? 'object-contain bg-white rounded-lg absolute inset-0 w-full h-full mx-auto block z-0 p-6'
+                                    : 'object-cover absolute inset-0 w-full h-full mx-auto block z-0'
+                                }
+                                priority={idx === 0}
+                                loading={idx === 0 ? 'eager' : 'lazy'}
+                                quality={100}
+                                unoptimized
+                                onError={() => setImgError(true)}
+                              />
+                            </div>
+                          ) : (
+                            <div className="absolute inset-0 w-full h-full bg-gray-100 flex items-center justify-center">
+                              <span className="text-gray-400 text-xs">썸네일 없음</span>
+                            </div>
+                          )}
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </motion.div>
               </TabsContent>
             ))}
@@ -449,6 +487,13 @@ export default function Gallery() {
             </div>
           </DialogContent>
         </Dialog>
+
+        {/* PDFModal 추가 */}
+        <PDFModal
+          isOpen={showPDFModal}
+          onClose={() => setShowPDFModal(false)}
+          pdfUrl={pdfUrl}
+        />
       </div>
     </section>
   )
