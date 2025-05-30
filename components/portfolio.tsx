@@ -42,7 +42,7 @@ const projects = [
     tags: ["PM 실전 경험", "애자일 협업", "MVP 출시", "기획-디자인-개발 소통", "사용자 여정 설계"],
     participation: "PM 및 기획 총괄",
     image: "/p3.png",
-    liveUrl: "#",
+    liveUrl: "/docs/POP.pdf",
     docsUrl: "https://github.com/ita-poppop/backend.git",
   },
   // 3. AI 기반 실무형 풀사이클 개발
@@ -108,7 +108,7 @@ const projects = [
     tags: ["GPT API", "LLM 서비스", "프롬프트 엔지니어링", "RAG", "Agent AI", "논술 첨삭", "챗봇"],
     participation: "AI 기술 활용 서비스 설계 및 GPT API 연동 실습",
     image: "/p6.png",
-    liveUrl: "#",
+    liveUrl: "/docs/AI.pdf",
     docsUrl: "https://github.com/kimjaewon6123/mbti.git",
   },
 ]
@@ -196,126 +196,53 @@ export default function Portfolio() {
                     whileHover={{ scale: 1.025, boxShadow: '0 8px 32px 0 rgba(80,120,200,0.13)' }}
                     transition={{ type: 'spring', stiffness: 260, damping: 20 }}
                     className="relative aspect-video overflow-hidden rounded-xl bg-white flex items-center justify-center group transition-all duration-300 border-none shadow-none hover:bg-white/90"
-                    style={{ minHeight: 220 }}
+                    style={project.id === 'project6' ? { minHeight: 220, marginTop: '-24px', cursor: project.liveUrl && project.liveUrl !== '#' ? 'pointer' : 'default' } : { minHeight: 220, cursor: project.liveUrl && project.liveUrl !== '#' ? 'pointer' : 'default' }}
+                    onClick={() => {
+                      if (project.liveUrl && project.liveUrl !== '#') {
+                        window.open(project.liveUrl, '_blank');
+                      }
+                    }}
                   >
                     <div className="w-full h-full" style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-                      {(project.id === 'project3' || project.id === 'project6') ? (
-                        <button
-                          type="button"
-                          className="absolute inset-0 z-30 w-full h-full cursor-pointer"
-                          aria-label="곧 업로드 예정입니다"
-                          style={{ display: 'block', background: 'transparent', border: 'none', padding: 0 }}
-                          onClick={() => setShowComingSoon(true)}
-                        >
-                          <Image
-                            src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
-                            alt={project.title}
-                            fill
-                            className={
-                              project.id === 'project3' || project.id === 'project6'
-                                ? "object-contain group-hover:scale-105 transition-transform duration-500"
-                                : "object-cover group-hover:scale-105 transition-transform duration-500"
-                            }
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
-                            style={{
-                              minWidth: 0,
-                              objectPosition: 'center top',
-                              maxWidth: '100%',
-                              maxHeight: '100%',
-                              position: 'absolute',
-                              top: '50%',
-                              left: '50%',
-                              transform: 'translate(-50%, -50%)',
-                              padding: '0.2rem',
-                            }}
-                          />
-                        </button>
-                      ) : project.id === 'project4' ? (
-                        <button
-                          type="button"
-                          className="absolute inset-0 z-30 w-full h-full cursor-pointer"
-                          aria-label="풀사이클 PDF 미리보기"
-                          style={{ display: 'block', background: 'transparent', border: 'none', padding: 0 }}
-                          onClick={() => setSelectedPDF(project.liveUrl)}
-                        >
-                          <Image
-                            src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
-                            alt={project.title}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
-                            style={{ minWidth: 0, objectPosition: 'center top' }}
-                          />
-                        </button>
-                      ) : (
-                        <>
-                          <Image
-                            src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
-                            alt={project.title}
-                            fill
-                            className={
-                              project.id === 'project3' || project.id === 'project6'
-                                ? "object-contain group-hover:scale-105 transition-transform duration-500"
-                                : "object-cover group-hover:scale-105 transition-transform duration-500"
-                            }
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
-                            style={
-                              project.id === 'project3' || project.id === 'project6'
-                                ? {
-                                    minWidth: 0,
-                                    objectPosition: 'center top',
-                                    maxWidth: '100%',
-                                    maxHeight: '100%',
-                                    position: 'absolute',
-                                    top: '50%',
-                                    left: '50%',
-                                    transform: 'translate(-50%, -50%)',
-                                    padding: '0.2rem',
-                                  }
-                                : { minWidth: 0, objectPosition: 'center top' }
-                            }
-                          />
-                          {project.liveUrl && (
-                            <a
-                              href={project.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={
-                                "absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer z-20 px-3 py-4 rounded-xl bg-gradient-to-t from-black/80 to-black/0 flex flex-col items-start justify-end pb-4 sm:pb-8 w-[90%] h-[90%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:inset-0 sm:w-full sm:h-full sm:left-auto sm:top-auto sm:translate-x-0 sm:translate-y-0 sm:rounded-2xl sm:px-8 sm:py-10 sm:gap-4"
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={project.image && project.image !== "/placeholder.svg?height=600&width=800" ? project.image : "/p1.png"}
+                          alt={project.title}
+                          fill
+                          className={
+                            project.id === 'project3' || project.id === 'project6'
+                              ? "object-contain group-hover:scale-105 transition-transform duration-500"
+                              : "object-cover group-hover:scale-105 transition-transform duration-500"
+                          }
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
+                          style={project.id === 'project6'
+                            ? {
+                                minWidth: 0,
+                                objectPosition: 'center top',
+                                maxWidth: '90%',
+                                maxHeight: '90%',
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                padding: '0.2rem',
                               }
-                              style={{
-                                background: "linear-gradient(0deg, rgba(20,20,30,0.82) 70%, rgba(20,20,30,0.0) 100%)",
-                                zIndex: 20,
-                                textDecoration: 'none',
-                                boxShadow: 'none',
-                              }}
-                              aria-label="PDF 미리보기"
-                            >
-                              <h3 className="text-base sm:text-xl font-bold text-[#2e4a7d] mb-1 w-full text-left sm:text-white sm:mb-2 sm:text-2xl sm:font-extrabold" style={{textShadow:'0 2px 8px rgba(46,74,125,0.13)'}}>{project.title}</h3>
-                              <span className="text-xs sm:text-base text-muted-foreground mb-2 w-full text-left sm:text-white/80 sm:mb-2" style={{textShadow:'0 1px 4px rgba(46,74,125,0.08)'}}>{project.subtitle}</span>
-                              <div className="flex flex-wrap gap-1 mb-2 justify-start w-full sm:justify-start sm:gap-2">
-                                {project.tags.map((tag, idx) => (
-                                  <span key={idx} className="px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#e3eaf7]/80 text-[#2e4a7d] border-none shadow-none transition-all duration-200 sm:bg-white/10 sm:text-white sm:text-xs sm:px-3 sm:py-1.5 sm:rounded-xl">{tag}</span>
-                                ))}
-                              </div>
-                              {/* 돋보기 아이콘 (hover와 무관하게 항상 우측 하단에 고정) */}
-                              <span
-                                className="absolute z-30 flex items-center justify-center right-3 bottom-3 sm:right-4 sm:bottom-4"
-                                style={{ pointerEvents: 'none' }}
-                              >
-                                <span
-                                  className="flex items-center justify-center rounded-full bg-white/70 backdrop-blur-md border border-[#b7cbe6] shadow-lg transition-all duration-200 w-[32px] h-[32px] sm:w-[40px] sm:h-[40px]"
-                                  style={{
-                                    boxShadow: '0 4px 16px 0 rgba(80,120,200,0.16)',
-                                  }}
-                                >
-                                  <ArrowUpRight className="w-4 h-4 text-[#4766a6] opacity-100" />
-                                </span>
-                              </span>
-                            </a>
-                          )}
-                        </>
-                      )}
+                            : project.id === 'project3'
+                            ? {
+                                minWidth: 0,
+                                objectPosition: 'center top',
+                                maxWidth: '100%',
+                                maxHeight: '100%',
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                padding: '0.2rem',
+                              }
+                            : { minWidth: 0, objectPosition: 'center top' }
+                          }
+                        />
+                      </div>
                     </div>
                   </motion.div>
                   <div className="flex flex-col justify-center gap-3 p-2 sm:gap-6 sm:p-8">
@@ -350,7 +277,7 @@ export default function Portfolio() {
                         <button
                           onClick={() => {
                             if (project.id === 'project3' || project.id === 'project6') {
-                              setShowComingSoon(true);
+                              setSelectedPDF(project.liveUrl);
                             } else {
                               setSelectedPDF(project.liveUrl);
                             }

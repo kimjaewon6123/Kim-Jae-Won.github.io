@@ -47,7 +47,7 @@ export default function Hero() {
       </motion.div>
       {/* 배경 */}
       <Image 
-        src="/back.png" 
+        src="/back.jpg" 
         alt="배경" 
         fill 
         priority 
@@ -116,7 +116,7 @@ export default function Hero() {
       </motion.div>
       {/* 인물 이미지 - 모바일은 중앙, 크게, 텍스트 아래 / sm 이상은 기존 위치 */}
       <div className="block sm:hidden w-full mt-8 flex justify-center">
-        <div className="w-[90px] max-w-[28vw] min-w-0 aspect-[3/5] pointer-events-none select-none mb-4 custom-mobile-img-size">
+        <div className="w-[90px] max-w-[28vw] min-w-0 aspect-[3/5] pointer-events-none select-none mb-4 custom-mobile-img-size max-w-[220px] max-h-[340px]">
           <Image
             src="/my.png"
             alt="인물"

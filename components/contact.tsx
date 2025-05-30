@@ -55,7 +55,7 @@ export default function Contact() {
               <img
                 src="/my.png"
                 alt="프로필 이미지"
-                className="absolute inset-0 w-full h-full object-contain"
+                className="absolute inset-0 w-full h-full object-contain max-w-[220px] max-h-[340px] mx-auto"
                 style={{ pointerEvents: 'none' }}
               />
             </div>

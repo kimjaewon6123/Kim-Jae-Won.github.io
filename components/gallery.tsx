@@ -19,44 +19,33 @@ type GalleryItem = {
 
 const galleryCategories = [
   {
-    id: "wireframes",
-    title: "화면설계서",
+    id: "documents",
+    title: "기획문서",
     items: [
       {
         id: "wf1",
         title: "POP-POP 화면설계서",
         images: [
-          "/pop/pp1.png",
-          "/pop/pp2.png",
-          "/pop/pp3.png",
-          "/pop/pp4.png",
-          "/pop/pp5.png",
-          "/pop/wire1.png",
-          "/pop/wire2.png",
-          "/pop/wire3.png",
-          "/pop/wire4.png"
+          "/pop/pp1.jpg",
+          "/pop/pp2.jpg",
+          "/pop/pp3.jpg",
+          "/pop/pp4.jpg",
+          "/pop/pp5.jpg",
+          "/pop/wire1.jpg",
+          "/pop/wire2.jpg",
+          "/pop/wire3.jpg",
+          "/pop/wire4.jpg"
         ],
       },
       {
         id: "wire3",
         title: "리뉴얼 기출로 화면설계서",
         images: [
-          "/ki/기출로1.png",
-          "/ki/기출로2.png",
-          "/ki/기출로3.png"
+          "/ki/기출로1.jpg",
+          "/ki/기출로2.jpg",
+          "/ki/기출로3.jpg"
         ],
       },
-      {
-        id: "wire2",
-        title: "T-셀파몰 화면설계서",
-        images: [],
-      },
-    ],
-  },
-  {
-    id: "documents",
-    title: "기획문서",
-    items: [
       {
         id: "doc1",
         title: "POP-POP IA",
@@ -68,50 +57,50 @@ const galleryCategories = [
         id: "doc2",
         title: "POP-POP 메뉴구조도",
         images: [
-          "/pop/menu1.png"
+          "/pop/menu1.jpg"
         ],
       },
       {
         id: "doc3",
         title: "POP-POP 와이어프레임임",
         images: [
-          "/pop/wire1.png"
+          "/pop/wire1.jpg"
         ],
       },
       {
         id: "doc4",
         title: "POP-POP 기능명세서",
         images: [
-          "/pop/기능.png"
+          "/pop/기능.jpg"
         ],
       },
       {
         id: "doc5",
         title: "T 셀파몰 와이어프레임",
         images: [
-          "/t-wire1.png",
-          "/t-wire2.png"
+          "/t-wire1.jpg",
+          "/t-wire2.jpg"
         ],
       },
       {
         id: "doc6",
         title: "WBS",
         images: [
-          "/WBS.png"
+          "/WBS.jpg"
         ],
       },
       {
         id: "doc7",
         title: "유저 리서치",
         images: [
-          "/user.png"
+          "/user.jpg"
         ],
       },
       {
         id: "doc8",
         title: "경쟁사 분석",
         images: [
-          "/경쟁사.png"
+          "/경쟁사.jpg"
         ],
       },
     ],
@@ -122,15 +111,15 @@ const galleryCategories = [
     items: [
       { id: "etc1", title: "POP POP 시스템 기능 흐름도", images: ["/pop/sy1.jpg"] },
       { id: "etc2", title: "풀사이클 유즈케이스 시나리오", images: [
-        "/use/1조 유즈케이스 시나리오 (1)_1.png",
-        "/use/1조 유즈케이스 시나리오 (1)_2.png",
-        "/use/1조 유즈케이스 시나리오 (1)_3.png",
-        "/use/1조 유즈케이스 시나리오 (1)_4.png",
-        "/use/1조 유즈케이스 시나리오 (1)_5.png",
-        "/use/1조 유즈케이스 시나리오 (1)_6.png",
-        "/use/1조 유즈케이스 시나리오 (1)_7.png",
-        "/use/1조 유즈케이스 시나리오 (1)_8.png",
-        "/use/1조 유즈케이스 시나리오 (1)_9.png"
+        "/use/use1.jpg",
+        "/use/use2.jpg",
+        "/use/use3.jpg",
+        "/use/use4.jpg",
+        "/use/use5.jpg",
+        "/use/use6.jpg",
+        "/use/use7.jpg",
+        "/use/use8.jpg",
+        "/use/use9.jpg"
       ] },
       { id: "etc3", title: "풀사이클 요구사항 정의서", images: [
         "/demand1.jpg",
@@ -150,22 +139,32 @@ const galleryCategories = [
         "/seq7.jpg"
       ] },
       { id: "etc6", title: "풀사이클 ERD", images: ["/erd.jpg"] },
-      { id: "etc7", title: "네이버 웹툰 쿠키 충전소 이용자의 광고 선택 요인 분석", images: ["/naver.png"] },
+      { id: "etc7", title: "네이버 웹툰 쿠키 충전소 이용자의 광고 선택 요인 분석", images: ["/naver.jpg"] },
     ],
   },
 ]
 
 // pop 폴더 이미지 리스트
 const popImages = [
-  "/pop/pp1.png",
-  "/pop/pp2.png",
-  "/pop/pp3.png",
-  "/pop/pp4.png",
-  "/pop/pp5.png",
+  "/pop/pp1.jpg",
+  "/pop/pp2.jpg",
+  "/pop/pp3.jpg",
+  "/pop/pp4.jpg",
+  "/pop/pp5.jpg",
+];
+
+// p1~p6 이미지 리스트
+const pImages = [
+  "/p1.jpg",
+  "/p2.jpg",
+  "/p3.jpg",
+  "/p4.jpg",
+  "/p5.jpg",
+  "/p6.jpg",
 ];
 
 export default function Gallery() {
-  const [activeTab, setActiveTab] = useState("wireframes")
+  const [activeTab, setActiveTab] = useState("documents")
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [selectedTitle, setSelectedTitle] = useState<string>("")
   const [isVisible, setIsVisible] = useState(false)
@@ -277,7 +276,7 @@ export default function Gallery() {
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.15 }}
         >
-          <Tabs defaultValue="wireframes" value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <Tabs defaultValue="documents" value={activeTab} onValueChange={setActiveTab} className="w-full">
             <div className="flex flex-wrap max-sm:flex-nowrap items-center justify-center gap-2 sm:gap-4 mb-8">
               <Button
                 variant="outline"
@@ -314,6 +313,7 @@ export default function Gallery() {
               <TabsContent key={category.id} value={category.id} className="mt-0">
                 <motion.div
                   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 px-1 sm:px-0 w-full max-w-full"
+                  style={{ alignItems: 'flex-start' }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 30 }}
@@ -336,6 +336,7 @@ export default function Gallery() {
                         initial={{ opacity: 0, scale: 0.97 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ type: "spring", stiffness: 70, damping: 20, delay: 0.1 }}
+                        style={category.id === 'wireframes' && item.id === 'wf1' ? { marginTop: 0, marginBottom: 0, alignSelf: 'auto' } : {}}
                       >
                         <div className="relative aspect-square sm:aspect-video overflow-hidden rounded-lg shadow-md p-1 sm:p-0 w-full min-w-0 group bg-white">
                           <motion.div
@@ -359,6 +360,12 @@ export default function Gallery() {
                                     ? 'object-contain bg-white rounded-lg absolute inset-0 w-full h-full mx-auto block z-0 p-6'
                                     : 'object-cover absolute inset-0 w-full h-full mx-auto block z-0'
                                 }
+                                style={{
+                                  objectPosition: 'center top',
+                                  inset: 0,
+                                  transform: undefined,
+                                  padding: '0.2rem',
+                                }}
                                 priority={idx === 0}
                                 loading={idx === 0 ? 'eager' : 'lazy'}
                                 quality={100}
@@ -412,6 +419,7 @@ export default function Gallery() {
                     className="object-contain rounded-xl shadow-lg max-h-[80vh] max-w-[90vw] w-full h-auto mx-2 sm:mx-12"
                     sizes="(max-width: 768px) 90vw, 1200px"
                     priority
+                    style={slideImages[slideIndex].includes('/p6') ? { marginTop: '16px' } : {}}
                   />
                 ) : (
                   <div className="object-contain rounded-xl shadow-lg max-h-[80vh] max-w-[90vw] w-full h-auto mx-2 sm:mx-12 flex items-center justify-center bg-gray-100">
