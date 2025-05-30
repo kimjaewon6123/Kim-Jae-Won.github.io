@@ -360,16 +360,10 @@ export default function Gallery() {
                                     ? 'object-contain bg-white rounded-lg absolute inset-0 w-full h-full mx-auto block z-0 p-6'
                                     : 'object-cover absolute inset-0 w-full h-full mx-auto block z-0'
                                 }
-                                style={{
-                                  objectPosition: 'center top',
-                                  inset: 0,
-                                  transform: undefined,
-                                  padding: '0.2rem',
-                                }}
+                                style={{ objectPosition: 'center top', inset: 0, transform: undefined, padding: '0.2rem' }}
                                 priority={idx === 0}
                                 loading={idx === 0 ? 'eager' : 'lazy'}
                                 quality={100}
-                                unoptimized
                                 onError={() => setImgError(true)}
                               />
                             </div>
