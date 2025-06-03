@@ -89,10 +89,10 @@ export default function Contact() {
                     asChild
                     className="flex items-center bg-gradient-to-r from-primary to-blue-400 hover:from-blue-500 hover:to-primary transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm px-2 sm:px-4 group rounded-xl shadow-none"
                   >
-                    <a href="mailto:twice6123@naver.com" target="_blank" rel="noopener noreferrer">
+                    <a href="/docs/포트폴리오.pdf" target="_blank" rel="noopener noreferrer">
                       <motion.span whileHover={{ x: 4, scale: 1.13 }} transition={{ type: 'spring', stiffness: 220, damping: 18 }} className="flex items-center">
-                        <Mail className="mr-2 h-4 w-4" />
-                        이메일 보내기
+                        <FileText className="mr-2 h-4 w-4" />
+                        포트폴리오
                       </motion.span>
                     </a>
                   </Button>
