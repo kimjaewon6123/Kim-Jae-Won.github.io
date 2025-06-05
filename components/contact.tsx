@@ -104,7 +104,7 @@ export default function Contact() {
                     <a href="/docs/이력서.pdf" target="_blank" rel="noopener noreferrer">
                       <motion.span whileHover={{ x: 4, scale: 1.13 }} transition={{ type: 'spring', stiffness: 220, damping: 18 }} className="flex items-center">
                         <FileText className="mr-2 h-4 w-4" />
-                        이력서 다운로드
+                        이력서 
                       </motion.span>
                     </a>
                   </Button>

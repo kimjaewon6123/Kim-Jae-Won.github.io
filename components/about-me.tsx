@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react"
 import { motion } from "framer-motion"
+import PDFModal from "./PDFModal"
 
 const profileData = [
   {
@@ -63,6 +64,7 @@ const tagColors = [
 export default function AboutMe() {
   const [activeProfile, setActiveProfile] = useState(0)
   const [activeSlide, setActiveSlide] = useState(0)
+  const [selectedPDF, setSelectedPDF] = useState<string | null>(null)
 
   const nextProfile = () => {
     setActiveProfile((prev) => (prev === profileData.length - 1 ? 0 : prev + 1))
@@ -92,33 +94,38 @@ export default function AboutMe() {
         >
           <h2 className="section-title text-[#2e4a7d] text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 md:mb-8 mt-0 leading-tight select-none">About me</h2>
           <div className="relative w-full max-w-[220px] md:max-w-[260px] aspect-[4/5] mb-3 md:mb-4 overflow-visible rounded-xl transition-all duration-300 group-hover:shadow-2xl mx-auto" style={{ background: '#fff' }}>
-            <a
-              href="/docs/이력서.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: 'block', width: '100%', height: '100%' }}
-              aria-label="이력서 PDF 새탭 열기"
-            >
-              <motion.img
-                src="/my2.png"
-                alt="Profile"
-                id="about-profile-img"
-                className="object-cover rounded-xl"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  position: 'absolute',
-                  left: 0,
-                  bottom: 0,
-                  transform: 'none',
-                  display: 'block',
-                  objectPosition: 'bottom center',
-                  zIndex: 10,
-                }}
-                whileHover={{ scale: 1.07 }}
-                transition={{ type: 'spring', stiffness: 180, damping: 18 }}
-              />
-            </a>
+            <motion.img
+              src="/my2.png"
+              alt="Profile"
+              id="about-profile-img"
+              className="object-cover rounded-xl cursor-pointer"
+              style={{
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                left: 0,
+                bottom: 0,
+                transform: 'none',
+                display: 'block',
+                objectPosition: 'bottom center',
+                zIndex: 10,
+              }}
+              whileHover={{ scale: 1.07 }}
+              transition={{ type: 'spring', stiffness: 180, damping: 18 }}
+              onClick={() => {
+                const img = document.getElementById('about-profile-img');
+                if (img) {
+                  img.style.transition = 'transform 0.5s cubic-bezier(.4,1,.7,1)';
+                  img.style.transform = 'scale(1.13)';
+                  setTimeout(() => {
+                    img.style.transform = 'scale(1)';
+                    setSelectedPDF('/docs/이력서.pdf');
+                  }, 700);
+                } else {
+                  setSelectedPDF('/docs/이력서.pdf');
+                }
+              }}
+            />
             {/* 우측 세로 텍스트 */}
             <span className="absolute right-2 top-4 text-foreground text-base md:text-lg tracking-widest select-none" style={{ writingMode: 'vertical-rl', letterSpacing: '0.1em' }}>
               2000.07.20
@@ -142,10 +149,10 @@ export default function AboutMe() {
                 img.style.transform = 'scale(1.13)';
                 setTimeout(() => {
                   img.style.transform = 'scale(1)';
-                  window.open('/resume.pdf', '_blank');
+                  setSelectedPDF('/docs/이력서.pdf');
                 }, 700);
               } else {
-                window.open('/resume.pdf', '_blank');
+                setSelectedPDF('/docs/이력서.pdf');
               }
             }}
           >
@@ -213,6 +220,15 @@ export default function AboutMe() {
           )}
         </motion.div>
       </div>
+      {/* 섹션 구분선 */}
+      <div className="section-divider-diagonal"></div>
+
+      {/* PDF 모달 */}
+      <PDFModal
+        isOpen={selectedPDF !== null}
+        onClose={() => setSelectedPDF(null)}
+        pdfUrl={selectedPDF || ''}
+      />
     </section>
   )
 }

@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useRef, useLayoutEffect } from "react"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
+import { useRef, useState, useLayoutEffect } from "react"
 
 interface PDFModalProps {
   isOpen: boolean
@@ -65,19 +65,25 @@ export default function PDFModal({ isOpen, onClose, pdfUrl }: PDFModalProps) {
         >
           ×
         </button>
-        <div className="w-full h-full flex flex-col" style={{height: '100%'}}>
-          <div
-            ref={containerRef}
-            className="flex-1 flex flex-col items-center bg-white"
-            style={{ minHeight: 0, height: '100%', width: '100%' }}
-          >
+        <div
+          ref={containerRef}
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            position: 'relative',
+            overflow: 'hidden',
+            borderRadius: 8,
+            background: '#f5f5f5'
+          }}
+        >
+          {pdfUrl && (
             <iframe
               src={pdfUrl}
               className="w-full h-full"
               style={{ border: 'none', width: '100%', height: '100%' }}
               title="PDF Viewer"
             />
-          </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>
