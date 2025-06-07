@@ -36,6 +36,7 @@ const galleryCategories = [
           "/pop/wire3.jpg",
           "/pop/wire4.jpg"
         ],
+        thumbnail: "/pop/pp1.jpg",
       },
       {
         id: "wire3",
@@ -45,6 +46,7 @@ const galleryCategories = [
           "/ki/기출로2.jpg",
           "/ki/기출로3.jpg"
         ],
+        thumbnail: "/ki/기출로1.jpg",
       },
       {
         id: "doc1",
@@ -52,6 +54,7 @@ const galleryCategories = [
         images: [
           "/pop/popia.jpg"
         ],
+        thumbnail: "/pop/popia.jpg",
       },
       {
         id: "doc2",
@@ -59,6 +62,7 @@ const galleryCategories = [
         images: [
           "/pop/menu1.jpg"
         ],
+        thumbnail: "/pop/menu1.jpg",
       },
       {
         id: "doc3",
@@ -66,6 +70,7 @@ const galleryCategories = [
         images: [
           "/pop/wire1.jpg"
         ],
+        thumbnail: "/pop/wire1.jpg",
       },
       {
         id: "doc4",
@@ -73,6 +78,7 @@ const galleryCategories = [
         images: [
           "/pop/기능.jpg"
         ],
+        thumbnail: "/pop/기능.jpg",
       },
       {
         id: "doc5",
@@ -81,6 +87,7 @@ const galleryCategories = [
           "/t-wire1.jpg",
           "/t-wire2.jpg"
         ],
+        thumbnail: "/t-wire1.jpg",
       },
       {
         id: "doc6",
@@ -88,6 +95,7 @@ const galleryCategories = [
         images: [
           "/WBS.jpg"
         ],
+        thumbnail: "/WBS.jpg",
       },
       {
         id: "doc7",
@@ -95,6 +103,7 @@ const galleryCategories = [
         images: [
           "/user.jpg"
         ],
+        thumbnail: "/user.jpg",
       },
       {
         id: "doc8",
@@ -102,6 +111,7 @@ const galleryCategories = [
         images: [
           "/경쟁사.jpg"
         ],
+        thumbnail: "/경쟁사.jpg",
       },
     ],
   },
@@ -109,7 +119,7 @@ const galleryCategories = [
     id: "etc",
     title: "기타문서",
     items: [
-      { id: "etc1", title: "POP POP 시스템 기능 흐름도", images: ["/pop/sy1.jpg"] },
+      { id: "etc1", title: "POP POP 시스템 기능 흐름도", images: ["/pop/sy1.jpg"], thumbnail: "/pop/sy1.jpg" },
       { id: "etc2", title: "풀사이클 유즈케이스 시나리오", images: [
         "/use/use1.jpg",
         "/use/use2.jpg",
@@ -120,15 +130,15 @@ const galleryCategories = [
         "/use/use7.jpg",
         "/use/use8.jpg",
         "/use/use9.jpg"
-      ] },
+      ], thumbnail: "/use/use1.jpg" },
       { id: "etc3", title: "풀사이클 요구사항 정의서", images: [
         "/demand1.jpg",
         "/demand2.jpg",
         "/demand3.jpg",
         "/demand4.jpg",
         "/demand5.jpg"
-      ] },
-      { id: "etc4", title: "풀사이클 유즈케이스 다이어그램", images: ["/use1.jpg"] },
+      ], thumbnail: "/demand1.jpg" },
+      { id: "etc4", title: "풀사이클 유즈케이스 다이어그램", images: ["/use1.jpg"], thumbnail: "/use1.jpg" },
       { id: "etc5", title: "풀사이클 시퀀스 다이어그램", images: [
         "/seq1.jpg",
         "/seq2.jpg",
@@ -137,9 +147,9 @@ const galleryCategories = [
         "/seq5.jpg",
         "/seq6.jpg",
         "/seq7.jpg"
-      ] },
-      { id: "etc6", title: "풀사이클 ERD", images: ["/erd.jpg"] },
-      { id: "etc7", title: "네이버 웹툰 쿠키 충전소 이용자의 광고 선택 요인 분석", images: ["/naver.jpg"] },
+      ], thumbnail: "/seq1.jpg" },
+      { id: "etc6", title: "풀사이클 ERD", images: ["/erd.jpg"], thumbnail: "/erd.jpg" },
+      { id: "etc7", title: "네이버 웹툰 쿠키 충전소 이용자의 광고 선택 요인 분석", images: ["/naver.jpg"], thumbnail: "/naver.jpg" },
     ],
   },
 ]
@@ -348,10 +358,10 @@ export default function Gallery() {
                             <ZoomIn className="h-8 w-8 mb-2 text-white" />
                             <h3 className="text-xs sm:text-base font-bold text-center break-words w-full px-1 sm:px-2 text-white drop-shadow-lg">{item.title}</h3>
                           </motion.div>
-                          {item.images && item.images[0] && typeof item.images[0] === 'string' && item.images[0].trim() !== '' && !imgError ? (
+                          {item.thumbnail && !imgError ? (
                             <div className="absolute inset-0 w-full h-full">
                               <Image
-                                src={item.images[0]}
+                                src={item.thumbnail}
                                 alt={item.title + ' 썸네일'}
                                 fill
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
