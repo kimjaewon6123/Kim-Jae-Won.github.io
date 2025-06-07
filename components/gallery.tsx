@@ -19,6 +19,43 @@ type GalleryItem = {
 
 const galleryCategories = [
   {
+    id: "etc",
+    title: "기타문서",
+    items: [
+      { id: "etc1", title: "POP POP 시스템 기능 흐름도", images: ["/pop/sy1.jpg"], thumbnail: "/pop/sy1.jpg" },
+      { id: "etc2", title: "풀사이클 유즈케이스 시나리오", images: [
+        "/use/use1.jpg",
+        "/use/use2.jpg",
+        "/use/use3.jpg",
+        "/use/use4.jpg",
+        "/use/use5.jpg",
+        "/use/use6.jpg",
+        "/use/use7.jpg",
+        "/use/use8.jpg",
+        "/use/use9.jpg"
+      ], thumbnail: "/use/use1.jpg" },
+      { id: "etc3", title: "풀사이클 요구사항 정의서", images: [
+        "/demand1.jpg",
+        "/demand2.jpg",
+        "/demand3.jpg",
+        "/demand4.jpg",
+        "/demand5.jpg"
+      ], thumbnail: "/demand1.jpg" },
+      { id: "etc4", title: "풀사이클 유즈케이스 다이어그램", images: ["/use1.jpg"], thumbnail: "/use1.jpg" },
+      { id: "etc5", title: "풀사이클 시퀀스 다이어그램", images: [
+        "/seq1.jpg",
+        "/seq2.jpg",
+        "/seq3.jpg",
+        "/seq4.jpg",
+        "/seq5.jpg",
+        "/seq6.jpg",
+        "/seq7.jpg"
+      ], thumbnail: "/seq1.jpg" },
+      { id: "etc6", title: "풀사이클 ERD", images: ["/erd.jpg"], thumbnail: "/erd.jpg" },
+      { id: "etc7", title: "네이버 웹툰 쿠키 충전소 이용자의 광고 선택 요인 분석", images: ["/naver.jpg"], thumbnail: "/naver.jpg" },
+    ],
+  },
+  {
     id: "documents",
     title: "기획문서",
     items: [
@@ -115,43 +152,6 @@ const galleryCategories = [
       },
     ],
   },
-  {
-    id: "etc",
-    title: "기타문서",
-    items: [
-      { id: "etc1", title: "POP POP 시스템 기능 흐름도", images: ["/pop/sy1.jpg"], thumbnail: "/pop/sy1.jpg" },
-      { id: "etc2", title: "풀사이클 유즈케이스 시나리오", images: [
-        "/use/use1.jpg",
-        "/use/use2.jpg",
-        "/use/use3.jpg",
-        "/use/use4.jpg",
-        "/use/use5.jpg",
-        "/use/use6.jpg",
-        "/use/use7.jpg",
-        "/use/use8.jpg",
-        "/use/use9.jpg"
-      ], thumbnail: "/use/use1.jpg" },
-      { id: "etc3", title: "풀사이클 요구사항 정의서", images: [
-        "/demand1.jpg",
-        "/demand2.jpg",
-        "/demand3.jpg",
-        "/demand4.jpg",
-        "/demand5.jpg"
-      ], thumbnail: "/demand1.jpg" },
-      { id: "etc4", title: "풀사이클 유즈케이스 다이어그램", images: ["/use1.jpg"], thumbnail: "/use1.jpg" },
-      { id: "etc5", title: "풀사이클 시퀀스 다이어그램", images: [
-        "/seq1.jpg",
-        "/seq2.jpg",
-        "/seq3.jpg",
-        "/seq4.jpg",
-        "/seq5.jpg",
-        "/seq6.jpg",
-        "/seq7.jpg"
-      ], thumbnail: "/seq1.jpg" },
-      { id: "etc6", title: "풀사이클 ERD", images: ["/erd.jpg"], thumbnail: "/erd.jpg" },
-      { id: "etc7", title: "네이버 웹툰 쿠키 충전소 이용자의 광고 선택 요인 분석", images: ["/naver.jpg"], thumbnail: "/naver.jpg" },
-    ],
-  },
 ]
 
 // pop 폴더 이미지 리스트
@@ -174,7 +174,7 @@ const pImages = [
 ];
 
 export default function Gallery() {
-  const [activeTab, setActiveTab] = useState("documents")
+  const [activeTab, setActiveTab] = useState("etc")
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [selectedTitle, setSelectedTitle] = useState<string>("")
   const [isVisible, setIsVisible] = useState(false)
@@ -203,25 +203,6 @@ export default function Gallery() {
       if (section) observer.unobserve(section)
     }
   }, [])
-
-  useEffect(() => {
-    // 이미지 프리로딩
-    const preloadImages = () => {
-      galleryCategories.forEach(category => {
-        category.items.forEach(item => {
-          if (item.images && Array.isArray(item.images)) {
-            item.images.forEach(imgPath => {
-              if (typeof imgPath === 'string' && imgPath.trim() !== '') {
-                const img = new window.Image();
-                img.src = imgPath;
-              }
-            });
-          }
-        });
-      });
-    };
-    preloadImages();
-  }, []);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -286,7 +267,7 @@ export default function Gallery() {
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.15 }}
         >
-          <Tabs defaultValue="documents" value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <Tabs defaultValue="etc" value={activeTab} onValueChange={setActiveTab} className="w-full">
             <div className="flex flex-wrap max-sm:flex-nowrap items-center justify-center gap-2 sm:gap-4 mb-8">
               <Button
                 variant="outline"
